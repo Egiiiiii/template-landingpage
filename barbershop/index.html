@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-editable="site-title">Black & Blade Barbershop — Potong Rapi, Tampil Pede</title>
+  <title data-editable="siteTitle">Black & Blade Barbershop — Potong Rapi, Tampil Pede</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #080a0d;
@@ -16,8 +16,8 @@
       --surface2: rgba(255,255,255,.08);
       --surface3: rgba(255,255,255,.12);
       --text: #f0f0ee;
-      --muted: rgba(240,240,238,.55);
-      --muted2: rgba(240,240,238,.35);
+      --muted: rgba(240,240,238,.65);
+      --muted2: rgba(240,240,238,.40);
       --border: rgba(255,255,255,.09);
       --border2: rgba(255,255,255,.14);
       --gold: #d4a84b;
@@ -29,15 +29,22 @@
       --max: 1160px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
+      font-family: 'Montserrat', system-ui, sans-serif;
       color: var(--text);
       background: var(--bg);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tipografi Heading */
+    h1, h2, h3, .brand, .footer-brand, .service-price, .footer-cta-title {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -49,7 +56,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: .028;
+      opacity: .03;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 180px 180px;
     }
@@ -58,6 +65,8 @@
       max-width: var(--max);
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 10;
     }
 
     /* ─── TOPBAR ─────────────────────────────────────── */
@@ -65,13 +74,13 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(8,10,13,.82);
+      background: rgba(8,10,13,.85);
       backdrop-filter: blur(18px) saturate(1.4);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      height: 72px;
+      height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -82,10 +91,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1.15rem;
-      letter-spacing: .01em;
+      font-weight: 700;
+      font-size: 1.3rem;
       color: var(--text);
     }
 
@@ -104,16 +111,16 @@
     .links {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 4px;
     }
 
     .links a {
-      font-weight: 500;
-      font-size: .875rem;
-      letter-spacing: .04em;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .05em;
       text-transform: uppercase;
       color: var(--muted);
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 4px;
       transition: color .2s;
     }
@@ -124,11 +131,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 10px 24px;
       border-radius: var(--radius);
       font-weight: 700;
-      font-size: .875rem;
-      letter-spacing: .03em;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
       background: var(--gold);
       color: #0b0c0a;
       border: none;
@@ -146,7 +154,6 @@
       overflow: hidden;
     }
 
-    /* ambient glow */
     .hero::before {
       content: '';
       position: absolute;
@@ -165,35 +172,31 @@
       right: -5%;
       width: 40%;
       height: 400px;
-      background: radial-gradient(ellipse, rgba(96,165,250,.05) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(96,165,250,.04) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-inner { position: relative; z-index: 1; }
 
-    /* eyebrow label above title */
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: .78rem;
+      font-size: .8rem;
       font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
 
     .eyebrow::before {
       content: '';
       display: block;
       width: 28px;
-      height: 1px;
+      height: 2px;
       background: var(--gold);
-      opacity: .7;
+      opacity: .8;
     }
 
     .hero-layout {
@@ -203,7 +206,6 @@
       min-height: 540px;
     }
 
-    /* Left col */
     .hero-left {
       padding: 0 56px 64px 0;
       display: flex;
@@ -212,32 +214,27 @@
     }
 
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
-      line-height: 1.06;
-      letter-spacing: -.02em;
+      font-weight: 700;
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      line-height: 1.05;
       color: var(--text);
       margin-bottom: 20px;
     }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
+    .hero-title span { color: var(--gold); }
 
     .hero-subtitle {
       font-size: 1.05rem;
       font-weight: 400;
       color: var(--muted);
-      max-width: 440px;
+      max-width: 460px;
       line-height: 1.7;
       margin-bottom: 36px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
       align-items: center;
       margin-bottom: 52px;
@@ -250,11 +247,13 @@
       padding: 14px 28px;
       background: var(--gold);
       color: #0b0c0a;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: .9rem;
       letter-spacing: .02em;
       border-radius: var(--radius);
       transition: background .2s, transform .15s, box-shadow .2s;
+      text-transform: uppercase;
     }
 
     .btn-gold:hover {
@@ -263,26 +262,27 @@
       box-shadow: 0 12px 32px rgba(212,168,75,.25);
     }
 
-    .btn-gold img { width: 17px; height: 17px; object-fit: contain; }
+    .btn-gold img { width: 18px; height: 18px; object-fit: contain; }
 
     .btn-ghost {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 24px;
+      padding: 14px 28px;
       background: transparent;
       color: var(--text);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: .9rem;
       letter-spacing: .02em;
       border-radius: var(--radius);
       border: 1px solid var(--border2);
       transition: background .2s, border-color .2s;
+      text-transform: uppercase;
     }
 
     .btn-ghost:hover { background: var(--surface2); border-color: var(--surface3); }
 
-    /* quick info strips */
     .info-strips {
       display: flex;
       flex-direction: column;
@@ -296,7 +296,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
@@ -312,20 +312,17 @@
     }
 
     .strip-value {
-      font-size: .9rem;
-      font-weight: 700;
+      font-size: .95rem;
+      font-weight: 600;
       color: var(--text);
     }
 
-    /* Right col — hero image */
-    .hero-right {
-      position: relative;
-    }
+    .hero-right { position: relative; }
 
     .hero-img-wrap {
       position: relative;
       height: 100%;
-      min-height: 480px;
+      min-height: 500px;
     }
 
     .hero-img {
@@ -336,16 +333,15 @@
       border-left: 1px solid var(--border);
     }
 
-    /* floating badge on image */
     .img-badge {
       position: absolute;
-      bottom: 28px;
+      bottom: 32px;
       left: -1px;
       background: var(--bg);
       border: 1px solid var(--border2);
       border-left: 3px solid var(--gold);
-      padding: 12px 18px;
-      font-size: .78rem;
+      padding: 14px 20px;
+      font-size: .8rem;
       font-weight: 600;
       letter-spacing: .05em;
       text-transform: uppercase;
@@ -353,52 +349,46 @@
     }
 
     /* ─── DIVIDER ────────────────────────────────────── */
-    .divider-bar {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
+    .divider-bar { border: none; border-top: 1px solid var(--border); margin: 0; }
 
     /* ─── SECTION BASE ───────────────────────────────── */
-    .section { padding: 80px 0; }
+    .section { padding: 90px 0; }
 
-    .section-header { margin-bottom: 52px; }
+    .section-header { margin-bottom: 56px; }
 
     .section-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: .75rem;
-      font-weight: 700;
+      font-size: .8rem;
+      font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .section-eyebrow::before {
       content: '';
       display: block;
-      width: 22px;
-      height: 1px;
+      width: 24px;
+      height: 2px;
       background: var(--gold);
     }
 
     .section-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      font-size: clamp(2rem, 3.5vw, 3rem);
       line-height: 1.1;
-      letter-spacing: -.02em;
       color: var(--text);
     }
 
     .section-sub {
-      margin-top: 12px;
-      font-size: .95rem;
+      margin-top: 14px;
+      font-size: 1rem;
       font-weight: 400;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 540px;
     }
 
     /* ─── SERVICES ───────────────────────────────────── */
@@ -416,31 +406,29 @@
 
     .service-card {
       background: var(--bg2);
-      padding: 36px 32px;
+      padding: 40px 32px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      transition: background .25s;
+      gap: 16px;
+      transition: background .3s;
       position: relative;
     }
 
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
+      top: 0; left: 0; right: 0;
+      height: 3px;
       background: var(--gold);
       opacity: 0;
-      transition: opacity .25s;
+      transition: opacity .3s;
     }
 
     .service-card:hover { background: rgba(212,168,75,.04); }
     .service-card:hover::before { opacity: 1; }
 
     .service-number {
-      font-size: .72rem;
+      font-size: .75rem;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -448,25 +436,24 @@
     }
 
     .service-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 900;
+      font-size: 2.6rem;
+      font-weight: 700;
       color: var(--gold);
       line-height: 1;
-      letter-spacing: -.02em;
     }
 
     .service-name {
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text);
-      letter-spacing: -.01em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .service-desc {
-      font-size: .875rem;
+      font-size: .95rem;
       color: var(--muted);
-      font-weight: 400;
       line-height: 1.6;
     }
 
@@ -474,7 +461,7 @@
     .team-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
     }
 
     .barber-card {
@@ -482,20 +469,20 @@
       border: 1px solid var(--border);
       border-radius: var(--radius2);
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 130px 1fr;
       gap: 0;
       overflow: hidden;
-      transition: border-color .25s, transform .2s;
+      transition: border-color .3s, transform .3s;
     }
 
     .barber-card:hover {
-      border-color: rgba(212,168,75,.3);
-      transform: translateY(-3px);
+      border-color: rgba(212,168,75,.4);
+      transform: translateY(-4px);
     }
 
     .barber-card img {
-      width: 110px;
-      height: 130px;
+      width: 130px;
+      height: 150px;
       object-fit: cover;
       display: block;
       border-right: 1px solid var(--border);
@@ -503,28 +490,28 @@
     }
 
     .barber-info {
-      padding: 24px 24px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .barber-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: -.01em;
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
       color: var(--text);
+      text-transform: uppercase;
     }
 
     .barber-role {
-      font-size: .82rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
+      font-size: .85rem;
+      font-weight: 500;
       color: var(--gold);
-      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     /* ─── LOCATION ───────────────────────────────────── */
@@ -533,31 +520,31 @@
     .location-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 56px;
       align-items: center;
     }
 
-    .location-left { display: flex; flex-direction: column; gap: 28px; }
+    .location-left { display: flex; flex-direction: column; gap: 32px; }
 
     .location-address-block {
-      border-left: 2px solid var(--gold);
-      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+      padding-left: 24px;
     }
 
     .location-address-title {
-      font-size: .75rem;
-      font-weight: 700;
+      font-size: .8rem;
+      font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--muted2);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .location-address-text {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 500;
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .location-map-placeholder {
@@ -571,14 +558,16 @@
       align-items: center;
       justify-content: center;
       color: var(--muted2);
-      font-size: .85rem;
+      font-size: .9rem;
       font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     /* ─── FOOTER ─────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 64px 0 40px;
+      padding: 80px 0 40px;
     }
 
     .footer-grid {
@@ -589,62 +578,59 @@
     }
 
     .footer-brand {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: -.01em;
+      font-size: 1.8rem;
+      font-weight: 700;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .footer-desc {
-      font-size: .9rem;
+      font-size: .95rem;
       color: var(--muted);
-      font-weight: 400;
-      max-width: 320px;
+      max-width: 360px;
       line-height: 1.7;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .social-links {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .social-links a {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 16px;
+      gap: 10px;
+      padding: 10px 20px;
       border-radius: var(--radius);
       border: 1px solid var(--border2);
       background: var(--surface);
       font-weight: 600;
-      font-size: .82rem;
+      font-size: .85rem;
       letter-spacing: .04em;
+      text-transform: uppercase;
       color: var(--muted);
-      transition: background .2s, color .2s, border-color .2s;
+      transition: all .2s;
     }
 
     .social-links a:hover {
       background: var(--surface2);
       color: var(--text);
-      border-color: var(--surface3);
+      border-color: var(--gold);
     }
 
-    .social-links img { width: 16px; height: 16px; object-fit: contain; }
+    .social-links img { width: 18px; height: 18px; object-fit: contain; }
 
-    /* CTA box */
     .footer-cta-box {
       background: var(--gold-dim2);
-      border: 1px solid rgba(212,168,75,.18);
+      border: 1px solid rgba(212,168,75,.2);
       border-radius: var(--radius2);
-      padding: 32px 28px;
+      padding: 40px 32px;
     }
 
     .footer-cta-label {
-      font-size: .72rem;
+      font-size: .75rem;
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -653,26 +639,24 @@
     }
 
     .footer-cta-title {
-      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 700;
-      font-size: 1.4rem;
-      line-height: 1.25;
       color: var(--text);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .footer-cta-desc {
-      font-size: .875rem;
+      font-size: .95rem;
       color: var(--muted);
-      margin-bottom: 22px;
-      line-height: 1.65;
+      margin-bottom: 28px;
+      line-height: 1.6;
     }
 
     .footer-bottom {
-      margin-top: 52px;
-      padding-top: 20px;
+      margin-top: 64px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
-      font-size: .82rem;
+      font-size: .85rem;
       color: var(--muted2);
       font-weight: 500;
       display: flex;
@@ -684,119 +668,103 @@
     /* ─── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 900px) {
       .links { display: none; }
-
-      .hero-layout {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-left {
-        padding: 0 0 36px 0;
-        order: 1;
-      }
-
+      .hero-layout { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 0 0 40px 0; order: 1; }
       .hero-right { order: 2; }
-
-      .hero-img-wrap {
-        min-height: 300px;
-        height: 300px;
-      }
-
+      .hero-img-wrap { min-height: 350px; height: 350px; }
       .hero-img { border-left: none; border-top: 1px solid var(--border); }
-
       .services-grid { grid-template-columns: 1fr; }
-
       .team-grid { grid-template-columns: 1fr; }
-
-      .location-wrap { grid-template-columns: 1fr; gap: 28px; }
-
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .location-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
     }
 
     @media (max-width: 560px) {
       .hero { padding: 48px 0 0; }
-      .section { padding: 56px 0; }
-      .service-card { padding: 28px 22px; }
-      .barber-card { grid-template-columns: 88px 1fr; }
-      .barber-card img { width: 88px; height: 110px; }
+      .section { padding: 64px 0; }
+      .service-card { padding: 32px 24px; }
+      .barber-card { grid-template-columns: 100px 1fr; }
+      .barber-card img { width: 100px; height: 130px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="container">
       <nav class="nav" aria-label="Navigasi">
         <a class="brand" href="#top">
           <span class="logo">
-            <img data-editable="logo-image" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' rx='4' fill='%23D4A84B'/%3E%3Cpath d='M52 116c0-24 20-44 44-44s44 20 44 44H52Z' fill='%230b0c0a' fill-opacity='.9'/%3E%3Cpath d='M64 58h64v12H64z' fill='%230b0c0a' fill-opacity='.9'/%3E%3C/svg%3E" />
+            <img data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' rx='4' fill='%23D4A84B'/%3E%3Cpath d='M52 116c0-24 20-44 44-44s44 20 44 44H52Z' fill='%230b0c0a' fill-opacity='.9'/%3E%3Cpath d='M64 58h64v12H64z' fill='%230b0c0a' fill-opacity='.9'/%3E%3C/svg%3E" />
           </span>
-          <span data-editable="brand-name">Black &amp; Blade</span>
+          <span data-editable="brandName">Black &amp; Blade</span>
         </a>
 
         <div class="links">
-          <a href="#layanan"><span data-editable="nav-services-label">Layanan</span></a>
-          <a href="#barber"><span data-editable="nav-team-label">Barber</span></a>
-          <a href="#lokasi"><span data-editable="nav-location-label">Lokasi</span></a>
-          <a href="#kontak"><span data-editable="nav-contact-label">Kontak</span></a>
+          <a href="#layanan"><span data-editable="navServicesLabel">Layanan</span></a>
+          <a href="#barber"><span data-editable="navTeamLabel">Barber</span></a>
+          <a href="#lokasi"><span data-editable="navLocationLabel">Lokasi</span></a>
+          <a href="#kontak"><span data-editable="navContactLabel">Kontak</span></a>
         </div>
 
-        <a class="nav-cta" data-editable="cta-url" href="https://wa.me/6280000000000">
-          <img alt="WhatsApp" src="../icon/whatsapp.png" />
-          <span data-editable="cta-label">Booking via WhatsApp</span>
+        <a class="nav-cta" data-editable="ctaUrl" href="https://wa.me/6280000000000">
+          <img alt="WhatsApp" src="../icons/whatsapp.png" />
+          <span data-editable="ctaLabel">Booking WA</span>
         </a>
       </nav>
     </div>
   </div>
 
-  <!-- HERO -->
   <main id="top">
     <section class="hero">
       <div class="container">
         <div class="hero-inner">
           <div class="eyebrow">
-            <span data-editable="hero-badge">Walk-in &amp; Booking</span>
+            <span data-editable="heroBadge">Walk-in &amp; Booking</span>
           </div>
 
           <div class="hero-layout">
             <div class="hero-left">
-              <h1 class="hero-title" data-editable="hero-title">Potongan <em>Rapi</em>,<br>Detail Bersih,<br>Gaya Sesuai Karakter</h1>
-              <p class="hero-subtitle" data-editable="hero-subtitle">Barbershop UMKM dengan layanan fast, rapi, dan nyaman. Cocok buat kerja, kuliah, atau event.</p>
+              <h1 class="hero-title">
+                <span data-editable="heroTitle1">Potongan</span> <span style="color:var(--gold)" data-editable="heroTitle2">Rapi</span>,<br>
+                <span data-editable="heroTitle3">Detail Bersih,</span><br>
+                <span data-editable="heroTitle4">Gaya Maskulin.</span>
+              </h1>
+              
+              <p class="hero-subtitle" data-editable="heroSubtitle">Barbershop UMKM dengan layanan cepat, rapi, dan nyaman. Cocok buat kerja, kuliah, atau event spesial.</p>
 
               <div class="hero-actions">
-                <a class="btn-gold" data-editable="hero-cta-url" href="https://wa.me/6280000000000">
-                  <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                  <span data-editable="hero-cta-label">Chat untuk Booking</span>
+                <a class="btn-gold" data-editable="heroCtaUrl" href="https://wa.me/6280000000000">
+                  <img alt="WhatsApp" src="../icons/whatsapp.png" />
+                  <span data-editable="heroCtaLabel">Chat untuk Booking</span>
                 </a>
-                <a class="btn-ghost" data-editable="price-url" href="#layanan">
-                  <span data-editable="price-label">Lihat Harga</span>
+                <a class="btn-ghost" data-editable="priceUrl" href="#layanan">
+                  <span data-editable="priceLabel">Lihat Harga</span>
                 </a>
               </div>
 
               <div class="info-strips" aria-label="Info ringkas">
                 <div class="strip">
-                  <span class="strip-label" data-editable="quick-1-left">Jam Buka</span>
-                  <span class="strip-value" data-editable="quick-1-right">10.00 – 21.00</span>
+                  <span class="strip-label" data-editable="quick1Label">Jam Buka</span>
+                  <span class="strip-value" data-editable="quick1Value">10.00 – 21.00</span>
                 </div>
                 <div class="strip">
-                  <span class="strip-label" data-editable="quick-2-left">Durasi Layanan</span>
-                  <span class="strip-value" data-editable="quick-2-right">30 – 45 menit</span>
+                  <span class="strip-label" data-editable="quick2Label">Durasi Layanan</span>
+                  <span class="strip-value" data-editable="quick2Value">30 – 45 menit</span>
                 </div>
                 <div class="strip">
-                  <span class="strip-label" data-editable="quick-3-left">Alamat</span>
-                  <span class="strip-value" data-editable="quick-3-right">Pusat Kota</span>
+                  <span class="strip-label" data-editable="quick3Label">Alamat</span>
+                  <span class="strip-value" data-editable="quick3Value">Pusat Kota</span>
                 </div>
               </div>
             </div>
 
             <div class="hero-right">
               <div class="hero-img-wrap">
-                <img class="hero-img" data-editable="hero-image" alt="Foto barbershop" src="https://source.unsplash.com/featured/1200x800?barbershop,haircut&sig=1" />
-                <div class="img-badge" data-editable="hero-image-caption">Profesional · Bersih · Terpercaya</div>
+                <img class="hero-img" data-editable="heroImg" alt="Foto barbershop" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" />
+                <div class="img-badge" data-editable="heroImgCaption">Profesional · Bersih · Terpercaya</div>
               </div>
             </div>
           </div>
@@ -806,35 +774,34 @@
 
     <hr class="divider-bar">
 
-    <!-- SERVICES -->
     <section class="section" id="layanan">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow">Menu</div>
-          <h2 class="section-title" data-editable="services-title">Layanan &amp; Harga</h2>
-          <p class="section-sub" data-editable="services-subtitle">Paket simpel yang paling sering dipesan pelanggan.</p>
+          <div class="section-eyebrow">Menu Utama</div>
+          <h2 class="section-title" data-editable="svcTitle">Layanan &amp; Harga</h2>
+          <p class="section-sub" data-editable="svcSubtitle">Paket simpel dengan kualitas pengerjaan terbaik yang sering dipesan pelanggan.</p>
         </div>
 
         <div class="services-grid" role="list">
           <article class="service-card" role="listitem">
             <div class="service-number">01</div>
-            <div class="service-price" data-editable="service-1-price">Rp35.000</div>
-            <div class="service-name" data-editable="service-1-name">Haircut Basic</div>
-            <div class="service-desc" data-editable="service-1-desc">Cuci ringan + potong + styling.</div>
+            <div class="service-price" data-editable="svc1Price">Rp35K</div>
+            <div class="service-name" data-editable="svc1Name">Haircut Basic</div>
+            <div class="service-desc" data-editable="svc1Desc">Cuci ringan, potong rambut profesional, dan penataan (styling) akhir.</div>
           </article>
 
           <article class="service-card" role="listitem">
             <div class="service-number">02</div>
-            <div class="service-price" data-editable="service-2-price">Rp50.000</div>
-            <div class="service-name" data-editable="service-2-name">Haircut + Beard</div>
-            <div class="service-desc" data-editable="service-2-desc">Rapihin jenggot &amp; kumis biar clean.</div>
+            <div class="service-price" data-editable="svc2Price">Rp50K</div>
+            <div class="service-name" data-editable="svc2Name">Haircut + Beard</div>
+            <div class="service-desc" data-editable="svc2Desc">Potong rambut ditambah merapikan jenggot &amp; kumis agar terlihat clean.</div>
           </article>
 
           <article class="service-card" role="listitem">
             <div class="service-number">03</div>
-            <div class="service-price" data-editable="service-3-price">Rp65.000</div>
-            <div class="service-name" data-editable="service-3-name">Premium Package</div>
-            <div class="service-desc" data-editable="service-3-desc">Haircut + wash + hot towel + styling.</div>
+            <div class="service-price" data-editable="svc3Price">Rp65K</div>
+            <div class="service-name" data-editable="svc3Name">Premium Package</div>
+            <div class="service-desc" data-editable="svc3Desc">Paket lengkap: Haircut, cuci bersih, pijat ringan, hot towel, dan styling pomade.</div>
           </article>
         </div>
       </div>
@@ -842,29 +809,28 @@
 
     <hr class="divider-bar">
 
-    <!-- TEAM -->
     <section class="section" id="barber">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow">Tim</div>
-          <h2 class="section-title" data-editable="team-title">Barber Kami</h2>
-          <p class="section-sub" data-editable="team-subtitle">Tim kecil, hasil maksimal. Kenalan dulu yuk.</p>
+          <div class="section-eyebrow">Tim Ahli</div>
+          <h2 class="section-title" data-editable="teamTitle">Barber Kami</h2>
+          <p class="section-sub" data-editable="teamSubtitle">Tim kecil yang berdedikasi untuk memberikan hasil maksimal. Kenalan dulu yuk.</p>
         </div>
 
         <div class="team-grid" role="list">
           <article class="barber-card" role="listitem">
-            <img data-editable="barber-1-image" alt="Barber 1" src="https://source.unsplash.com/featured/280x280?mens-haircut,fade&sig=11" />
+            <img data-editable="barber1Img" alt="Barber 1" src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=400" />
             <div class="barber-info">
-              <div class="barber-name" data-editable="barber-1-name">Raka</div>
-              <div class="barber-role" data-editable="barber-1-role">Fade specialist · 5 tahun</div>
+              <div class="barber-name" data-editable="barber1Name">Raka</div>
+              <div class="barber-role" data-editable="barber1Role">Fade Specialist · 5 Tahun</div>
             </div>
           </article>
 
           <article class="barber-card" role="listitem">
-            <img data-editable="barber-2-image" alt="Barber 2" src="https://source.unsplash.com/featured/280x280?mens-haircut,pompadour&sig=12" />
+            <img data-editable="barber2Img" alt="Barber 2" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=400" />
             <div class="barber-info">
-              <div class="barber-name" data-editable="barber-2-name">Bayu</div>
-              <div class="barber-role" data-editable="barber-2-role">Classic cut · Detail clean</div>
+              <div class="barber-name" data-editable="barber2Name">Bayu</div>
+              <div class="barber-role" data-editable="barber2Role">Classic Cut · Detail Clean</div>
             </div>
           </article>
         </div>
@@ -873,74 +839,72 @@
 
     <hr class="divider-bar">
 
-    <!-- LOCATION -->
     <section class="section" id="lokasi">
       <div class="container">
         <div class="location-wrap">
           <div class="location-left">
             <div>
               <div class="section-eyebrow">Lokasi</div>
-              <h2 class="section-title" data-editable="location-title">Temukan Kami</h2>
-              <p class="section-sub" data-editable="location-subtitle">Tempat nyaman dan mudah dicari. Bisa share lokasi lewat WA.</p>
+              <h2 class="section-title" data-editable="locTitle">Temukan Kami</h2>
+              <p class="section-sub" data-editable="locSubtitle">Tempat nyaman dan strategis. Kesulitan mencari? Anda bisa langsung meminta pin lokasi melalui WhatsApp.</p>
             </div>
 
             <div class="location-address-block">
-              <div class="location-address-title" data-editable="location-address-title">Alamat</div>
-              <div class="location-address-text" data-editable="location-address">Jl. Contoh No. 45, Kota</div>
+              <div class="location-address-title" data-editable="locAddressTitle">Alamat Studio</div>
+              <div class="location-address-text" data-editable="locAddressText">Jl. Sudirman No. 45, Kecamatan Pusat,<br>Kota Metropolitan 12345</div>
             </div>
 
             <div>
-              <a class="btn-gold" data-editable="location-cta-url" href="https://wa.me/6280000000000">
-                <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                <span data-editable="location-cta-label">Minta Pin Lokasi</span>
+              <a class="btn-gold" data-editable="locCtaUrl" href="https://wa.me/6280000000000">
+                <img alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="locCtaLabel">Minta Pin Lokasi</span>
               </a>
             </div>
           </div>
 
           <div class="location-map-placeholder">
-            Peta akan tampil di sini
+            Area Peta Google Maps
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer id="kontak">
       <div class="container">
         <div class="footer-grid">
           <div>
-            <div class="footer-brand" data-editable="footer-title">Black &amp; Blade</div>
-            <div class="footer-desc" data-editable="footer-desc">Booking disarankan untuk jam ramai (sore/malam).</div>
+            <div class="footer-brand" data-editable="footerTitle">Black &amp; Blade</div>
+            <div class="footer-desc" data-editable="footerDesc">Kami menyarankan untuk melakukan booking terlebih dahulu pada jam ramai (sore atau akhir pekan).</div>
 
             <div class="social-links" aria-label="Sosial media">
-              <a data-editable="social-whatsapp" href="https://wa.me/6280000000000">
-                <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                <span data-editable="social-whatsapp-label">WhatsApp</span>
+              <a data-editable="socialWaUrl" href="https://wa.me/6280000000000">
+                <img alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="socialWaLabel">WhatsApp</span>
               </a>
-              <a data-editable="social-instagram" href="#">
-                <img alt="Instagram" src="../icon/instagram.png" />
-                <span data-editable="social-instagram-label">Instagram</span>
+              <a data-editable="socialIgUrl" href="#">
+                <img alt="Instagram" src="../icons/instagram.png" />
+                <span data-editable="socialIgLabel">Instagram</span>
               </a>
-              <a data-editable="social-tiktok" href="#">
-                <img alt="TikTok" src="../icon/tiktok.png" />
-                <span data-editable="social-tiktok-label">TikTok</span>
+              <a data-editable="socialTkUrl" href="#">
+                <img alt="TikTok" src="../icons/tiktok.png" />
+                <span data-editable="socialTkLabel">TikTok</span>
               </a>
             </div>
           </div>
 
           <div class="footer-cta-box">
-            <div class="footer-cta-label">Booking</div>
-            <div class="footer-cta-title" data-editable="footer-cta-title">Siap tampil lebih rapi?</div>
-            <div class="footer-cta-desc" data-editable="footer-cta-desc">Klik WhatsApp, pilih paket, tentukan jam kedatangan.</div>
-            <a class="btn-gold" data-editable="footer-cta-url" href="https://wa.me/6280000000000">
-              <img alt="WhatsApp" src="../icon/whatsapp.png" />
-              <span data-editable="footer-cta-label">Booking Sekarang</span>
+            <div class="footer-cta-label">Booking Session</div>
+            <div class="footer-cta-title" data-editable="footerCtaTitle">Siap tampil lebih rapi?</div>
+            <div class="footer-cta-desc" data-editable="footerCtaDesc">Klik WhatsApp di bawah, sebutkan nama, pilih paket, dan tentukan jam kedatangan Anda.</div>
+            <a class="btn-gold" data-editable="footerCtaUrl" href="https://wa.me/6280000000000">
+              <img alt="WhatsApp" src="../icons/whatsapp.png" />
+              <span data-editable="footerCtaLabel">Booking Sekarang</span>
             </a>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <span data-editable="footer-copyright">© 2026 Black &amp; Blade Barbershop.</span>
+          <span data-editable="footerCopyright">© 2026 Black &amp; Blade Barbershop. All rights reserved.</span>
         </div>
       </div>
     </footer>
