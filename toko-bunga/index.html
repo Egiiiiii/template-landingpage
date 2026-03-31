@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-editable="siteTitle">Buket & Bloom — Premium Floral Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Palet warna profesional & premium */
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --text-main: #27272A;
+      --text-muted: #71717A;
+      --border: #E4E4E7;
+      --brand: #9D8189; /* Dusty rose/Muted pink */
+      --brand-hover: #8A6F77;
+      --accent: #D4A373; /* Champagne/Gold accent */
+      --radius: 8px; /* Lebih tegas, tidak terlalu membulat */
+      --max-w: 1140px;
+    }
+
+    * { box-sizing: border-box; outline: none; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- TOPBAR --- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--brand); }
+
+    /* --- BUTTONS --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--text-main);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: var(--brand);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--text-main);
+    }
+
+    .btn-icon { width: 18px; height: 18px; object-fit: contain; filter: brightness(0) invert(1); }
+    .btn-outline .btn-icon { filter: none; }
+
+    /* --- HERO EDITORIAL --- */
+    .hero {
+      padding: 60px 0 80px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--text-main);
+    }
+
+    .hero-title strong { font-weight: 600; }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 90%;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- SECTION STYLES --- */
+    .section { padding: 80px 0; }
+    .section-bg { background: var(--surface); }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* --- PRODUCT GALLERY --- */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .product-card {
+      group: product;
+      text-decoration: none;
+      display: block;
+    }
+
+    .product-img-box {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      margin-bottom: 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img-box img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .product-price {
+      font-weight: 500;
+      color: var(--brand);
+      font-size: 1.1rem;
+    }
+
+    /* --- PROCESS / INFO --- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
+    }
+
+    .process-step {
+      text-align: left;
+    }
+
+    .step-num {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--brand);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--text-main);
+      color: #FFFFFF;
+      padding: 80px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+      align-items: center;
+    }
+
+    .footer-title {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .footer-contact p {
+      color: #A1A1AA;
+      margin-bottom: 8px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover { background: var(--brand); }
+    .social-links img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      color: #A1A1AA;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-image-wrapper { aspect-ratio: 16/9; }
+    }
+    
+    @media (max-width: 500px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img class="logo-img" data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10C27.9 10 10 27.9 10 50s17.9 40 40 40 40-17.9 40-40S72.1 10 50 10zm0 72c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32z' fill='%2327272A'/%3E%3Cpath d='M50 25c-13.8 0-25 11.2-25 25s11.2 25 25 25 25-11.2 25-25-11.2-25-25-25zm0 42c-9.4 0-17-7.6-17-17s7.6-17 17-17 17 7.6 17 17-7.6 17-17 17z' fill='%239D8189'/%3E%3C/svg%3E" />
+        <span class="brand-text" data-editable="brandName">Buket & Bloom</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#koleksi" data-editable="navKoleksi">Koleksi</a>
+        <a href="#layanan" data-editable="navLayanan">Layanan</a>
+        <a href="#kontak" data-editable="navKontak">Kontak</a>
+      </div>
+
+      <a class="btn btn-primary" data-editable="navCtaUrl" href="https://wa.me/6280000000000">
+        <span data-editable="navCtaLabel">Pesan Sekarang</span>
+      </a>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-eyebrow" data-editable="heroEyebrow">Premium Floral Studio</span>
+          <h1 class="hero-title" data-editable="heroTitle">Rangkaian bunga elegan untuk <strong>momen istimewa</strong> Anda.</h1>
+          <p class="hero-desc" data-editable="heroDesc">Kami merangkai setiap buket dengan dedikasi tinggi, menggunakan bunga segar pilihan untuk memastikan pesan Anda tersampaikan dengan sempurna.</p>
+          
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a class="btn btn-primary" data-editable="heroBtnUrl1" href="https://wa.me/6280000000000">
+              <span data-editable="heroBtnLabel1">Konsultasi Desain</span>
+            </a>
+            <a class="btn btn-outline" data-editable="heroBtnUrl2" href="#koleksi">
+              <span data-editable="heroBtnLabel2">Lihat Katalog</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <img data-editable="heroMainImg" alt="Premium Bouquet" src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&q=80&w=800" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="koleksi">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-editable="galleryTitle">Koleksi Signature</h2>
+          <p class="section-subtitle" data-editable="gallerySubtitle">Pilihan buket favorit pelanggan kami, dirangkai secara eksklusif.</p>
+        </div>
+        
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img-box">
+              <img data-editable="prod1Img" alt="Produk 1" src="https://images.unsplash.com/photo-1582791616422-793db5f8f8b0?auto=format&fit=crop&q=80&w=600" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-name" data-editable="prod1Name">Blush Peony Dream</div>
+                <div class="product-desc" data-editable="prod1Desc">Rangkaian peony dan mawar bernuansa pastel lembut.</div>
+              </div>
+              <div class="product-price" data-editable="prod1Price">Rp250k</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-img-box">
+              <img data-editable="prod2Img" alt="Produk 2" src="https://images.unsplash.com/photo-1591880911020-d344b0cdd511?auto=format&fit=crop&q=80&w=600" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-name" data-editable="prod2Name">Classic Crimson</div>
+                <div class="product-desc" data-editable="prod2Desc">Mawar merah premium klasik untuk ekspresi cinta.</div>
+              </div>
+              <div class="product-price" data-editable="prod2Price">Rp185k</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-img-box">
+              <img data-editable="prod3Img" alt="Produk 3" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=600" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-name" data-editable="prod3Name">Rustic Elegance</div>
+                <div class="product-desc" data-editable="prod3Desc">Kombinasi bunga kering dan daun eucalyptus.</div>
+              </div>
+              <div class="product-price" data-editable="prod3Price">Rp210k</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-bg" id="layanan">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" data-editable="processTitle">Pengalaman Memesan</h2>
+          <p class="section-subtitle" data-editable="processSubtitle">Kami mendesain proses pemesanan yang mudah, cepat, dan transparan.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <span class="step-num" data-editable="step1Num">01 — PILIH</span>
+            <h3 class="step-title" data-editable="step1Title">Eksplorasi Desain</h3>
+            <p class="product-desc" data-editable="step1Desc">Pilih dari koleksi kami atau diskusikan visi Anda bersama tim florist ahli kami.</p>
+          </div>
+          <div class="process-step">
+            <span class="step-num" data-editable="step2Num">02 — KUSTOMISASI</span>
+            <h3 class="step-title" data-editable="step2Title">Sentuhan Personal</h3>
+            <p class="product-desc" data-editable="step2Desc">Pilih warna pita, jenis kertas *wrapping*, dan tuliskan pesan istimewa Anda.</p>
+          </div>
+          <div class="process-step">
+            <span class="step-num" data-editable="step3Num">03 — PENGIRIMAN</span>
+            <h3 class="step-title" data-editable="step3Title">Aman & Tepat Waktu</h3>
+            <p class="product-desc" data-editable="step3Desc">Pesanan diantar langsung oleh kurir khusus dengan jaminan kesegaran bunga.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="kontak">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h2 class="footer-title" data-editable="footerHeadline">Mari wujudkan<br>ide kreatif Anda.</h2>
+            <a class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;" data-editable="footerBtnUrl" href="https://wa.me/6280000000000">
+              <img class="btn-icon" alt="WA" src="../icons/whatsapp.png" />
+              <span data-editable="footerBtnLabel">Hubungi Florist Kami</span>
+            </a>
+          </div>
+          
+          <div class="footer-contact">
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 1.1rem;" data-editable="contactTitle">Studio Kami</div>
+            <p data-editable="contactAddress">Jl. Mawar Elok No. 88, Grand Sudirman<br>Jakarta Selatan, 12190</p>
+            <p data-editable="contactHours">Senin - Sabtu: 09.00 - 18.00 WIB</p>
+            
+            <div class="social-links">
+              <a data-editable="linkWa" href="https://wa.me/6280000000000" aria-label="WhatsApp">
+                <img src="../icons/whatsapp.png" alt="WA" />
+              </a>
+              <a data-editable="linkIg" href="#" aria-label="Instagram">
+                <img src="../icons/instagram.png" alt="IG" />
+              </a>
+              <a data-editable="linkTk" href="#" aria-label="TikTok">
+                <img src="../icons/tiktok.png" alt="TT" />
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <div data-editable="footerCopy">&copy; 2026 Buket & Bloom Studio. All rights reserved.</div>
+          <div data-editable="footerTerms">Syarat & Ketentuan | Kebijakan Privasi</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+
+</html>

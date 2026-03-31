@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-editable="site-title">NUSA Fashion — Pakaian Lokal Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #111111;
+      --accent: #E8451A;
+      --bg: #FFFFFF;
+      --bg2: #F7F7F7;
+      --border: #E8E8E8;
+      --muted: #888888;
+      --radius: 6px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* ─────────────────────────────
+   NAVBAR
+───────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+
+    #navbar.shadow {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .07);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    /* desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2px;
+    }
+
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color .2s, background .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+      background: var(--bg2);
+    }
+
+    .nav-links .cta a {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .nav-links .cta a:hover {
+      background: var(--accent);
+    }
+
+    /* hamburger button */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* mobile drawer */
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    }
+
+    .nav-drawer.open {
+      display: flex;
+    }
+
+    .nav-drawer a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      transition: background .2s;
+    }
+
+    .nav-drawer a:hover {
+      background: var(--bg2);
+    }
+
+    .nav-drawer .d-cta {
+      margin-top: 6px;
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .nav-drawer .d-cta:hover {
+      background: var(--accent);
+    }
+
+    /* ─────────────────────────────
+   HERO
+───────────────────────────── */
+    #hero {
+      margin-top: 60px;
+      min-height: calc(100vh - 60px);
+    }
+
+    .hero-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 60px);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 40px 60px 6%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: .93rem;
+      color: var(--muted);
+      max-width: 400px;
+      margin-bottom: 28px;
+      line-height: 1.75;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .btn-dark {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: #333;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .stat-lbl {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .hero-image {
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────
+   SHARED
+───────────────────────────── */
+    .section {
+      padding: 72px 0;
+    }
+
+    .bg2 {
+      background: var(--bg2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .sec-label {
+      display: block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 6px;
+    }
+
+    .sec-desc {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .sec-head {
+      margin-bottom: 32px;
+    }
+
+    .sec-head-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    /* ─────────────────────────────
+   TENTANG
+───────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      display: block;
+    }
+
+    .about-txt {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─────────────────────────────
+   KATEGORI
+───────────────────────────── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 3/4;
+      background: var(--bg2);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .cat-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .6) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px;
+    }
+
+    .cat-name {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+
+    .cat-count {
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .65);
+    }
+
+    /* ─────────────────────────────
+   PRODUK
+───────────────────────────── */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .prod-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .prod-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      transform: translateY(-3px);
+    }
+
+    .prod-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--bg2);
+    }
+
+    .prod-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .prod-card:hover .prod-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 4px;
+    }
+
+    .b-new {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .b-hot {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .prod-body {
+      padding: 12px;
+    }
+
+    .prod-cat {
+      font-size: .68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 3px;
+    }
+
+    .prod-name {
+      font-size: .88rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    .prod-mat {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────
+   GALERI
+───────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 10px;
+    }
+
+    .g-item {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--bg2);
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .g-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .g-tall {
+      grid-row: span 2;
+    }
+
+    /* ─────────────────────────────
+   BELI
+───────────────────────────── */
+    .buy-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .buy-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 14px;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+    }
+
+    .buy-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+      transform: translateY(-2px);
+    }
+
+    .buy-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .buy-name {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .buy-desc {
+      font-size: .7rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .buy-link {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: auto;
+    }
+
+    /* ─────────────────────────────
+   KONTAK
+───────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 20px 0 22px;
+    }
+
+    .c-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .c-icon {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+    }
+
+    .c-lbl {
+      font-size: .67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 1px;
+    }
+
+    .c-val {
+      font-size: .88rem;
+      font-weight: 500;
+    }
+
+    .soc-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .soc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: var(--radius);
+      font-size: .76rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--primary);
+      transition: all .2s;
+    }
+
+    .soc-link img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .c-icon img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .buy-icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .wa-float img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .soc-link:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .soc-link:hover img {
+      filter: brightness(0) invert(1);
+    }
+
+    .soc-wa {
+      background: #25D366;
+      border-color: #25D366;
+      color: #fff;
+    }
+
+    .soc-wa:hover {
+      background: #1fba5a;
+      border-color: #1fba5a;
+    }
+
+
+
+    /* ─────────────────────────────
+   FOOTER
+───────────────────────────── */
+    footer {
+      background: var(--primary);
+      color: rgba(255, 255, 255, .9);
+      padding: 48px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 36px;
+    }
+
+    .f-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .f-logo img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .f-desc {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.75;
+      max-width: 230px;
+    }
+
+    .f-col h5 {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: 12px;
+    }
+
+    .f-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .f-col ul li a {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .f-col ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .f-copy {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .f-pay {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .pay-tag {
+      padding: 3px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-size: .62rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .28);
+      letter-spacing: .04em;
+    }
+
+    /* ─────────────────────────────
+   FLOATING BUTTONS
+───────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 900;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, .45);
+      transition: transform .2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 900;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .07);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-top:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ─────────────────────────────
+   FADE IN ANIMATION
+───────────────────────────── */
+    .fade {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .fade.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────
+   RESPONSIVE — TABLET ≤1024px
+───────────────────────────── */
+    @media (max-width: 1024px) {
+      .prod-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .buy-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* ─────────────────────────────
+   RESPONSIVE — MOBILE ≤768px
+───────────────────────────── */
+    @media (max-width: 768px) {
+
+      /* nav */
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      /* hero */
+      .hero-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-image {
+        height: 56vw;
+        min-height: 200px;
+        order: -1;
+      }
+
+      .hero-content {
+        padding: 28px 20px 40px;
+      }
+
+      .hero-desc {
+        max-width: 100%;
+      }
+
+      /* tentang */
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      /* grids */
+      .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .prod-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .buy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* gallery */
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+
+      .g-tall {
+        grid-row: span 1;
+      }
+
+      /* contact */
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      /* footer */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .f-desc {
+        max-width: 100%;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+    }
+
+    /* ─────────────────────────────
+   RESPONSIVE — SMALL ≤480px
+───────────────────────────── */
+    @media (max-width: 480px) {
+      .buy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 16px;
+      }
+
+      .about-stats {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img data-editable="logo-img" src="../icon/whatsapp.png" alt="Logo">
+        <span data-editable="brand-name">NUSA Fashion</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#kategori">Kategori</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#beli">Beli</a></li>
+        <li class="cta"><a href="#kontak">Kontak</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav-drawer" id="navDrawer">
+      <a href="#tentang">Tentang</a>
+      <a href="#kategori">Kategori</a>
+      <a href="#produk">Produk</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#beli">Beli</a>
+      <a href="#kontak" class="d-cta">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span data-editable="hero-badge">Koleksi Terbaru 2025</span>
+        </div>
+        <h1 class="hero-title">
+          <span data-editable="hero-title-1">Pakaian Lokal</span><br>
+          <span data-editable="hero-title-2" style="color:var(--accent)">Kualitas Premium</span>
+        </h1>
+        <p class="hero-desc" data-editable="hero-desc">
+          Kami menghadirkan koleksi pakaian dengan bahan pilihan dan desain kekinian. Dari kaos kasual, kemeja, celana,
+          hingga dress untuk semua kesempatan.
+        </p>
+        <div class="hero-btns">
+          <a href="#produk" class="btn btn-dark">Lihat Produk</a>
+          <a href="#beli" class="btn btn-outline">Cara Beli</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <span class="stat-num" data-editable="stat-1-num">500+</span>
+            <span class="stat-lbl" data-editable="stat-1-lbl">Produk</span>
+          </div>
+          <div>
+            <span class="stat-num" data-editable="stat-2-num">12K+</span>
+            <span class="stat-lbl" data-editable="stat-2-lbl">Pelanggan</span>
+          </div>
+          <div>
+            <span class="stat-num" data-editable="stat-3-num">4.9★</span>
+            <span class="stat-lbl" data-editable="stat-3-lbl">Rating</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img data-editable="hero-img" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1000&q=80"
+          alt="Hero">
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section class="section" id="tentang">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <img class="about-img" data-editable="about-img"
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80" alt="Tentang Kami">
+        </div>
+        <div>
+          <span class="sec-label" data-editable="about-label">Tentang Kami</span>
+          <h2 class="sec-title" data-editable="about-title">Fashion Lokal yang Kamu Banggakan</h2>
+          <p class="about-txt" data-editable="about-p1">
+            Sejak 2019, kami hadir dengan misi sederhana: menghadirkan pakaian berkualitas tinggi yang terjangkau untuk
+            semua kalangan. Setiap produk dirancang dengan memperhatikan kenyamanan, ketahanan, dan estetika.
+          </p>
+          <p class="about-txt" data-editable="about-p2">
+            Bahan kami pilih langsung dari produsen terpercaya, dijahit oleh pengrajin lokal berpengalaman. Karena
+            fashion terbaik lahir dari tangan-tangan Indonesia.
+          </p>
+          <div class="about-stats">
+            <div>
+              <span class="stat-num" data-editable="about-s1-num">6 Tahun</span>
+              <span class="stat-lbl" data-editable="about-s1-lbl">Pengalaman</span>
+            </div>
+            <div>
+              <span class="stat-num" data-editable="about-s2-num">50+ Kota</span>
+              <span class="stat-lbl" data-editable="about-s2-lbl">Pengiriman</span>
+            </div>
+            <div>
+              <span class="stat-num" data-editable="about-s3-num">100%</span>
+              <span class="stat-lbl" data-editable="about-s3-lbl">Produk Lokal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KATEGORI -->
+  <section class="section bg2" id="kategori">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-label">Kategori</span>
+        <h2 class="sec-title">Semua Kategori Produk</h2>
+        <p class="sec-desc">Temukan pakaian sesuai kebutuhanmu</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card fade">
+          <img data-editable="cat-1-img" src="https://images.unsplash.com/photo-1594938298603-c8148c4b9b20?w=500&q=75"
+            alt="Baju Wanita">
+          <div class="cat-overlay">
+            <span class="cat-name" data-editable="cat-1-name">Baju Wanita</span>
+            <span class="cat-count" data-editable="cat-1-count">180+ Produk</span>
+          </div>
+        </div>
+        <div class="cat-card fade">
+          <img data-editable="cat-2-img" src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=75"
+            alt="Baju Pria">
+          <div class="cat-overlay">
+            <span class="cat-name" data-editable="cat-2-name">Baju Pria</span>
+            <span class="cat-count" data-editable="cat-2-count">140+ Produk</span>
+          </div>
+        </div>
+        <div class="cat-card fade">
+          <img data-editable="cat-3-img" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&q=75"
+            alt="Celana">
+          <div class="cat-overlay">
+            <span class="cat-name" data-editable="cat-3-name">Celana</span>
+            <span class="cat-count" data-editable="cat-3-count">90+ Produk</span>
+          </div>
+        </div>
+        <div class="cat-card fade">
+          <img data-editable="cat-4-img" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=75"
+            alt="Outer & Jaket">
+          <div class="cat-overlay">
+            <span class="cat-name" data-editable="cat-4-name">Outer & Jaket</span>
+            <span class="cat-count" data-editable="cat-4-count">60+ Produk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUK -->
+  <section class="section" id="produk">
+    <div class="container">
+      <div class="sec-head-row">
+        <div>
+          <span class="sec-label">Produk</span>
+          <h2 class="sec-title">Koleksi Pilihan</h2>
+        </div>
+        <a href="#beli" class="btn btn-outline" style="font-size:.78rem;">Cara Beli →</a>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-1-img"
+              src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&q=75" alt="Kemeja Linen">
+            <span class="prod-badge b-new" data-editable="prod-1-badge">Baru</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-1-cat">Kemeja</div>
+            <div class="prod-name" data-editable="prod-1-name">Kemeja Linen Casual</div>
+            <div class="prod-mat" data-editable="prod-1-mat">Linen · S–XXL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-2-img"
+              src="https://images.unsplash.com/photo-1594938298603-c8148c4b9b20?w=500&q=75" alt="Midi Dress">
+            <span class="prod-badge b-hot" data-editable="prod-2-badge">Terlaris</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-2-cat">Dress</div>
+            <div class="prod-name" data-editable="prod-2-name">Midi Dress Floral</div>
+            <div class="prod-mat" data-editable="prod-2-mat">Viscose · S–XL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-3-img" src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=75"
+              alt="Celana Jeans">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-3-cat">Celana</div>
+            <div class="prod-name" data-editable="prod-3-name">Celana Jeans Slim Fit</div>
+            <div class="prod-mat" data-editable="prod-3-mat">Denim · 27–34</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-4-img"
+              src="https://images.unsplash.com/photo-1588117305388-c2631a279f82?w=500&q=75" alt="Kaos Oversize">
+            <span class="prod-badge b-new" data-editable="prod-4-badge">Baru</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-4-cat">Kaos</div>
+            <div class="prod-name" data-editable="prod-4-name">Kaos Oversize Cotton</div>
+            <div class="prod-mat" data-editable="prod-4-mat">100% Cotton · S–XL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-5-img"
+              src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=75" alt="Bomber Jacket">
+            <span class="prod-badge b-hot" data-editable="prod-5-badge">Terlaris</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-5-cat">Jaket</div>
+            <div class="prod-name" data-editable="prod-5-name">Bomber Jacket Varsity</div>
+            <div class="prod-mat" data-editable="prod-5-mat">Polyester · S–XXL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-6-img"
+              src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=500&q=75" alt="Mini Dress">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-6-cat">Dress</div>
+            <div class="prod-name" data-editable="prod-6-name">Mini Dress Polos</div>
+            <div class="prod-mat" data-editable="prod-6-mat">Cotton · S–XXL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-7-img"
+              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=75" alt="Rok Midi">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-7-cat">Rok</div>
+            <div class="prod-name" data-editable="prod-7-name">Rok Midi Pleated</div>
+            <div class="prod-mat" data-editable="prod-7-mat">Chiffon · S–XL</div>
+          </div>
+        </div>
+        <div class="prod-card fade">
+          <div class="prod-img-wrap">
+            <img data-editable="prod-8-img"
+              src="https://images.unsplash.com/photo-1625910513490-41ad7f8c6e41?w=500&q=75" alt="Polo Shirt">
+            <span class="prod-badge b-new" data-editable="prod-8-badge">Baru</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat" data-editable="prod-8-cat">Polo</div>
+            <div class="prod-name" data-editable="prod-8-name">Polo Shirt Pique</div>
+            <div class="prod-mat" data-editable="prod-8-mat">Pique Cotton · S–XXL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERI -->
+  <section class="section bg2" id="galeri">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-label">Galeri</span>
+        <h2 class="sec-title">Lookbook Koleksi</h2>
+        <p class="sec-desc">Inspirasi tampilan dari koleksi kami</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-item g-tall fade">
+          <img data-editable="gallery-1-img"
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80" alt="Lookbook 1">
+        </div>
+        <div class="g-item fade">
+          <img data-editable="gallery-2-img"
+            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Lookbook 2">
+        </div>
+        <div class="g-item fade">
+          <img data-editable="gallery-3-img"
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Lookbook 3">
+        </div>
+        <div class="g-item fade">
+          <img data-editable="gallery-4-img"
+            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80" alt="Lookbook 4">
+        </div>
+        <div class="g-item fade">
+          <img data-editable="gallery-5-img"
+            src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80" alt="Lookbook 5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELI -->
+  <section class="section" id="beli">
+    <div class="container">
+      <div class="sec-head" style="text-align:center; max-width:440px; margin:0 auto 32px;">
+        <span class="sec-label">Beli Sekarang</span>
+        <h2 class="sec-title">Temukan Kami Di</h2>
+        <p class="sec-desc">Pilih platform belanja favoritmu</p>
+      </div>
+      <div class="buy-grid">
+        <a href="https://shopee.co.id" target="_blank" class="buy-card fade" data-editable="buy-shopee-url">
+          <div class="buy-icon" style="background:#FFF0EB"><img src="../icon/shoppe.png" alt="Shopee"></div>
+          <div class="buy-name" data-editable="buy-shopee-name">Shopee</div>
+          <div class="buy-desc" data-editable="buy-shopee-desc">Toko resmi di Shopee Mall</div>
+          <div class="buy-link">Buka Toko →</div>
+        </a>
+        <a href="https://tokopedia.com" target="_blank" class="buy-card fade" data-editable="buy-tokped-url">
+          <div class="buy-icon" style="background:#EBF8ED"><img src="../icon/tokopedia.png" alt="Tokopedia"></div>
+          <div class="buy-name" data-editable="buy-tokped-name">Tokopedia</div>
+          <div class="buy-desc" data-editable="buy-tokped-desc">Official Store Tokopedia</div>
+          <div class="buy-link">Buka Toko →</div>
+        </a>
+        <a href="https://wa.me/6281234567890" target="_blank" class="buy-card fade" data-editable="buy-wa-url">
+          <div class="buy-icon" style="background:#EDFAF3"><img src="../icon/whatsapp.png" alt="WhatsApp"></div>
+          <div class="buy-name" data-editable="buy-wa-name">WhatsApp</div>
+          <div class="buy-desc" data-editable="buy-wa-desc">Order langsung via chat</div>
+          <div class="buy-link">Chat Sekarang →</div>
+        </a>
+        <a href="https://instagram.com" target="_blank" class="buy-card fade" data-editable="buy-ig-url">
+          <div class="buy-icon" style="background:#FFF0FB"><img src="../icon/instagram.png" alt="Instagram"></div>
+          <div class="buy-name" data-editable="buy-ig-name">Instagram</div>
+          <div class="buy-desc" data-editable="buy-ig-desc">DM untuk pemesanan</div>
+          <div class="buy-link">Buka IG →</div>
+        </a>
+        <a href="../icon/tiktok.png" target="_blank" class="buy-card fade" data-editable="buy-tiktok-url">
+          <div class="buy-icon" style="background:#F2F2F2"><img src="../icon/tiktok.png" alt="TikTok"></div>
+          <div class="buy-name" data-editable="buy-tiktok-name">TikTok Shop</div>
+          <div class="buy-desc" data-editable="buy-tiktok-desc">Belanja di TikTok Shop</div>
+          <div class="buy-link">Buka Toko →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="section bg2" id="kontak">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="sec-label">Kontak</span>
+          <h2 class="sec-title" data-editable="contact-title">Hubungi Kami</h2>
+          <p class="sec-desc" data-editable="contact-desc">Ada pertanyaan soal produk, ukuran, atau stok? Kami siap
+            membantu setiap hari.</p>
+          <div class="contact-items">
+            <div class="c-item">
+              <div class="c-icon">📍</div>
+              <div>
+                <div class="c-lbl">Alamat</div>
+                <div class="c-val" data-editable="contact-address">Jl. Raya Kemang No. 88, Jakarta Selatan 12560</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon"><img src="../icon/whatsapp.png" alt="WhatsApp"></div>
+              <div>
+                <div class="c-lbl">WhatsApp</div>
+                <div class="c-val" data-editable="contact-wa">+62 812-3456-7890</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon">📧</div>
+              <div>
+                <div class="c-lbl">Email</div>
+                <div class="c-val" data-editable="contact-email">hello@nusafashion.id</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon">🕐</div>
+              <div>
+                <div class="c-lbl">Jam Operasional</div>
+                <div class="c-val" data-editable="contact-hours">Senin – Sabtu, 09.00 – 21.00 WIB</div>
+              </div>
+            </div>
+          </div>
+          <div class="soc-links">
+            <a href="https://wa.me/6281234567890" target="_blank" class="soc-link soc-wa" data-editable="soc-wa"><img
+                src="../icon/whatsapp.png" alt="WhatsApp"> WhatsApp</a>
+            <a href="https://instagram.com" target="_blank" class="soc-link" data-editable="soc-ig"><img
+                src="../icon/instagram.png" alt="Instagram"> Instagram</a>
+            <a href="https://shopee.co.id" target="_blank" class="soc-link" data-editable="soc-shopee"><img
+                src="../icon/shoppe.png" alt="Shopee"> Shopee</a>
+            <a href="https://tiktok.com" target="_blank" class="soc-link" data-editable="soc-tiktok"><img
+                src="../icon/tiktok.png" alt="TikTok"> TikTok</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#hero" class="f-logo">
+            <img data-editable="footer-logo" src="../icon/whatsapp.png" alt="Logo">
+            <span data-editable="footer-brand">NUSA Fashion</span>
+          </a>
+          <p class="f-desc" data-editable="footer-desc">Fashion lokal berkualitas premium. Kami menghadirkan pakaian
+            nyaman dan stylish untuk semua kalangan.</p>
+        </div>
+        <div class="f-col">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="#kategori">Baju Wanita</a></li>
+            <li><a href="#kategori">Baju Pria</a></li>
+            <li><a href="#kategori">Celana</a></li>
+            <li><a href="#kategori">Outer & Jaket</a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h5>Beli Di</h5>
+          <ul>
+            <li><a href="https://shopee.co.id" target="_blank">Shopee</a></li>
+            <li><a href="https://tokopedia.com" target="_blank">Tokopedia</a></li>
+            <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a></li>
+            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://tiktok.com" target="_blank">TikTok Shop</a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h5>Info</h5>
+          <ul>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+            <li><a href="#kontak">Panduan Ukuran</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="f-copy" data-editable="footer-copy">© 2025 NUSA Fashion. Semua hak dilindungi.</p>
+        <div class="f-pay">
+          <span class="pay-tag">BCA</span>
+          <span class="pay-tag">BRI</span>
+          <span class="pay-tag">GoPay</span>
+          <span class="pay-tag">OVO</span>
+          <span class="pay-tag">DANA</span>
+          <span class="pay-tag">COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281234567890" target="_blank" class="wa-float" data-editable="wa-float-url"><img
+      src="../icon/whatsapp.png" alt="WhatsApp"></a>
+  <a href="#hero" class="scroll-top" id="scrollTop">↑</a>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const navDrawer = document.getElementById('navDrawer');
+    const scrollTop = document.getElementById('scrollTop');
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const allLinks = document.querySelectorAll('.nav-links a, .nav-drawer a');
+
+    // scroll: shadow + active link + scroll-top btn
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      navbar.classList.toggle('shadow', y > 10);
+      scrollTop.classList.toggle('show', y > 400);
+      let cur = '';
+      sections.forEach(s => { if (y >= s.offsetTop - 80) cur = s.id; });
+      allLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    }, { passive: true });
+
+    // smooth scroll — all internal anchors, with navbar offset
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+      navDrawer.classList.remove('open');
+      navToggle.classList.remove('open');
+    });
+
+    // hamburger
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navDrawer.classList.toggle('open');
+    });
+
+    // fade-in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  </script>
+</body>
+
+</html>

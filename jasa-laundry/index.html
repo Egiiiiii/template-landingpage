@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-editable="siteTitle">Bersih Kilat — Laundry Kiloan & Antar Jemput</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+    :root {
+      --navy:      #0b1f3a;
+      --navy-2:    #142d52;
+      --blue:      #1a6de8;
+      --blue-2:    #3380f0;
+      --sky:       #e8f2ff;
+      --sky-2:     #d4e8ff;
+      --green:     #16a34a;
+      --green-lt:  #dcfce7;
+      --white:     #ffffff;
+      --bg:        #f4f8ff;
+      --bg-2:      #eaf2ff;
+      --ink:       #0b1f3a;
+      --muted:     rgba(11,31,58,.60);
+      --border:    rgba(11,31,58,.10);
+      --border-b:  rgba(26,109,232,.18);
+      --max:       1160px;
+      --r:         20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── BUBBLES BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -300px;
+      right: -200px;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,109,232,.09) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px;
+      left: -150px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244,248,255,.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -.01em;
+      color: var(--navy);
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(26,109,232,.30);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: background .2s, color .2s;
+    }
+
+    .nav-links a:hover { background: var(--sky); color: var(--ink); }
+
+    .nav-cta a {
+      background: var(--blue) !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 16px rgba(26,109,232,.28);
+      margin-left: 8px;
+    }
+    .nav-cta a:hover { background: var(--blue-2) !important; }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--navy);
+    }
+
+    .drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .drawer.open { display: block; }
+    .drawer a {
+      display: block;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .drawer a:hover { color: var(--ink); background: var(--sky); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0 64px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-copy { position: relative; z-index: 2; }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--green-lt);
+      border: 1px solid rgba(22,163,74,.20);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .hero-chip .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 2s ease infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity:1; }
+      50% { opacity:.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -.03em;
+      color: var(--navy);
+    }
+
+    .hero h1 .hl {
+      background: linear-gradient(135deg, var(--blue), #5ba4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      margin-top: 18px;
+      font-size: 15.5px;
+      color: var(--muted);
+      max-width: 50ch;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-blue {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      box-shadow: 0 8px 28px rgba(26,109,232,.28);
+    }
+    .btn-blue:hover { background: var(--blue-2); box-shadow: 0 12px 36px rgba(26,109,232,.36); }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--sky); border-color: var(--border-b); }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .hero-note .check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    /* ── HERO VISUAL ── */
+    .hero-visual { position: relative; z-index: 2; }
+
+    .hero-img-card {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 28px 72px rgba(11,31,58,.10), 0 6px 20px rgba(11,31,58,.06);
+      aspect-ratio: 4/5;
+    }
+
+    .hero-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stat-card {
+      position: absolute;
+      bottom: -20px;
+      left: -32px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: 0 12px 40px rgba(11,31,58,.10);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: var(--sky);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .stat-text strong {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-text span {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block;
+    }
+
+    /* ── SECTION SHARED ── */
+    .section { position: relative; z-index: 1; padding: 72px 0; }
+
+    .sec-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      color: var(--navy);
+    }
+
+    .sec-sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PRICING CARDS ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .pricing-card {
+      border-radius: var(--r);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 56px rgba(11,31,58,.09);
+      border-color: var(--border-b);
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(160deg, var(--navy), var(--navy-2));
+      border-color: transparent;
+      box-shadow: 0 16px 52px rgba(11,31,58,.22);
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 72px rgba(11,31,58,.28);
+    }
+
+    .pricing-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 18px;
+    }
+
+    .badge-blue { background: var(--sky); color: var(--blue); }
+    .badge-navy { background: rgba(255,255,255,.15); color: rgba(255,255,255,.85); }
+    .badge-green { background: var(--green-lt); color: var(--green); }
+
+    .pricing-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .pricing-card.featured .pricing-name { color: #fff; }
+
+    .pricing-desc {
+      margin-top: 6px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .pricing-card.featured .pricing-desc { color: rgba(255,255,255,.70); }
+
+    .pricing-price {
+      margin-top: 20px;
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    .pricing-card.featured .pricing-price { color: #7ab4ff; }
+
+    .pricing-unit {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    .pricing-card.featured .pricing-unit { color: rgba(255,255,255,.45); }
+
+    /* ── SERVICES + AREA ── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      border-radius: var(--r);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      padding: 24px 22px;
+    }
+
+    .panel-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .service-list { display: grid; gap: 10px; }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      transition: background .2s;
+    }
+
+    .service-item:hover { background: var(--sky); border-color: var(--border-b); }
+
+    .service-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .service-item strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .service-item span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .area-list {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .area-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .area-row span {
+      font-size: 13.5px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .area-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .tag-green { background: var(--green-lt); color: var(--green); }
+    .tag-blue { background: var(--sky); color: var(--blue); }
+    .tag-muted { background: var(--bg-2); color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: var(--navy);
+      padding: 56px 0 44px;
+      margin-top: 4px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+
+    .footer-tagline {
+      margin-top: 6px;
+      font-size: 14px;
+      color: rgba(255,255,255,.60);
+    }
+
+    .footer-info {
+      margin-top: 20px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,.55);
+    }
+
+    .footer-info .fi-icon { font-size: 14px; flex-shrink: 0; }
+
+    .footer-copy {
+      margin-top: 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,.30);
+    }
+
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .soc-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      display: grid;
+      place-items: center;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .soc-btn:hover {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-2px);
+    }
+
+    .soc-btn img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: .8;
+    }
+
+    /* ── REVEAL ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    [data-reveal].visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: grid; }
+
+      .hero { padding: 52px 0 44px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 36px; }
+      .hero-visual { order: -1; }
+      .hero-img-card { aspect-ratio: 16/9; max-height: 320px; }
+      .stat-card { left: 16px; bottom: -16px; }
+
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { order: -1; }
+
+      .bottom-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .social-grid { justify-content: flex-start; }
+
+      .section { padding: 52px 0; }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-icon" aria-hidden="true">🧼</span>
+          <span data-editable="brandName">Bersih Kilat</span>
+        </a>
+
+        <ul class="nav-links" aria-label="Navigasi">
+          <li><a href="#paket" data-editable="navLink1">Paket</a></li>
+          <li><a href="#layanan" data-editable="navLink2">Layanan</a></li>
+          <li><a href="#area" data-editable="navLink3">Area</a></li>
+          <li class="nav-cta">
+            <a data-editable="navCtaUrl" href="https://wa.me/6280000000000">
+              <span data-editable="navCtaLabel">Jemput</span>
+            </a>
+          </li>
+        </ul>
+
+        <button class="nav-toggle" type="button" aria-label="Buka menu" onclick="toggleDrawer()">☰</button>
+      </div>
+
+      <nav id="drawer" class="drawer" aria-label="Navigasi mobile">
+        <a href="#paket" onclick="toggleDrawer()" data-editable="drawerLink1">Paket</a>
+        <a href="#layanan" onclick="toggleDrawer()" data-editable="drawerLink2">Layanan</a>
+        <a href="#area" onclick="toggleDrawer()" data-editable="drawerLink3">Area</a>
+        <a data-editable="drawerCtaUrl" href="https://wa.me/6280000000000" onclick="toggleDrawer()">
+          <span data-editable="drawerCtaLabel">Order Jemput</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-layout">
+
+          <div class="hero-copy" data-reveal>
+            <div class="hero-chip">
+              <span class="dot"></span>
+              <span data-editable="heroBadge">Laundry kiloan · Setrika rapi · Antar jemput</span>
+            </div>
+
+            <h1>
+              <span data-editable="heroTitlePrefix">Pakaian</span> 
+              <span class="hl" data-editable="heroTitleHighlight">bersih & wangi</span><span data-editable="heroTitleSuffix">—tanpa bikin kamu capek.</span>
+            </h1>
+
+            <p class="hero-desc" data-editable="heroSubtitle">Cocok untuk keluarga, anak kos, dan pekerja sibuk. Bisa order antar-jemput di area tertentu, atau drop langsung di toko kami.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-blue" data-editable="primaryCtaUrl" href="https://wa.me/6280000000000">
+                <span data-editable="primaryCtaLabel">Order WhatsApp</span>
+              </a>
+              <a class="btn btn-outline" data-editable="secondaryCtaUrl" href="#paket">
+                <span data-editable="secondaryCtaLabel">Lihat Paket</span>
+              </a>
+            </div>
+
+            <p class="hero-note">
+              <span class="check">✓</span>
+              <span data-editable="heroNote">Estimasi selesai tergantung antrian. Kami info via chat.</span>
+            </p>
+          </div>
+
+          <div class="hero-visual" data-reveal style="transition-delay:.15s">
+            <div class="hero-img-card">
+              <img
+                data-editable="heroImg"
+                alt="Foto laundry"
+                src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80&w=800"
+              />
+            </div>
+
+            <div class="stat-card" aria-hidden="true">
+              <div class="stat-icon">⚡</div>
+              <div class="stat-text">
+                <strong data-editable="floatBadgeTitle">Sameday</strong>
+                <span data-editable="floatBadgeSub">Tersedia untuk express</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section" id="paket">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="sec-eyebrow" data-editable="pkgEyebrow">Harga Terjangkau</div>
+            <h2 class="sec-title" data-editable="pkgTitle">Paket Harga</h2>
+            <p class="sec-sub" data-editable="pkgSubtitle">Pilih paket sesuai kebutuhan. Bisa tambah layanan khusus.</p>
+          </div>
+          <span style="font-size:13px;color:var(--muted)" data-editable="pkgNote">Harga dapat menyesuaikan jarak lokasi.</span>
+        </div>
+
+        <div class="pricing-grid">
+
+          <div class="pricing-card" data-reveal>
+            <span class="pricing-badge badge-blue" data-editable="pkg1Tag">Standar</span>
+            <div class="pricing-name" data-editable="pkg1Name">Cuci + Kering</div>
+            <div class="pricing-desc" data-editable="pkg1Desc">Cocok untuk pakaian rumah yang tidak butuh disetrika.</div>
+            <div class="pricing-price">
+              <span data-editable="pkg1Price">Rp 7.000</span>
+              <span class="pricing-unit" data-editable="pkg1Unit">/ kg</span>
+            </div>
+          </div>
+
+          <div class="pricing-card featured" data-reveal style="transition-delay:.1s">
+            <span class="pricing-badge badge-navy" data-editable="pkg2Tag">Paling Favorit</span>
+            <div class="pricing-name" data-editable="pkg2Name">Cuci + Kering + Setrika</div>
+            <div class="pricing-desc" data-editable="pkg2Desc">Paket komplit siap pakai, paling favorit untuk pakaian harian.</div>
+            <div class="pricing-price">
+              <span data-editable="pkg2Price">Rp 9.000</span>
+              <span class="pricing-unit" data-editable="pkg2Unit">/ kg</span>
+            </div>
+          </div>
+
+          <div class="pricing-card" data-reveal style="transition-delay:.2s">
+            <span class="pricing-badge badge-green" data-editable="pkg3Tag">Express</span>
+            <div class="pricing-name" data-editable="pkg3Name">Express (Sameday)</div>
+            <div class="pricing-desc" data-editable="pkg3Desc">Prioritas pengerjaan selesai di hari yang sama (kuota terbatas).</div>
+            <div class="pricing-price">
+              <span data-editable="pkg3Price">Rp 13.000</span>
+              <span class="pricing-unit" data-editable="pkg3Unit">/ kg</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="sec-eyebrow" data-editable="svcEyebrow">Lengkap</div>
+            <h2 class="sec-title" data-editable="svcTitle">Layanan & Area</h2>
+            <p class="sec-sub" data-editable="svcSubtitle">Layanan tambahan dan jangkauan area antar-jemput kami.</p>
+          </div>
+        </div>
+
+        <div class="bottom-grid" data-reveal>
+
+          <div class="panel">
+            <div class="panel-title" data-editable="svcLeftTitle">Layanan Tambahan</div>
+            <div class="service-list">
+              <div class="service-item">
+                <div class="service-dot"></div>
+                <div>
+                  <strong data-editable="svc1Name">Pewangi lembut / No perfume</strong>
+                  <span data-editable="svc1Note">Sangat cocok untuk bayi atau kulit sensitif.</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-dot"></div>
+                <div>
+                  <strong data-editable="svc2Name">Pisah warna pakaian</strong>
+                  <span data-editable="svc2Note">Pemisahan gelap & terang agar tidak luntur.</span>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-dot"></div>
+                <div>
+                  <strong data-editable="svc3Name">Khusus Bed Cover / Selimut</strong>
+                  <span data-editable="svc3Note">Harga disesuaikan dengan ketebalan dan ukuran.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="area">
+            <div class="panel-title" data-editable="areaTitle">Area Antar Jemput</div>
+            <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px" data-editable="areaDesc">Cakupan penjemputan berdasarkan radius dari outlet kami.</p>
+            <div class="area-list">
+              <div class="area-row">
+                <span data-editable="area1Name">Radius 0 - 3 KM</span>
+                <span class="area-tag tag-green" data-editable="area1Note">Gratis (min. 5kg)</span>
+              </div>
+              <div class="area-row">
+                <span data-editable="area2Name">Radius 3 - 7 KM</span>
+                <span class="area-tag tag-blue" data-editable="area2Note">Ongkir Rp 5.000</span>
+              </div>
+              <div class="area-row">
+                <span data-editable="area3Name">Di luar coverage</span>
+                <span class="area-tag tag-muted" data-editable="area3Note">Sesuai aplikasi ojol</span>
+              </div>
+            </div>
+            <a class="btn btn-blue" style="width:100%;justify-content:center" data-editable="pickupCtaUrl" href="https://wa.me/6280000000000">
+              <span data-editable="pickupCtaLabel">Order Penjemputan</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand" data-editable="footerBrand">Bersih Kilat</div>
+          <p class="footer-tagline" data-editable="footerTagline">Laundry kiloan tepercaya—bersih, wangi, rapi, dan tepat waktu.</p>
+
+          <div class="footer-info">
+            <span>
+              <span class="fi-icon">📍</span> 
+              <span data-editable="footerAddress">Jl. Raya Utama No. 45, Komplek Permai</span>
+            </span>
+            <span>
+              <span class="fi-icon">🕐</span> 
+              <span data-editable="footerHours">Jam Operasional: Senin - Minggu (08.00–20.00)</span>
+            </span>
+          </div>
+
+          <p class="footer-copy" data-editable="footerCopy">© 2026 Bersih Kilat. All rights reserved.</p>
+        </div>
+
+        <div class="social-grid" aria-label="Media sosial">
+          <a class="soc-btn" data-editable="socialWa" href="https://wa.me/6280000000000" aria-label="WhatsApp">
+            <img alt="WhatsApp" src="../icons/whatsapp.png" />
+          </a>
+          <a class="soc-btn" data-editable="socialIg" href="#" aria-label="Instagram">
+            <img alt="Instagram" src="../icons/instagram.png" />
+          </a>
+          <a class="soc-btn" data-editable="socialTk" href="#" aria-label="TikTok">
+            <img alt="TikTok" src="../icons/tiktok.png" />
+          </a>
+          <a class="soc-btn" data-editable="socialSp" href="#" aria-label="Shopee">
+            <img alt="Shopee" src="../icons/shoppe.png" />
+          </a>
+          <a class="soc-btn" data-editable="socialTp" href="#" aria-label="Tokopedia">
+            <img alt="Tokopedia" src="../icons/tokopedia.png" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDrawer() {
+      var el = document.getElementById('drawer');
+      if (el) el.classList.toggle('open');
+    }
+
+    /* Script Reveal JS tidak mengubah konten DOM sehingga aman dari editor */
+    var revealEls = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.10 });
+      revealEls.forEach(function(el) { obs.observe(el); });
+    } else {
+      revealEls.forEach(function(el) { el.classList.add('visible'); });
+    }
+  </script>
+</body>
+</html>

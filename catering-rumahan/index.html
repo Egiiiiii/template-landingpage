@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-editable="site-title">Dapur Nusantara — Catering Rumahan Harian & Acara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:       #fdf8f3;
+      --bg2:      #f9f2e8;
+      --bg3:      #fff;
+      --text:     #1c1510;
+      --muted:    #7a6a5a;
+      --muted2:   #b8a898;
+      --border:   rgba(28,21,16,.09);
+      --border2:  rgba(28,21,16,.14);
+      --red:      #d94f2a;
+      --red2:     #e8673f;
+      --red-dim:  rgba(217,79,42,.10);
+      --amber:    #c97d1a;
+      --amber-dim:rgba(201,125,26,.10);
+      --green:    #3a7c4a;
+      --shadow-sm: 0 2px 8px rgba(28,21,16,.07);
+      --shadow:    0 8px 28px rgba(28,21,16,.10);
+      --shadow-lg: 0 20px 52px rgba(28,21,16,.13);
+      --radius:    8px;
+      --radius2:   16px;
+      --max:       1140px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── TOPBAR ──────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(253,248,243,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(217,79,42,.25);
+      flex-shrink: 0;
+      background: var(--red-dim);
+    }
+
+    .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .links a {
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: color .2s, background .2s;
+    }
+
+    .links a:hover { color: var(--text); background: var(--red-dim); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: .875rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(217,79,42,.28);
+    }
+
+    .nav-cta:hover { background: var(--red2); transform: translateY(-1px); }
+    .nav-cta img { width: 16px; height: 16px; object-fit: contain; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero { padding: 56px 0 0; }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 560px;
+    }
+
+    /* left */
+    .hero-left {
+      padding: 0 56px 60px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .chip.red {
+      background: var(--red-dim);
+      border: 1px solid rgba(217,79,42,.2);
+      color: var(--red);
+    }
+
+    .chip.green {
+      background: rgba(58,124,74,.09);
+      border: 1px solid rgba(58,124,74,.18);
+      color: var(--green);
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 1.07;
+      letter-spacing: -.025em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--red); }
+
+    .hero-sub {
+      font-size: .975rem;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 34px;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      font-size: .875rem;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 20px rgba(217,79,42,.30);
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-red:hover { background: var(--red2); transform: translateY(-2px); }
+    .btn-red img { width: 16px; height: 16px; object-fit: contain; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 600;
+      font-size: .875rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border2);
+      transition: background .2s;
+    }
+
+    .btn-ghost:hover { background: var(--bg2); }
+
+    /* features list */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      overflow: hidden;
+      background: var(--bg3);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feat:last-child { border-bottom: none; }
+
+    .feat-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: var(--red);
+      color: #fff;
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .feat-title {
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .feat-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* hero right — stacked image + mini CTA */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .hero-img {
+      flex: 1;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 360px;
+    }
+
+    .hero-minibanner {
+      padding: 20px 24px;
+      background: var(--text);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-minibanner strong {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .hero-minibanner span {
+      font-size: .82rem;
+      opacity: .65;
+      font-weight: 400;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .btn-amber {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      font-size: .82rem;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+
+    .btn-amber:hover { opacity: .85; }
+    .btn-amber img { width: 15px; height: 15px; object-fit: contain; }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    hr.div { border: none; border-top: 1px solid var(--border); }
+
+    /* ── SECTION BASE ────────────────────────────────── */
+    .section { padding: 72px 0; }
+    .section-warm { background: var(--bg2); }
+
+    .sec-head { margin-bottom: 44px; }
+
+    .sec-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec-eyebrow::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .sec-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      color: var(--text);
+    }
+
+    .sec-sub {
+      margin-top: 10px;
+      font-size: .9rem;
+      color: var(--muted);
+      font-weight: 400;
+      max-width: 480px;
+    }
+
+    /* ── PACKAGES ────────────────────────────────────── */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pkg-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .25s, transform .2s;
+    }
+
+    .pkg-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+    .pkg-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pkg-body { padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+    .pkg-price {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--amber-dim);
+      border: 1px solid rgba(201,125,26,.20);
+      color: var(--amber);
+      font-weight: 700;
+      font-size: .82rem;
+      align-self: flex-start;
+    }
+
+    .pkg-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -.01em;
+    }
+
+    .pkg-desc { font-size: .875rem; color: var(--muted); font-weight: 400; line-height: 1.6; }
+
+    /* ── HARIAN ──────────────────────────────────────── */
+    .harian-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .menu-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .menu-card-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .menu-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    .menu-row:last-child { border-bottom: none; }
+    .menu-row:hover { background: var(--bg2); }
+
+    .menu-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--red-dim);
+      color: var(--red);
+      font-weight: 700;
+      font-size: .72rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-family: 'Fraunces', serif;
+    }
+
+    .menu-text {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .menu-note {
+      padding: 13px 20px;
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 400;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+    }
+
+    /* right side — CTA + delivery */
+    .harian-right { display: flex; flex-direction: column; gap: 18px; }
+
+    .cta-panel {
+      background: var(--text);
+      border-radius: var(--radius2);
+      padding: 28px 26px;
+      color: #fff;
+    }
+
+    .cta-panel-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+
+    .cta-panel-desc {
+      font-size: .875rem;
+      opacity: .7;
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .cta-panel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      font-size: .875rem;
+      border-radius: var(--radius);
+      transition: opacity .2s;
+    }
+
+    .btn-white:hover { opacity: .88; }
+    .btn-white img { width: 16px; height: 16px; object-fit: contain; }
+
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      background: transparent;
+      color: rgba(255,255,255,.75);
+      font-weight: 600;
+      font-size: .875rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.25);
+      transition: background .2s, color .2s;
+    }
+
+    .btn-outline-white:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+    .delivery-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .delivery-title {
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .delivery-desc { font-size: .85rem; color: var(--muted); font-weight: 400; line-height: 1.6; }
+
+    .delivery-hours {
+      margin-top: 12px;
+      font-weight: 700;
+      font-size: .88rem;
+      color: var(--text);
+    }
+
+    /* ── CARA ORDER ──────────────────────────────────── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .step {
+      background: var(--bg3);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      opacity: .25;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    .step-desc { font-size: .83rem; color: var(--muted); font-weight: 400; line-height: 1.6; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 56px 0 36px;
+      background: var(--bg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .foot-brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -.02em;
+      margin-bottom: 6px;
+    }
+
+    .foot-meta {
+      font-size: .875rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .social {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--muted);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+
+    .social a:hover { background: var(--red-dim); color: var(--text); border-color: rgba(217,79,42,.2); }
+    .social img { width: 16px; height: 16px; object-fit: contain; }
+
+    .foot-cta-box {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius2);
+      padding: 28px 24px;
+    }
+
+    .foot-cta-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .foot-cta-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .foot-cta-desc {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .foot-copy {
+      margin-top: 44px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: .8rem;
+      color: var(--muted2);
+      font-weight: 500;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 960px) {
+      .links { display: none; }
+      .hero-layout { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 0 0 36px; }
+      .hero-right { border-left: none; border-top: 1px solid var(--border); }
+      .hero-img { min-height: 260px; height: 260px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .harian-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .section { padding: 52px 0; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <nav class="nav" aria-label="Navigasi">
+        <a class="brand" href="#top">
+          <span class="logo">
+            <img data-editable="logo-image" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' rx='8' fill='%23D94F2A'/%3E%3Cpath d='M44 62h72v20H44z' fill='%23fff' fill-opacity='.9'/%3E%3Cpath d='M52 92h56v18H52z' fill='%23fff' fill-opacity='.7'/%3E%3Cpath d='M64 118h32v10H64z' fill='%23fff' fill-opacity='.5'/%3E%3C/svg%3E" />
+          </span>
+          <span data-editable="brand-name">Dapur Nusantara</span>
+        </a>
+
+        <div class="links">
+          <a href="#paket"><span data-editable="nav-packages-label">Paket</span></a>
+          <a href="#harian"><span data-editable="nav-daily-label">Menu Harian</span></a>
+          <a href="#cara"><span data-editable="nav-how-label">Cara Order</span></a>
+          <a href="#kontak"><span data-editable="nav-contact-label">Kontak</span></a>
+        </div>
+
+        <a class="nav-cta" data-editable="cta-url" href="https://wa.me/6280000000000">
+          <img alt="WhatsApp" src="../icon/whatsapp.png" />
+          <span data-editable="cta-label">Order via WhatsApp</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-layout">
+
+          <div class="hero-left">
+            <div class="chip-row">
+              <span class="chip red" data-editable="hero-badge-1">Catering Harian</span>
+              <span class="chip green" data-editable="hero-badge-2">Masak Fresh</span>
+            </div>
+
+            <h1 data-editable="hero-title">Catering Rumahan untuk <em>Kantor</em>, Sekolah, dan Acara Keluarga</h1>
+
+            <p class="hero-sub" data-editable="hero-subtitle">Menu Indonesia yang familiar, porsi pas, dan bisa request level pedas. Tersedia paket nasi box dan prasmanan.</p>
+
+            <div class="hero-actions">
+              <a class="btn-red" data-editable="hero-cta-url" href="https://wa.me/6280000000000">
+                <img alt="WhatsApp" src="../icon/whatsapp.png" />
+                <span data-editable="hero-cta-label">Konsultasi Menu</span>
+              </a>
+              <a class="btn-ghost" data-editable="secondary-cta-url" href="#paket">
+                <span data-editable="secondary-cta-label">Lihat Paket</span>
+              </a>
+            </div>
+
+            <div class="features" aria-label="Keunggulan">
+              <div class="feat">
+                <div class="feat-dot">1</div>
+                <div>
+                  <div class="feat-title" data-editable="feature-1-title">Menu variatif</div>
+                  <div class="feat-desc" data-editable="feature-1-desc">Ayam, ikan, sayur, sambal, dan buah.</div>
+                </div>
+              </div>
+              <div class="feat">
+                <div class="feat-dot">2</div>
+                <div>
+                  <div class="feat-title" data-editable="feature-2-title">Bisa request</div>
+                  <div class="feat-desc" data-editable="feature-2-desc">Pilihan lauk &amp; tingkat pedas.</div>
+                </div>
+              </div>
+              <div class="feat">
+                <div class="feat-dot">3</div>
+                <div>
+                  <div class="feat-title" data-editable="feature-3-title">Pengantaran</div>
+                  <div class="feat-desc" data-editable="feature-3-desc">Area terdekat, tepat waktu.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <img class="hero-img" data-editable="hero-image" alt="Foto makanan" src="https://source.unsplash.com/featured/1200x800?catering,food&sig=51" />
+            <div class="hero-minibanner">
+              <div>
+                <strong data-editable="hero-box-title">Minimal order mulai 10 box</strong>
+                <span data-editable="hero-box-desc">Paket acara & harian tersedia</span>
+              </div>
+              <a class="btn-amber" data-editable="hero-box-cta-url" href="https://wa.me/6280000000000">
+                <img alt="WhatsApp" src="../icon/whatsapp.png" />
+                <span data-editable="hero-box-cta-label">Tanya Paket</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <!-- PAKET -->
+    <section class="section section-warm" id="paket">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-eyebrow">Paket</div>
+          <h2 class="sec-title" data-editable="packages-title">Paket Populer</h2>
+          <p class="sec-sub" data-editable="packages-subtitle">Cocok untuk rapat, syukuran, dan acara keluarga.</p>
+        </div>
+
+        <div class="packages-grid" role="list">
+          <article class="pkg-card" role="listitem">
+            <img data-editable="package-1-image" alt="Paket 1" src="https://source.unsplash.com/featured/900x700?food,meal-box&sig=52" />
+            <div class="pkg-body">
+              <div class="pkg-price" data-editable="package-1-price">Mulai Rp22.000</div>
+              <div class="pkg-name" data-editable="package-1-name">Paket Nasi Box Ayam</div>
+              <div class="pkg-desc" data-editable="package-1-desc">Pilihan ayam goreng / bakar, sambal sesuai request.</div>
+            </div>
+          </article>
+
+          <article class="pkg-card" role="listitem">
+            <img data-editable="package-2-image" alt="Paket 2" src="https://source.unsplash.com/featured/900x700?indonesian-food,catering&sig=53" />
+            <div class="pkg-body">
+              <div class="pkg-price" data-editable="package-2-price">Mulai Rp24.000</div>
+              <div class="pkg-name" data-editable="package-2-name">Paket Nasi Box Ikan</div>
+              <div class="pkg-desc" data-editable="package-2-desc">Ikan goreng / pepes, sayur segar, sambal.</div>
+            </div>
+          </article>
+
+          <article class="pkg-card" role="listitem">
+            <img data-editable="package-3-image" alt="Paket 3" src="https://source.unsplash.com/featured/900x700?buffet,food&sig=54" />
+            <div class="pkg-body">
+              <div class="pkg-price" data-editable="package-3-price">Mulai 30 pax</div>
+              <div class="pkg-name" data-editable="package-3-name">Paket Prasmanan</div>
+              <div class="pkg-desc" data-editable="package-3-desc">Menu fleksibel, bisa tambah dessert/minuman.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <!-- MENU HARIAN -->
+    <section class="section" id="harian">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-eyebrow">Menu</div>
+          <h2 class="sec-title" data-editable="daily-title">Menu Harian</h2>
+          <p class="sec-sub" data-editable="daily-subtitle">Ubah jadi menu hari ini atau jadwal mingguan.</p>
+        </div>
+
+        <div class="harian-grid">
+          <!-- Weekly menu card -->
+          <div class="menu-card">
+            <div class="menu-card-head">Jadwal Minggu Ini</div>
+
+            <div class="menu-row">
+              <div class="menu-dot">Sen</div>
+              <div class="menu-text" data-editable="daily-row-1">Ayam kecap + tumis buncis</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-dot">Sel</div>
+              <div class="menu-text" data-editable="daily-row-2">Ikan balado + sayur bening</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-dot">Rab</div>
+              <div class="menu-text" data-editable="daily-row-3">Ayam geprek + urap</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-dot">Kam</div>
+              <div class="menu-text" data-editable="daily-row-4">Rendang suwir + capcay</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-dot">Jum</div>
+              <div class="menu-text" data-editable="daily-row-5">Ayam bakar + lalap</div>
+            </div>
+            <div class="menu-note" data-editable="daily-note">Menu bisa berubah menyesuaikan bahan segar.</div>
+          </div>
+
+          <!-- CTA & Delivery -->
+          <div class="harian-right">
+            <div class="cta-panel">
+              <div class="cta-panel-title" data-editable="daily-cta-title">Mau catering harian untuk kantor?</div>
+              <div class="cta-panel-desc" data-editable="daily-cta-desc">Ceritakan jumlah orang, jam makan, dan preferensi lauk. Kami rekomendasikan paketnya.</div>
+              <div class="cta-panel-actions">
+                <a class="btn-white" data-editable="daily-cta-url" href="https://wa.me/6280000000000">
+                  <img alt="WhatsApp" src="../icon/whatsapp.png" />
+                  <span data-editable="daily-cta-label">Diskusi Paket</span>
+                </a>
+                <a class="btn-outline-white" data-editable="daily-secondary-url" href="#cara">
+                  <span data-editable="daily-secondary-label">Cara Order</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="delivery-card">
+              <div class="delivery-title" data-editable="delivery-title">Info Pengantaran</div>
+              <div class="delivery-desc" data-editable="delivery-desc">Area sekitar, ongkir menyesuaikan jarak dan jumlah pesanan.</div>
+              <div class="delivery-hours" data-editable="delivery-hours">Jam antar: 09.00–12.00 / 16.00–18.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <!-- CARA ORDER -->
+    <section class="section section-warm" id="cara">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-eyebrow">Proses</div>
+          <h2 class="sec-title" data-editable="how-title">Cara Order</h2>
+          <p class="sec-sub" data-editable="how-subtitle">Supaya pesanan cepat diproses dan rapi.</p>
+        </div>
+
+        <div class="steps-grid" role="list">
+          <div class="step" role="listitem">
+            <div class="step-num">01</div>
+            <div class="step-title" data-editable="how-1-title">Kirim detail pesanan</div>
+            <div class="step-desc" data-editable="how-1-desc">Tanggal, jumlah box/pax, paket, alamat, jam antar.</div>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step-num">02</div>
+            <div class="step-title" data-editable="how-2-title">Konfirmasi harga</div>
+            <div class="step-desc" data-editable="how-2-desc">Kami kirim total + opsi add-on (buah/minum/dessert).</div>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step-num">03</div>
+            <div class="step-title" data-editable="how-3-title">DP (untuk acara)</div>
+            <div class="step-desc" data-editable="how-3-desc">DP untuk kunci jadwal dan belanja bahan.</div>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step-num">04</div>
+            <div class="step-title" data-editable="how-4-title">Pengantaran</div>
+            <div class="step-desc" data-editable="how-4-desc">Kami antar sesuai waktu yang disepakati.</div>
+          </div>
+        </div>
+
+        <a class="btn-red" data-editable="how-cta-url" href="https://wa.me/6280000000000">
+          <img alt="WhatsApp" src="../icon/whatsapp.png" />
+          <span data-editable="how-cta-label">Order Sekarang</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="foot-brand" data-editable="footer-title">Dapur Nusantara</div>
+            <div class="foot-meta">
+              <div data-editable="footer-address">Jl. Contoh No. 9, Kota</div>
+              <div data-editable="footer-note">Halal-friendly, bisa request tanpa MSG (opsional).</div>
+            </div>
+
+            <div class="social" aria-label="Sosial media">
+              <a data-editable="social-whatsapp" href="https://wa.me/6280000000000">
+                <img alt="WhatsApp" src="../icon/whatsapp.png" />
+                <span data-editable="social-whatsapp-label">WhatsApp</span>
+              </a>
+              <a data-editable="social-instagram" href="#">
+                <img alt="Instagram" src="../icon/instagram.png" />
+                <span data-editable="social-instagram-label">Instagram</span>
+              </a>
+              <a data-editable="social-tiktok" href="#">
+                <img alt="TikTok" src="../icon/tiktok.png" />
+                <span data-editable="social-tiktok-label">TikTok</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="foot-cta-box">
+            <div class="foot-cta-label">Booking</div>
+            <div class="foot-cta-title" data-editable="footer-cta-title">Butuh untuk acara dekat-dekat ini?</div>
+            <div class="foot-cta-desc" data-editable="footer-cta-desc">Chat, sebutkan tanggal &amp; jumlah pax. Kami bantu rekomendasikan menu dan budget.</div>
+            <a class="btn-red" data-editable="footer-cta-url" href="https://wa.me/6280000000000">
+              <img alt="WhatsApp" src="../icon/whatsapp.png" />
+              <span data-editable="footer-cta-label">Chat Admin</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-copy" data-editable="footer-copyright">© 2026 Dapur Nusantara.</div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>

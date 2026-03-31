@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-editable="site-title">Rupa Lokal — Kerajinan Tangan &amp; Custom Gift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1208;
+      --ink-2:     #3d2e12;
+      --muted:     rgba(26,18,8,.52);
+      --forest:    #1b3d2a;
+      --forest-2:  #2e6047;
+      --amber:     #c97c1a;
+      --amber-2:   #e8a030;
+      --cream:     #faf5ec;
+      --cream-2:   #f3ead8;
+      --white:     #fffefb;
+      --border:    rgba(26,18,8,.12);
+      --border-2:  rgba(193,124,26,.22);
+      --max:       1160px;
+      --r:         20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,245,236,.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: .02em;
+      color: var(--forest);
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--forest), var(--forest-2));
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: var(--muted);
+      letter-spacing: .01em;
+      transition: background .2s, color .2s;
+    }
+
+    .nav-links a:hover { background: rgba(26,18,8,.06); color: var(--ink); }
+
+    .nav-cta a {
+      background: var(--forest) !important;
+      color: var(--cream) !important;
+      font-weight: 600 !important;
+      padding: 9px 20px !important;
+    }
+
+    .nav-cta a:hover { background: var(--forest-2) !important; }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .drawer.open { display: block; }
+    .drawer a {
+      display: block;
+      padding: 14px 24px;
+      font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .drawer a:hover { color: var(--ink); background: rgba(26,18,8,.04); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 72px 0 60px;
+      overflow: hidden;
+    }
+
+    /* Decorative arcs */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -180px;
+      right: -180px;
+      width: 640px;
+      height: 640px;
+      border-radius: 50%;
+      border: 80px solid rgba(193,124,26,.08);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-2);
+      background: rgba(193,124,26,.09);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--amber-2);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:.5; transform:scale(1.4); }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--forest);
+    }
+
+    .hero-desc {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-forest {
+      background: var(--forest);
+      color: var(--cream);
+      border: none;
+      box-shadow: 0 8px 28px rgba(27,61,42,.22);
+    }
+    .btn-forest:hover { background: var(--forest-2); box-shadow: 0 12px 36px rgba(27,61,42,.28); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover { background: rgba(26,18,8,.05); }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-note::before { content:'✓'; color: var(--forest); font-weight:700; }
+
+    /* ── HERO VISUAL ── */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-img-wrap {
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px rgba(26,18,8,.12), 0 8px 24px rgba(26,18,8,.08);
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-badge-float {
+      position: absolute;
+      bottom: -18px;
+      left: -28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: 0 12px 40px rgba(26,18,8,.10);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 190px;
+    }
+
+    .badge-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(193,124,26,.15), rgba(27,61,42,.10));
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .badge-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .badge-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── SECTION SHARED ── */
+    .section { padding: 72px 0; }
+
+    .sec-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+    }
+
+    .sec-sub {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 56ch;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .section-head .right {
+      flex-shrink: 0;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(26,18,8,.10);
+    }
+
+    .product-card:nth-child(2) { margin-top: 28px; }
+    .product-card:nth-child(3) { margin-top: 56px; }
+
+    .product-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--cream-2);
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .product-card:hover .product-img img { transform: scale(1.05); }
+
+    .product-body {
+      padding: 16px 18px 18px;
+    }
+
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-2);
+      background: rgba(193,124,26,.08);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+    }
+
+    .product-desc {
+      margin-top: 6px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .product-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .product-cta {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--forest);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+
+    .product-cta:hover { background: var(--forest-2); }
+
+    /* ── CUSTOM / SPLIT SECTION ── */
+    .custom-section {
+      background: var(--forest);
+      border-radius: 32px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .custom-left {
+      padding: 60px 52px;
+      color: rgba(250,245,236,.92);
+    }
+
+    .custom-left .sec-label { color: var(--amber-2); }
+
+    .custom-left .sec-title {
+      color: var(--cream);
+    }
+
+    .custom-left .sec-sub {
+      color: rgba(250,245,236,.65);
+    }
+
+    .custom-list {
+      margin-top: 32px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .custom-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(250,245,236,.08);
+      border: 1px solid rgba(250,245,236,.1);
+      transition: background .2s;
+    }
+
+    .custom-item:hover { background: rgba(250,245,236,.12); }
+
+    .custom-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(232,160,48,.20);
+      border: 1px solid rgba(232,160,48,.25);
+      color: var(--amber-2);
+      font-weight: 700;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .custom-item strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(250,245,236,.95);
+    }
+
+    .custom-item span {
+      display: block;
+      font-size: 13px;
+      color: rgba(250,245,236,.55);
+      margin-top: 3px;
+    }
+
+    .custom-right {
+      padding: 60px 52px;
+      background: rgba(250,245,236,.05);
+      border-left: 1px solid rgba(250,245,236,.08);
+    }
+
+    .custom-right .sec-label { color: var(--amber-2); }
+    .custom-right .sec-title { color: var(--cream); }
+
+    .process-list {
+      margin-top: 32px;
+      display: grid;
+      gap: 0;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      padding-bottom: 28px;
+    }
+
+    .process-step:last-child { padding-bottom: 0; }
+
+    .step-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(232,160,48,.20);
+      border: 2px solid var(--amber-2);
+      color: var(--amber-2);
+      font-weight: 700;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+    }
+
+    .step-line {
+      width: 2px;
+      flex: 1;
+      background: rgba(250,245,236,.12);
+      margin-top: 6px;
+    }
+
+    .process-step:last-child .step-line { display: none; }
+
+    .step-body {
+      padding-top: 6px;
+    }
+
+    .step-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(250,245,236,.95);
+    }
+
+    .step-body span {
+      display: block;
+      font-size: 13px;
+      color: rgba(250,245,236,.52);
+      margin-top: 4px;
+    }
+
+    .custom-cta {
+      margin-top: 28px;
+    }
+
+    .btn-amber {
+      background: var(--amber-2);
+      color: var(--forest);
+      border: none;
+      box-shadow: 0 8px 28px rgba(232,160,48,.30);
+      font-weight: 700;
+    }
+
+    .btn-amber:hover {
+      background: #f0b040;
+      box-shadow: 0 12px 36px rgba(232,160,48,.38);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 56px 0 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: -.01em;
+    }
+
+    .footer-tagline {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer-meta {
+      margin-top: 20px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .footer-meta span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      margin-top: 20px;
+      font-size: 12px;
+      color: rgba(26,18,8,.35);
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .social-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+
+    .social-btn:hover {
+      border-color: rgba(193,124,26,.35);
+      box-shadow: 0 4px 16px rgba(26,18,8,.08);
+      transform: translateY(-2px);
+    }
+
+    .social-btn img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    /* ── ANIMATIONS ── */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    [data-reveal].visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: grid; }
+
+      .hero { padding: 48px 0 40px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .hero-img-wrap { aspect-ratio: 16/9; max-height: 360px; }
+      .hero-badge-float { left: 16px; bottom: -16px; }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card:nth-child(2),
+      .product-card:nth-child(3) { margin-top: 0; }
+
+      .custom-section { grid-template-columns: 1fr; border-radius: 24px; }
+      .custom-left, .custom-right { padding: 40px 28px; }
+      .custom-right { border-left: none; border-top: 1px solid rgba(250,245,236,.08); }
+
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-social { justify-content: flex-start; }
+
+      .section { padding: 52px 0; }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 34px; }
+      .hero-badge-float { min-width: 160px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ NAV ══ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-icon" aria-hidden="true">🧺</span>
+          <span data-editable="brand-name">Rupa Lokal</span>
+        </a>
+
+        <ul class="nav-links" aria-label="Navigasi">
+          <li><a href="#koleksi">Koleksi</a></li>
+          <li><a href="#custom">Custom</a></li>
+          <li><a href="#proses">Proses</a></li>
+          <li class="nav-cta">
+            <a data-editable="nav-cta-url" href="https://wa.me/6280000000000">
+              <span data-editable="nav-cta-label">Konsultasi</span>
+            </a>
+          </li>
+        </ul>
+
+        <button class="nav-toggle" type="button" aria-label="Buka menu" onclick="toggleDrawer()">☰</button>
+      </div>
+
+      <nav id="drawer" class="drawer" aria-label="Navigasi mobile">
+        <a href="#koleksi" onclick="toggleDrawer()">Koleksi</a>
+        <a href="#custom" onclick="toggleDrawer()">Custom</a>
+        <a href="#proses" onclick="toggleDrawer()">Proses</a>
+        <a data-editable="drawer-cta-url" href="https://wa.me/6280000000000" onclick="toggleDrawer()">
+          <span data-editable="drawer-cta-label">Chat WhatsApp</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-layout">
+
+          <!-- Copy -->
+          <div class="hero-copy" data-reveal>
+            <div class="eyebrow" data-editable="hero-badge">Handmade · Bahan Lokal · Bisa Custom Nama</div>
+
+            <h1 data-editable="hero-title">Kerajinan tangan yang punya <em>cerita</em>—rapi untuk dipakai &amp; dihadiahkan.</h1>
+
+            <p class="hero-desc" data-editable="hero-subtitle">Kami buat produk dengan finishing halus, pilihan bahan yang aman, dan kemasan yang siap kirim. Bisa pesan satuan atau partai kecil.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-forest" data-editable="primary-cta-url" href="https://wa.me/6280000000000">
+                <span data-editable="primary-cta-label">Konsultasi Custom</span>
+              </a>
+              <a class="btn btn-ghost" data-editable="secondary-cta-url" href="#koleksi">
+                <span data-editable="secondary-cta-label">Lihat Koleksi</span>
+              </a>
+            </div>
+
+            <p class="hero-note" data-editable="hero-note">Tersedia pengiriman luar kota. Untuk jumlah banyak, ada harga khusus.</p>
+          </div>
+
+          <!-- Visual -->
+          <div class="hero-visual" data-reveal style="transition-delay:.15s">
+            <div class="hero-img-wrap">
+              <img
+                data-editable="hero-image"
+                alt="Foto kerajinan"
+                src="https://source.unsplash.com/featured/900x1100?handicraft,craft&sig=91"
+              />
+            </div>
+
+            <!-- Floating badge -->
+            <div class="hero-badge-float" aria-hidden="true">
+              <div class="badge-icon">🎁</div>
+              <div class="badge-text">
+                <strong data-editable="float-badge-title">Custom Gift</strong>
+                <span data-editable="float-badge-sub">Ready to ship</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ KOLEKSI ══ -->
+    <section class="section" id="koleksi">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <div class="sec-label" data-editable="collection-eyebrow">Produk Pilihan</div>
+            <h2 class="sec-title" data-editable="collection-title">Koleksi Unggulan</h2>
+            <p class="sec-sub" data-editable="collection-subtitle">Variasi yang sering dipesan—nama, deskripsi, dan gambar bisa disesuaikan.</p>
+          </div>
+          <div class="right">
+            <span style="font-size:13px;color:var(--muted)" data-editable="collection-note">Bahan &amp; warna bisa request.</span>
+          </div>
+        </div>
+
+        <div class="products-grid">
+
+          <!-- Card 1 -->
+          <article class="product-card" data-reveal>
+            <div class="product-img">
+              <img data-editable="product-1-image" alt="Produk 1"
+                src="https://source.unsplash.com/featured/900x600?handmade,craft&sig=92" />
+            </div>
+            <div class="product-body">
+              <span class="product-tag" data-editable="product-1-tag">Handmade</span>
+              <h3 class="product-name" data-editable="product-1-name">Tas Anyam Mini</h3>
+              <p class="product-desc" data-editable="product-1-desc">Ringan, kuat, cocok untuk daily &amp; hadiah.</p>
+              <div class="product-footer">
+                <span class="product-price" data-editable="product-1-price">Rp 85.000</span>
+                <a class="product-cta" href="https://wa.me/6280000000000" aria-label="Pesan">→</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="product-card" data-reveal style="transition-delay:.1s">
+            <div class="product-img">
+              <img data-editable="product-2-image" alt="Produk 2"
+                src="https://source.unsplash.com/featured/900x600?artisan,handmade&sig=93" />
+            </div>
+            <div class="product-body">
+              <span class="product-tag" data-editable="product-2-tag">Gift</span>
+              <h3 class="product-name" data-editable="product-2-name">Aromatherapy Candle</h3>
+              <p class="product-desc" data-editable="product-2-desc">Wangi lembut, packaging rapi, cocok untuk gift set.</p>
+              <div class="product-footer">
+                <span class="product-price" data-editable="product-2-price">Rp 48.000</span>
+                <a class="product-cta" href="https://wa.me/6280000000000" aria-label="Pesan">→</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="product-card" data-reveal style="transition-delay:.2s">
+            <div class="product-img">
+              <img data-editable="product-3-image" alt="Produk 3"
+                src="https://source.unsplash.com/featured/900x600?craft,product&sig=94" />
+            </div>
+            <div class="product-body">
+              <span class="product-tag" data-editable="product-3-tag">Custom</span>
+              <h3 class="product-name" data-editable="product-3-name">Pouch Bordir Nama</h3>
+              <p class="product-desc" data-editable="product-3-desc">Bisa custom nama/inisial. Cocok untuk souvenir.</p>
+              <div class="product-footer">
+                <span class="product-price" data-editable="product-3-price">Mulai Rp 32.000</span>
+                <a class="product-cta" href="https://wa.me/6280000000000" aria-label="Pesan">→</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ══ CUSTOM + PROSES ══ -->
+    <section class="section" id="custom">
+      <div class="container">
+        <div class="custom-section" data-reveal>
+
+          <!-- Left: yang bisa dicustom -->
+          <div class="custom-left">
+            <div class="sec-label" data-editable="custom-eyebrow">Layanan Custom</div>
+            <h2 class="sec-title" data-editable="custom-title">Yang Bisa Di-custom</h2>
+            <p class="sec-sub" data-editable="custom-subtitle">Mau bikin hadiah spesial? Request warna, nama, atau desain sederhana.</p>
+
+            <div class="custom-list">
+              <div class="custom-item">
+                <div class="custom-num">01</div>
+                <div>
+                  <strong data-editable="custom-1">Nama / inisial</strong>
+                  <span data-editable="custom-1-note">Bordir / engraving (tergantung produk)</span>
+                </div>
+              </div>
+              <div class="custom-item">
+                <div class="custom-num">02</div>
+                <div>
+                  <strong data-editable="custom-2">Warna &amp; kombinasi</strong>
+                  <span data-editable="custom-2-note">Pilih dari katalog warna tersedia</span>
+                </div>
+              </div>
+              <div class="custom-item">
+                <div class="custom-num">03</div>
+                <div>
+                  <strong data-editable="custom-3">Gift card</strong>
+                  <span data-editable="custom-3-note">Ucapan pendek sesuai momen</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: proses -->
+          <div class="custom-right" id="proses">
+            <div class="sec-label" data-editable="process-eyebrow">Cara Kerja</div>
+            <h2 class="sec-title" data-editable="process-title">Proses Pemesanan</h2>
+
+            <div class="process-list" aria-label="Proses pemesanan">
+              <div class="process-step">
+                <div class="step-track">
+                  <div class="step-dot">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <strong data-editable="process-1">Konsultasi</strong>
+                  <span data-editable="process-1-note">Kirim referensi/ide via chat</span>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-track">
+                  <div class="step-dot">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <strong data-editable="process-2">Konfirmasi &amp; DP</strong>
+                  <span data-editable="process-2-note">Untuk custom, biasanya perlu DP</span>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-track">
+                  <div class="step-dot">3</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <strong data-editable="process-3">Produksi &amp; pengiriman</strong>
+                  <span data-editable="process-3-note">Kami update progres bila diperlukan</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="custom-cta">
+              <a class="btn btn-amber" data-editable="process-cta-url" href="https://wa.me/6280000000000">
+                <span data-editable="process-cta-label">Tanya Custom Sekarang</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand" data-editable="footer-brand">Rupa Lokal</div>
+          <p class="footer-tagline" data-editable="footer-tagline">Kerajinan tangan UMKM untuk pakai harian &amp; hadiah.</p>
+
+          <div class="footer-meta">
+            <span data-editable="footer-address">📍 Kota Contoh, Indonesia</span>
+            <span data-editable="footer-shipping">🚚 Pengiriman: instan/sameday (area tertentu) &amp; reguler</span>
+          </div>
+
+          <p class="footer-copy" data-editable="footer-copyright">© 2026 Rupa Lokal. Semua hak dilindungi.</p>
+        </div>
+
+        <div class="footer-social" aria-label="Media sosial">
+          <a class="social-btn" data-editable="social-whatsapp" href="https://wa.me/6280000000000" aria-label="WhatsApp">
+            <img alt="WhatsApp" src="../icons/whatsapp.png" />
+          </a>
+          <a class="social-btn" data-editable="social-instagram" href="#" aria-label="Instagram">
+            <img alt="Instagram" src="../icons/instagram.png" />
+          </a>
+          <a class="social-btn" data-editable="social-tiktok" href="#" aria-label="TikTok">
+            <img alt="TikTok" src="../icons/tiktok.png" />
+          </a>
+          <a class="social-btn" data-editable="social-shopee" href="#" aria-label="Shopee">
+            <img alt="Shopee" src="../icons/shoppe.png" />
+          </a>
+          <a class="social-btn" data-editable="social-tokopedia" href="#" aria-label="Tokopedia">
+            <img alt="Tokopedia" src="../icons/tokopedia.png" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDrawer() {
+      var el = document.getElementById('drawer');
+      if (el) el.classList.toggle('open');
+    }
+
+    // Scroll-reveal
+    var revealEls = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function(el) { obs.observe(el); });
+    } else {
+      revealEls.forEach(function(el) { el.classList.add('visible'); });
+    }
+  </script>
+</body>
+</html>

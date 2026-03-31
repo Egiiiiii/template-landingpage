@@ -1,0 +1,163 @@
+
+KETENTUAN TEMPLATE HTML (AGAR 100% ROBUST DI EDITOR)
+===================================================
+
+Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
+- Editor bisa mendeteksi field dengan benar (data-editable)
+- Preview tidak menampilkan URL internal (NAS/QNAP)
+- Publish menghasilkan website statis yang utuh (asset + icon + image)
+
+
+1) BENTUK FILE & STRUKTUR DASAR
+-------------------------------
+[WAJIB]
+- Template harus berupa HTML statis (bukan React/Vue runtime).
+- File HTML harus valid dan bisa dirender tanpa build step.
+- Gunakan struktur minimal:
+	- <!doctype html>
+	- <html>…</html>
+	- <head> berisi <meta charset="utf-8"> dan <meta name="viewport" …>
+
+[DISARANKAN]
+- Hindari <base href="…"> karena bisa merusak resolusi URL relative pada preview/publish.
+
+
+2) ATURAN data-editable (KUNCI UTAMA EDITOR)
+-------------------------------------------
+[WAJIB]
+- Semua elemen yang ingin diedit harus memiliki atribut:
+	data-editable="kunciUnik"
+
+- Kunci (value data-editable) harus:
+	- Stabil (jangan berubah-ubah antar versi template)
+	- Unik (atau kalau sengaja diulang, pastikan tipe elemennya sama)
+	- Tanpa spasi, tanpa tanda kutip, tanpa karakter aneh
+	- Disarankan: camelCase atau kebab-case
+
+[CATATAN PENTING]
+- Editor mengidentifikasi jenis field dari TAG:
+	- <img data-editable="…">  -> IMAGE
+	- <a data-editable="…">    -> URL (mengubah href)
+	- <iframe data-editable="…"> -> URL (mengubah src)
+	- selain itu                -> TEXT (mengubah text)
+
+- Jangan pakai kunci yang sama untuk campuran tipe tag, contoh buruk:
+	<img data-editable="hero"> dan <h1 data-editable="hero">
+	Ini akan bikin editor bingung karena 1 key tapi dua tipe field.
+
+
+3) TEXT: CARA AMAN AGAR TEKS BISA DIGANTI
+----------------------------------------
+[WAJIB]
+- Untuk teks biasa: tempel data-editable pada elemen yang menampung teksnya.
+	Contoh:
+		<h1 data-editable="heroTitle">Judul</h1>
+		<p data-editable="heroSubtitle">Subjudul</p>
+
+[CATATAN]
+- Editor mengganti isi teks (textContent). Jadi kalau butuh format kompleks
+	(misalnya ada <strong>, <em>, <br>), pecah jadi beberapa elemen editable.
+
+
+4) LINK (CTA): HREF DAN LABEL HARUS DIPISAH
+------------------------------------------
+[WAJIB]
+- Kalau mau mengubah URL link: taruh data-editable pada <a>.
+	Contoh:
+		<a data-editable="ctaUrl" href="https://contoh.com">Klik</a>
+
+[DISARANKAN]
+- Kalau mau mengubah URL dan teks label, pisahkan key:
+		<a data-editable="ctaUrl" href="#">
+			<span data-editable="ctaLabel">Beli Sekarang</span>
+		</a>
+
+
+5) IMAGE (TANPA BOCOR URL INTERNAL)
+----------------------------------
+[WAJIB]
+- Gambar yang mau diubah user HARUS berupa tag <img> (bukan background-image CSS).
+	Contoh:
+		<img data-editable="heroImage" src="/placeholder.jpg" alt="…" />
+
+[KETERBATASAN SISTEM]
+- Editor menyimpan gambar sebagai token media (bukan URL publik).
+- Saat preview/publish, sistem meng-inline image jadi data URI.
+	Artinya ukuran file image harus wajar.
+
+[WAJIB]
+- Ukuran upload image maksimal 1MB per file.
+	Maka template sebaiknya didesain untuk gambar yang tidak perlu besar.
+
+
+6) VIDEO / EMBED
+---------------
+[WAJIB]
+- Jika ingin editable URL video/embed, gunakan <iframe data-editable="…">.
+	Contoh:
+		<iframe data-editable="videoUrl" src="https://www.youtube.com/embed/..." />
+
+
+7) PATH ASSET (CSS/JS/IMG) AGAR PUBLISH TIDAK RUSAK
+--------------------------------------------------
+[WAJIB]
+- Semua asset template (CSS/JS/IMG) harus disimpan 1 folder/prefix yang sama
+	dengan file HTML template di bucket templates.
+- Referensikan asset dengan path relative dari lokasi HTML template, contoh:
+	- ./assets/style.css
+	- assets/app.js
+	- ./images/hero.png
+
+[DISARANKAN]
+- Hindari referensi ke parent folder memakai ../ kecuali khusus icons sosial (lihat bagian 8).
+	Alasan: publish akan menyalin asset berdasarkan prefix folder template; penggunaan ../
+	bisa bikin asset tersalin ke lokasi global yang tidak kamu inginkan.
+
+[WAJIB]
+- Jangan pernah hardcode URL internal (IP private, localhost, NAS) di src/href/url().
+	Contoh yang dilarang:
+	- http://10.x.x.x/...
+	- http://192.168.x.x/...
+	- http://localhost:...
+
+
+8) ICON MEDIA SOSIAL (WAJIB PAKAI public/icons)
+----------------------------------------------
+[WAJIB]
+- Untuk icon sosial (WA/IG/TT/Shopee/Tokopedia), template harus mereferensikan:
+	../icons/<nama-file>
+	atau
+	../icon/<nama-file>
+	karena renderer akan rewrite menjadi /icons/<nama-file> saat preview.
+
+[WAJIB]
+- Gunakan nama file persis seperti ini:
+	- whatsapp.png
+	- instagram.png
+	- tiktok.png
+	- shoppe.png
+	- tokopedia.png
+
+[CATATAN]
+- Saat publish, /icons/* akan diubah menjadi icons/* dan file icon akan diupload
+	ke folder website (websites/<id>/icons/*), jadi website hasil publish tetap mandiri.
+
+
+9) JAVASCRIPT DI TEMPLATE (AGAR PREVIEW STABIL)
+----------------------------------------------
+[DISARANKAN]
+- Hindari script yang otomatis melakukan scroll ke atas atau mengubah posisi scroll saat load.
+- Hindari script yang menghapus/menulis ulang DOM elemen yang mengandung data-editable.
+	Kalau elemen editable di-generate via JS, editor tidak bisa mendeteksinya.
+
+
+10) CHECKLIST CEK CEPAT SEBELUM TEMPLATE DIPAKAI
+-----------------------------------------------
+[WAJIB]
+- Semua konten editable sudah dipasang data-editable.
+- Tidak ada key yang sama untuk campuran <img>/<a>/<iframe>/<text>.
+- Semua asset pakai path relative dan berada dalam prefix folder template.
+- Icon sosial pakai ../icons/whatsapp.png dst (sesuai daftar).
+- Tidak ada URL internal/NAS hardcode.
+- Semua image yang akan diupload user bisa <1MB.
+

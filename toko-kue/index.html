@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-editable="site-title">Manis Rumah — Kue, Dessert Box, &amp; Hampers</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fff8fb;
+      --bg2: #fff1f7;
+      --card: #ffffff;
+      --border: rgba(173, 38, 89, .16);
+      --text: #2b0c16;
+      --muted: rgba(43, 12, 22, .68);
+      --primary: #ad2659;
+      --secondary: #f2b3c7;
+      --accent: #ffd166;
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(900px 450px at 15% 0%, rgba(242, 179, 199, .65), transparent 60%),
+        radial-gradient(750px 450px at 95% 0%, rgba(255, 209, 102, .45), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 248, 251, .84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      color: var(--primary);
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(173, 38, 89, .20), rgba(255, 209, 102, .35));
+      border: 1px solid rgba(173, 38, 89, .22);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(173, 38, 89, .08);
+      color: var(--text);
+    }
+
+    .nav-links .cta a {
+      background: linear-gradient(135deg, rgba(173, 38, 89, .14), rgba(173, 38, 89, .08));
+      border: 1px solid rgba(173, 38, 89, .18);
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(173, 38, 89, .18);
+      background: rgba(255, 255, 255, .65);
+      cursor: pointer;
+    }
+
+    .drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 248, 251, .94);
+    }
+
+    .drawer.open {
+      display: block;
+    }
+
+    .drawer a {
+      display: block;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(173, 38, 89, .10);
+      color: var(--muted);
+    }
+
+    .drawer a:hover {
+      color: var(--text);
+      background: rgba(173, 38, 89, .06);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 44px 0 18px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      border: 1px solid rgba(173, 38, 89, .14);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .75);
+      padding: 22px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(173, 38, 89, .18);
+      background: rgba(173, 38, 89, .06);
+      color: rgba(43, 12, 22, .82);
+    }
+
+    .hero h1 {
+      margin-top: 14px;
+      font-size: 40px;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+    }
+
+    .hero p {
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(173, 38, 89, .18);
+      background: rgba(255, 255, 255, .8);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(173, 38, 89, .16), rgba(255, 209, 102, .35));
+      border-color: rgba(173, 38, 89, .22);
+    }
+
+    .hero-media {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(173, 38, 89, .14);
+      background: rgba(255, 255, 255, .55);
+      min-height: 300px;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 18px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+
+    .section-head h2 {
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 62ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .80);
+      border: 1px solid rgba(173, 38, 89, .12);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 12px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      letter-spacing: -.01em;
+    }
+
+    .card p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .price {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      color: var(--primary);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(173, 38, 89, .16);
+      background: rgba(173, 38, 89, .06);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .panel {
+      border-radius: 16px;
+      border: 1px solid rgba(173, 38, 89, .12);
+      background: rgba(255, 255, 255, .80);
+      padding: 14px;
+    }
+
+    .list {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .list div {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px dashed rgba(173, 38, 89, .20);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .65);
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+      padding: 26px 0 40px;
+    }
+
+    .foot {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(173, 38, 89, .14);
+      background: rgba(255, 255, 255, .7);
+      display: grid;
+      place-items: center;
+    }
+
+    .social img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .foot {
+        grid-template-columns: 1fr;
+      }
+
+      .social {
+        justify-content: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-badge" aria-hidden="true">🍰</span>
+          <span data-editable="brand-name">Manis Rumah</span>
+        </a>
+
+        <ul class="nav-links" aria-label="Navigasi">
+          <li><a href="#produk">Produk</a></li>
+          <li><a href="#preorder">Pre-order</a></li>
+          <li><a href="#hampers">Hampers</a></li>
+          <li class="cta"><a data-editable="nav-cta-url" href="https://wa.me/6280000000000"><span data-editable="nav-cta-label">Pesan</span></a></li>
+        </ul>
+
+        <button class="nav-toggle" type="button" aria-label="Buka menu" onclick="toggleDrawer()">☰</button>
+      </div>
+
+      <nav id="drawer" class="drawer" aria-label="Navigasi mobile">
+        <a href="#produk" onclick="toggleDrawer()">Produk</a>
+        <a href="#preorder" onclick="toggleDrawer()">Pre-order</a>
+        <a href="#hampers" onclick="toggleDrawer()">Hampers</a>
+        <a data-editable="drawer-cta-url" href="https://wa.me/6280000000000" onclick="toggleDrawer()"><span data-editable="drawer-cta-label">Pesan via WhatsApp</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="badge" data-editable="hero-badge">Homemade • Fresh baked • Bisa request ucapan</span>
+            <h1 data-editable="hero-title">Kue yang rapi, rasa yang "nagih", untuk momen apa pun.</h1>
+            <p data-editable="hero-subtitle">Dari dessert box hingga kue ulang tahun—kami fokus di tekstur lembut, manis yang pas, dan kemasan aman untuk kirim.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" data-editable="primary-cta-url" href="https://wa.me/6280000000000"><span data-editable="primary-cta-label">Pesan via WhatsApp</span></a>
+              <a class="btn" data-editable="secondary-cta-url" href="#produk"><span data-editable="secondary-cta-label">Lihat Produk</span></a>
+            </div>
+
+            <p class="mini" style="margin-top:12px" data-editable="hero-note">Minimal order &amp; jadwal pengiriman bisa disesuaikan.</p>
+          </div>
+
+          <aside class="hero-media" aria-label="Foto produk">
+            <img data-editable="hero-image"
+              alt="Foto kue"
+              src="https://source.unsplash.com/featured/1200x900?cake,bakery&sig=41" />
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="produk">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 data-editable="products-title">Produk Best Seller</h2>
+            <p data-editable="products-subtitle">Tiga rekomendasi untuk mulai—bisa mix &amp; match sesuai budget.</p>
+          </div>
+          <p class="mini" data-editable="products-note">Harga contoh, bisa diedit.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <img data-editable="product-1-image" alt="Produk 1" src="https://source.unsplash.com/featured/900x500?cake,slice&sig=42" />
+            <div class="card-body">
+              <h3 data-editable="product-1-name">Dessert Box Tiramisu</h3>
+              <p data-editable="product-1-desc">Cream lembut, cocoa wangi, kopi yang tidak pahit.</p>
+              <div class="price" data-editable="product-1-price">Rp 35.000</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img data-editable="product-2-image" alt="Produk 2" src="https://source.unsplash.com/featured/900x500?pastry,dessert&sig=43" />
+            <div class="card-body">
+              <h3 data-editable="product-2-name">Cookies Cokelat</h3>
+              <p data-editable="product-2-desc">Crispy di luar, chewy di dalam. Cocok buat hampers.</p>
+              <div class="price" data-editable="product-2-price">Rp 28.000</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img data-editable="product-3-image" alt="Produk 3" src="https://source.unsplash.com/featured/900x500?cupcake,bakery&sig=44" />
+            <div class="card-body">
+              <h3 data-editable="product-3-name">Cake Ulang Tahun</h3>
+              <p data-editable="product-3-desc">Bisa request warna, tulisan, dan topping sesuai tema.</p>
+              <div class="price" data-editable="product-3-price">Mulai Rp 180.000</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="preorder">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 data-editable="preorder-title">Cara Pre-order</h2>
+            <p data-editable="preorder-subtitle">Alur singkat supaya pesanan rapi dan sesuai waktu.</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3 data-editable="preorder-left-title">Info yang Dibutuhkan</h3>
+            <div class="list" aria-label="Kebutuhan preorder">
+              <div>
+                <span data-editable="preorder-need-1">Tanggal &amp; jam pengiriman</span>
+                <span class="mini" data-editable="preorder-need-1-note">Biar bisa kami jadwalkan oven</span>
+              </div>
+              <div>
+                <span data-editable="preorder-need-2">Alamat &amp; patokan</span>
+                <span class="mini" data-editable="preorder-need-2-note">Aman untuk kurir</span>
+              </div>
+              <div>
+                <span data-editable="preorder-need-3">Catatan alergi</span>
+                <span class="mini" data-editable="preorder-need-3-note">Misal: kacang, susu</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 data-editable="preorder-right-title">Estimasi Waktu</h3>
+            <div class="list" aria-label="Estimasi">
+              <div>
+                <span data-editable="preorder-time-1">Dessert box</span>
+                <strong data-editable="preorder-time-1-val">H-1</strong>
+              </div>
+              <div>
+                <span data-editable="preorder-time-2">Kue ulang tahun</span>
+                <strong data-editable="preorder-time-2-val">H-3 s/d H-5</strong>
+              </div>
+              <div>
+                <span data-editable="preorder-time-3">Hampers</span>
+                <strong data-editable="preorder-time-3-val">H-3</strong>
+              </div>
+            </div>
+            <p class="mini" style="margin-top:10px" data-editable="preorder-note">Untuk order dadakan, tanya ketersediaan dulu ya.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hampers">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 data-editable="hampers-title">Hampers &amp; Corporate Gift</h2>
+            <p data-editable="hampers-subtitle">Cocok untuk lebaran, wisuda, ulang tahun kantor, atau hadiah customer.</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3 data-editable="hampers-pack-title">Paket Contoh</h3>
+            <div class="list" aria-label="Paket hampers">
+              <div>
+                <span data-editable="hampers-pack-1">Cookies + Brownies + Kartu Ucapan</span>
+                <strong data-editable="hampers-pack-1-price">Rp 125.000</strong>
+              </div>
+              <div>
+                <span data-editable="hampers-pack-2">Dessert Box 2 pcs + Pita</span>
+                <strong data-editable="hampers-pack-2-price">Rp 95.000</strong>
+              </div>
+              <div>
+                <span data-editable="hampers-pack-3">Mix snack (custom)</span>
+                <strong data-editable="hampers-pack-3-price">Mulai Rp 75.000</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 data-editable="hampers-note-title">Catatan Penting</h3>
+            <p class="mini" data-editable="hampers-note">Jumlah banyak bisa diskon. Kami sarankan booking tanggal lebih awal untuk menghindari penuh.</p>
+            <div class="list">
+              <div>
+                <span data-editable="hampers-note-1">Bisa cetak nama / logo (opsional)</span>
+                <span class="mini" data-editable="hampers-note-1b">Tanya biaya tambahan</span>
+              </div>
+              <div>
+                <span data-editable="hampers-note-2">Kirim multi alamat</span>
+                <span class="mini" data-editable="hampers-note-2b">Sertakan daftar alamat</span>
+              </div>
+            </div>
+            <div style="margin-top:12px">
+              <a class="btn btn-primary" data-editable="hampers-cta-url" href="https://wa.me/6280000000000"><span data-editable="hampers-cta-label">Konsultasi Hampers</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <div style="font-weight:900; color: var(--primary)" data-editable="footer-brand">Manis Rumah</div>
+          <div class="mini" data-editable="footer-tagline">Kue rumahan dengan finishing rapi &amp; rasa seimbang.</div>
+          <div class="mini" style="margin-top:10px" data-editable="footer-address">Kota Contoh, Indonesia</div>
+          <div class="mini" data-editable="footer-hours">Open order: setiap hari 09.00–18.00</div>
+          <div class="mini" style="margin-top:10px" data-editable="footer-copyright">© 2026 Manis Rumah. Semua hak dilindungi.</div>
+        </div>
+
+        <div class="social" aria-label="Media sosial">
+          <a data-editable="social-whatsapp" href="https://wa.me/6280000000000" aria-label="WhatsApp"><img alt="WhatsApp" src="../icon/whatsapp.png" /></a>
+          <a data-editable="social-instagram" href="#" aria-label="Instagram"><img alt="Instagram" src="../icon/instagram.png" /></a>
+          <a data-editable="social-tiktok" href="#" aria-label="TikTok"><img alt="TikTok" src="../icon/tiktok.png" /></a>
+          <a data-editable="social-shopee" href="#" aria-label="Shopee"><img alt="Shopee" src="../icon/shoppe.png" /></a>
+          <a data-editable="social-tokopedia" href="#" aria-label="Tokopedia"><img alt="Tokopedia" src="../icon/tokopedia.png" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDrawer() {
+      var drawer = document.getElementById('drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>
