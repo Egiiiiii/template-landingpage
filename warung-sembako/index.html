@@ -4,544 +4,532 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-editable="site-title">Warung Maju Jaya — Sembako Lengkap & Cepat</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title data-editable="siteTitle">Warung Maju Jaya — Sembako Lengkap & Cepat</title>
   <style>
-    :root {
-      --bg: #fffaf2;
-      --surface: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #f0e6d6;
-      --brand: #f97316;
-      --brand2: #22c55e;
-      --chip: #fff1df;
-      --radius: 16px;
-      --shadow: 0 10px 25px rgba(31, 41, 55, .08);
-      --max: 1120px;
-    }
-
-    * { box-sizing: border-box; }
+    /* ─────────────────────────────
+       RESET & VARIABLES
+    ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
     html { scroll-behavior: smooth; }
 
-    body {
-      margin: 0;
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
-      background: radial-gradient(900px 300px at 20% 0%, rgba(249, 115, 22, .14), transparent 60%),
-        radial-gradient(900px 300px at 90% 0%, rgba(34, 197, 94, .12), transparent 55%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    :root {
+      /* Palet E-Grocery (Segar & Terpercaya) */
+      --brand: #16a34a;       /* Fresh Green */
+      --brand-hover: #15803d;
+      --brand-soft: #dcfce7;
+      --accent: #ea580c;      /* Vibrant Orange */
+      --accent-soft: #ffedd5;
+      
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --max: 1160px;
     }
 
-    a { color: inherit; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .container {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 18px;
+      padding: 0 20px;
     }
 
+    /* ─────────────────────────────
+       TOPBAR & NAV
+    ───────────────────────────── */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(255, 250, 242, .86);
-      backdrop-filter: blur(10px);
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      height: 64px;
+      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
+      gap: 12px;
       font-weight: 800;
-      letter-spacing: -.02em;
-    }
-
-    .brand .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), #fb7185);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      box-shadow: 0 10px 20px rgba(249, 115, 22, .25);
-      overflow: hidden;
-    }
-
-    .brand .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .links {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .links a {
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .9rem;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      transition: background .2s, color .2s;
-    }
-
-    .links a:hover {
-      background: rgba(249, 115, 22, .10);
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
       color: var(--text);
     }
 
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #4ade80);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+      overflow: hidden;
+    }
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a.link-item {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 99px;
+      transition: all 0.2s;
+    }
+    .nav-links a.link-item:hover { background: var(--brand-soft); color: var(--brand); }
+
+    /* ─────────────────────────────
+       BUTTONS
+    ───────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      border: 1px solid var(--border);
-      padding: 10px 14px;
-      border-radius: 999px;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 99px;
       font-weight: 700;
-      text-decoration: none;
-      background: #fff;
-      transition: transform .15s, box-shadow .15s, border-color .15s;
-      box-shadow: 0 1px 0 rgba(0, 0, 0, .02);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
       white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(31, 41, 55, .10);
-      border-color: rgba(249, 115, 22, .35);
-    }
+    .btn-primary { background: var(--brand); color: #ffffff; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2); }
+    .btn-primary:hover { background: var(--brand-hover); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3); }
 
-    .btn.primary {
-      background: linear-gradient(135deg, var(--brand), #fb7185);
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 14px 28px rgba(249, 115, 22, .26);
-    }
+    .btn-outline { background: var(--surface); color: var(--text); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
 
-    .btn.primary:hover {
-      box-shadow: 0 18px 40px rgba(249, 115, 22, .34);
-    }
+    .btn-icon { width: 20px; height: 20px; object-fit: contain; }
 
-    .btn img {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-    }
-
-    header.hero {
-      padding: 34px 0 18px;
-    }
+    /* ─────────────────────────────
+       HERO
+    ───────────────────────────── */
+    .hero { padding: 40px 0; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
       align-items: stretch;
     }
 
-    .card {
-      background: rgba(255, 255, 255, .9);
+    .hero-card {
+      background: var(--surface);
+      padding: 40px;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
       box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card.padded { padding: 18px; }
-
-    .badge-row {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .chip {
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: var(--chip);
-      border: 1px solid rgba(249, 115, 22, .20);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.85rem;
       font-weight: 700;
-      color: #9a3412;
-      font-size: .86rem;
     }
+    .badge-green { background: var(--brand-soft); color: #14532d; border: 1px solid #bbf7d0; }
+    .badge-orange { background: var(--accent-soft); color: #9a3412; border: 1px solid #fed7aa; }
 
-    .chip.green {
-      background: rgba(34, 197, 94, .10);
-      border-color: rgba(34, 197, 94, .25);
-      color: #14532d;
-    }
-
-    h1 {
-      margin: 0;
-      letter-spacing: -.03em;
+    .hero-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
       line-height: 1.15;
-      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      color: var(--text);
     }
 
-    p.lead {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 1.02rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      align-items: center;
-    }
-
-    .mini {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .stat {
-      background: rgba(255, 255, 255, .75);
-      border: 1px dashed rgba(31, 41, 55, .18);
-      border-radius: 14px;
-      padding: 10px;
-    }
-
-    .stat .k {
-      font-weight: 800;
-      font-size: .95rem;
-    }
-
-    .stat .v {
-      color: var(--muted);
-      font-size: .85rem;
-      margin-top: 4px;
-    }
-
-    .promo {
-      background: linear-gradient(135deg, rgba(34, 197, 94, .12), rgba(249, 115, 22, .12));
-      border: 1px solid rgba(31, 41, 55, .08);
-      border-radius: var(--radius);
-      padding: 14px;
-      display: grid;
-      gap: 10px;
-      align-content: start;
-    }
-
-    .promo h3 {
-      margin: 0;
+    .hero-desc {
       font-size: 1.05rem;
-      letter-spacing: -.02em;
-    }
-
-    .promo p {
-      margin: 0;
       color: var(--muted);
+      margin-bottom: 32px;
       font-weight: 500;
+      line-height: 1.6;
     }
 
-    .hero-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(31, 41, 55, .06);
-      background: #fff;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
 
-    .section {
-      padding: 18px 0;
-    }
-
-    .section h2 {
-      margin: 0;
-      letter-spacing: -.03em;
-      font-size: 1.45rem;
-    }
-
-    .section p.sub {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .grid {
-      margin-top: 14px;
+    .hero-stats {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px dashed var(--border);
     }
 
-    .col-4 { grid-column: span 4; }
-    .col-6 { grid-column: span 6; }
-    .col-8 { grid-column: span 8; }
-
-    .product {
+    .stat-box {
+      background: var(--bg);
       padding: 14px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .product img {
-      width: 100%;
-      height: 160px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 1px solid rgba(31, 41, 55, .08);
-      background: #fff;
-    }
-
-    .product .name {
-      font-weight: 800;
-      letter-spacing: -.02em;
-    }
-
-    .product .meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: .9rem;
-    }
-
-    .price {
-      color: #111827;
-      background: rgba(249, 115, 22, .12);
-      border: 1px solid rgba(249, 115, 22, .22);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 800;
-      letter-spacing: -.01em;
-    }
-
-    .steps {
-      padding: 16px;
-    }
-
-    .step {
-      display: flex;
-      gap: 12px;
-      padding: 12px;
+      border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .8);
+    }
+    .stat-title { font-size: 0.9rem; font-weight: 800; color: var(--text); margin-bottom: 2px; }
+    .stat-desc { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+
+    .hero-promo {
+      background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid #fed7aa;
+      display: flex;
+      flex-direction: column;
     }
 
-    .step + .step { margin-top: 10px; }
+    .hero-promo-title { font-size: 1.2rem; font-weight: 800; color: #9a3412; margin-bottom: 8px; }
+    .hero-promo-desc { font-size: 0.95rem; color: var(--muted); font-weight: 500; margin-bottom: 20px; }
+    
+    .hero-promo-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      margin-top: auto;
+    }
 
-    .num {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: rgba(34, 197, 94, .12);
-      border: 1px solid rgba(34, 197, 94, .22);
+    /* ─────────────────────────────
+       SECTIONS & PRODUCTS
+    ───────────────────────────── */
+    .section { padding: 60px 0; }
+    .section-header { margin-bottom: 32px; }
+    .section-title { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .section-subtitle { font-size: 1rem; color: var(--muted); font-weight: 500; }
+
+    .prod-grid {
       display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: #14532d;
-      flex: 0 0 auto;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .step b { display: block; }
-    .step span { color: var(--muted); font-weight: 500; }
+    .prod-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
 
+    .prod-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .prod-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      border: 1px solid var(--bg);
+    }
+
+    .prod-name { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em;}
+    .prod-desc { font-size: 0.85rem; color: var(--muted); font-weight: 500; margin-bottom: 16px; flex-grow: 1; }
+    
+    .prod-price {
+      display: inline-block;
+      background: var(--brand-soft);
+      color: var(--brand-hover);
+      padding: 8px 12px;
+      border-radius: 99px;
+      font-weight: 800;
+      font-size: 1rem;
+      align-self: flex-start;
+    }
+
+    /* ─────────────────────────────
+       INFO GRID (STEPS & HOURS)
+    ───────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    
+    .step-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      align-items: center;
+    }
+
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--brand-soft);
+      color: var(--brand-hover);
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-title { font-weight: 800; font-size: 1.05rem; color: var(--text); margin-bottom: 2px;}
+    .step-desc { font-size: 0.9rem; color: var(--muted); font-weight: 500; }
+
+    .schedule-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .schedule-day { font-weight: 700; color: var(--text); }
+    .schedule-time { font-weight: 600; color: var(--muted); }
+
+    .area-box {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--accent-soft);
+      border: 1px dashed var(--accent);
+      border-radius: var(--radius-md);
+    }
+    .area-title { font-weight: 800; color: #9a3412; font-size: 1rem; margin-bottom: 4px; }
+    .area-desc { font-size: 0.9rem; color: #9a3412; font-weight: 500; }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
     .footer {
-      padding: 22px 0 36px;
+      background: var(--surface);
       border-top: 1px solid var(--border);
-      margin-top: 18px;
+      padding: 60px 0 40px;
+      margin-top: 40px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items: start;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
     }
 
-    .social {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 10px;
-    }
+    .footer-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; color: var(--text); }
+    .footer-text { font-size: 0.95rem; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
 
-    .social a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      padding: 10px 12px;
-      border-radius: 999px;
+    .social-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: var(--bg);
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, .85);
-      font-weight: 700;
+      border-radius: 99px;
+      font-size: 0.85rem; font-weight: 700; color: var(--text);
+      transition: all 0.2s;
     }
+    .social-link:hover { background: var(--surface); border-color: var(--brand); color: var(--brand); }
+    .social-link img { width: 18px; height: 18px; object-fit: contain; }
 
-    .social img { width: 18px; height: 18px; object-fit: contain; }
-
-    .hours {
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, .8);
+    .footer-cta {
+      background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      font-weight: 700;
+      border-radius: var(--radius-md);
+      padding: 24px;
     }
 
-    .row span { color: var(--muted); font-weight: 600; }
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
 
-    @media (max-width: 920px) {
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
+    @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
-      .mini { grid-template-columns: 1fr; }
-      .col-4, .col-6, .col-8 { grid-column: span 12; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .prod-grid { grid-template-columns: repeat(2, 1fr); }
+      .info-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
-      .links { display: none; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 500px) {
+      .prod-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
   <div class="topbar">
-    <div class="container">
-      <nav class="nav" aria-label="Navigasi">
-        <a class="brand" href="#top">
-          <span class="logo">
-            <img data-editable="logo-image" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' rx='28' fill='%23F97316'/%3E%3Cpath d='M38 90c22-44 62-18 84-58 12 60-10 98-42 110-22 8-42-2-42-52Z' fill='%23fff' fill-opacity='.88'/%3E%3C/svg%3E" />
-          </span>
-          <span data-editable="brand-name">Warung Maju Jaya</span>
-        </a>
-
-        <div class="links">
-          <a href="#produk"><span data-editable="nav-produk-label">Produk</span></a>
-          <a href="#cara-pesan"><span data-editable="nav-cara-label">Cara Pesan</span></a>
-          <a href="#jam"><span data-editable="nav-jam-label">Jam Buka</span></a>
-          <a href="#kontak"><span data-editable="nav-kontak-label">Kontak</span></a>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <div class="brand-logo">
+          <img data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 70 L50 30 L70 70 Z' fill='%23ffffff' opacity='0.9'/%3E%3C/svg%3E" />
         </div>
+        <span data-editable="brandName">Warung Maju Jaya</span>
+      </a>
 
-        <a class="btn primary" data-editable="cta-url" href="https://wa.me/6280000000000">
-          <img alt="WhatsApp" src="../icon/whatsapp.png" />
-          <span data-editable="cta-label">Pesan via WhatsApp</span>
-        </a>
-      </nav>
+      <div class="nav-links">
+        <a class="link-item" href="#produk" data-editable="navProdLabel">Produk</a>
+        <a class="link-item" href="#cara-pesan" data-editable="navCaraLabel">Cara Pesan</a>
+        <a class="link-item" href="#jam" data-editable="navJamLabel">Jam Buka</a>
+        <a class="link-item" href="#kontak" data-editable="navKontakLabel">Kontak</a>
+      </div>
+
+      <a class="btn btn-primary" data-editable="navCtaUrl" href="https://wa.me/6280000000000">
+        <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+        <span data-editable="navCtaLabel">Pesan via WA</span>
+      </a>
     </div>
   </div>
 
   <main id="top">
-    <header class="hero">
+    <section class="hero">
       <div class="container">
         <div class="hero-grid">
-          <section class="card padded">
-            <div class="badge-row">
-              <span class="chip" data-editable="hero-badge-1">Sembako Harian</span>
-              <span class="chip green" data-editable="hero-badge-2">Antar Sekitar</span>
+          
+          <div class="hero-card">
+            <div class="badges">
+              <span class="badge badge-green" data-editable="heroBadge1">Sembako Harian</span>
+              <span class="badge badge-orange" data-editable="heroBadge2">Antar Sekitar</span>
             </div>
-            <h1 data-editable="hero-title">Belanja Sembako Lengkap, Cepat, dan Ramah di Kantong</h1>
-            <p class="lead" data-editable="hero-subtitle">Beras, telur, minyak, gula, mie, hingga kebutuhan rumah tangga. Bisa kirim ke rumah untuk area terdekat.</p>
+            
+            <h1 class="hero-title" data-editable="heroTitle">Belanja Sembako Lengkap, Cepat & Ramah di Kantong</h1>
+            <p class="hero-desc" data-editable="heroSubtitle">Sedia beras, telur, minyak, gula, mie, hingga kebutuhan rumah tangga lainnya. Pesan via WhatsApp, barang diantar ke depan pintu Anda.</p>
 
             <div class="hero-actions">
-              <a class="btn" data-editable="secondary-cta-url" href="#produk">
-                <span data-editable="secondary-cta-label">Lihat Produk Unggulan</span>
+              <a class="btn btn-primary" data-editable="heroPrimaryUrl" href="https://wa.me/6280000000000">
+                <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="heroPrimaryLabel">Mulai Pesan</span>
               </a>
-              <a class="btn" data-editable="maps-url" href="#kontak">
-                <span data-editable="maps-label">Alamat & Kontak</span>
+              <a class="btn btn-outline" data-editable="heroSecUrl" href="#produk">
+                <span data-editable="heroSecLabel">Cek Etalase</span>
               </a>
             </div>
 
-            <div class="mini" aria-label="Info singkat">
-              <div class="stat">
-                <div class="k" data-editable="stat-1-title">Gratis Antar</div>
-                <div class="v" data-editable="stat-1-sub">Min. belanja Rp50rb*</div>
+            <div class="hero-stats">
+              <div class="stat-box">
+                <div class="stat-title" data-editable="stat1Title">Gratis Antar</div>
+                <div class="stat-desc" data-editable="stat1Sub">Min. belanja Rp50rb*</div>
               </div>
-              <div class="stat">
-                <div class="k" data-editable="stat-2-title">Payment</div>
-                <div class="v" data-editable="stat-2-sub">Cash / Transfer / QR</div>
+              <div class="stat-box">
+                <div class="stat-title" data-editable="stat2Title">Pembayaran</div>
+                <div class="stat-desc" data-editable="stat2Sub">Cash / Transfer / QRIS</div>
               </div>
-              <div class="stat">
-                <div class="k" data-editable="stat-3-title">Respon</div>
-                <div class="v" data-editable="stat-3-sub">Balas chat cepat</div>
+              <div class="stat-box">
+                <div class="stat-title" data-editable="stat3Title">Respon Admin</div>
+                <div class="stat-desc" data-editable="stat3Sub">Balas chat cepat</div>
               </div>
             </div>
-          </section>
+          </div>
 
-          <aside class="card padded" aria-label="Promo">
-            <div class="promo">
-              <h3 data-editable="promo-title">Promo Mingguan</h3>
-              <p data-editable="promo-desc">Diskon minyak goreng & gula pasir. Stok terbatas — chat untuk cek ketersediaan.</p>
-              <img class="hero-img" data-editable="promo-image" alt="Foto etalase / produk" src="https://source.unsplash.com/featured/1200x700?grocery,store&sig=61" />
-            </div>
-          </aside>
+          <div class="hero-promo">
+            <h3 class="hero-promo-title" data-editable="promoTitle">🔥 Promo Spesial Minggu Ini</h3>
+            <p class="hero-promo-desc" data-editable="promoDesc">Diskon khusus untuk paket minyak goreng & gula pasir. Chat admin untuk cek ketersediaan stok hari ini.</p>
+            <img class="hero-promo-img" data-editable="promoImg" alt="Promo Etalase" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" />
+          </div>
+
         </div>
       </div>
-    </header>
+    </section>
 
     <section class="section" id="produk">
       <div class="container">
-        <h2 data-editable="featured-title">Produk Unggulan</h2>
-        <p class="sub" data-editable="featured-subtitle">Contoh produk yang sering dicari pelanggan. Harga bisa kamu ubah di editor.</p>
+        <div class="section-header">
+          <h2 class="section-title" data-editable="featTitle">Produk Unggulan Kami</h2>
+          <p class="section-subtitle" data-editable="featSubtitle">Kebutuhan pokok kualitas terbaik yang selalu fresh dan sering dicari pelanggan setia kami.</p>
+        </div>
 
-        <div class="grid" role="list">
-          <article class="card product col-4" role="listitem">
-            <img data-editable="product-1-image" alt="Produk 1" src="https://source.unsplash.com/featured/900x700?rice,groceries&sig=62" />
-            <div class="name" data-editable="product-1-name">Beras Premium 5kg</div>
-            <div class="meta">
-              <span data-editable="product-1-desc">Pulen, cocok untuk harian</span>
-              <span class="price" data-editable="product-1-price">Rp72.000</span>
+        <div class="prod-grid">
+          <article class="prod-card">
+            <img class="prod-img" data-editable="prod1Img" alt="Beras" src="https://images.unsplash.com/photo-1586201375761-83865001e8ac?auto=format&fit=crop&q=80&w=500" />
+            <div class="prod-info">
+              <h3 class="prod-name" data-editable="prod1Name">Beras Premium 5kg</h3>
+              <p class="prod-desc" data-editable="prod1Desc">Nasi pulen dan bersih, sangat cocok untuk konsumsi harian keluarga.</p>
+              <div class="prod-price" data-editable="prod1Price">Rp 75.000</div>
             </div>
           </article>
 
-          <article class="card product col-4" role="listitem">
-            <img data-editable="product-2-image" alt="Produk 2" src="https://source.unsplash.com/featured/900x700?spices,groceries&sig=63" />
-            <div class="name" data-editable="product-2-name">Minyak Goreng 2L</div>
-            <div class="meta">
-              <span data-editable="product-2-desc">Harga hemat, cepat laku</span>
-              <span class="price" data-editable="product-2-price">Rp38.000</span>
+          <article class="prod-card">
+            <img class="prod-img" data-editable="prod2Img" alt="Minyak Goreng" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=500" />
+            <div class="prod-info">
+              <h3 class="prod-name" data-editable="prod2Name">Minyak Goreng 2L</h3>
+              <p class="prod-desc" data-editable="prod2Desc">Minyak jernih berkualitas, harga hemat untuk menggoreng setiap hari.</p>
+              <div class="prod-price" data-editable="prod2Price">Rp 34.000</div>
             </div>
           </article>
 
-          <article class="card product col-4" role="listitem">
-            <img data-editable="product-3-image" alt="Produk 3" src="https://source.unsplash.com/featured/900x700?snacks,groceries&sig=64" />
-            <div class="name" data-editable="product-3-name">Telur Ayam 1kg</div>
-            <div class="meta">
-              <span data-editable="product-3-desc">Sumber protein keluarga</span>
-              <span class="price" data-editable="product-3-price">Rp29.000</span>
+          <article class="prod-card">
+            <img class="prod-img" data-editable="prod3Img" alt="Telur Ayam" src="https://images.unsplash.com/photo-1587486913049-53fc88980cfc?auto=format&fit=crop&q=80&w=500" />
+            <div class="prod-info">
+              <h3 class="prod-name" data-editable="prod3Name">Telur Ayam Negeri 1kg</h3>
+              <p class="prod-desc" data-editable="prod3Desc">Telur segar pilihan dari peternakan, sumber protein wajib yang selalu tersedia.</p>
+              <div class="prod-price" data-editable="prod3Price">Rp 28.000</div>
+            </div>
+          </article>
+          
+          <article class="prod-card">
+            <img class="prod-img" data-editable="prod4Img" alt="Gula Pasir" src="https://images.unsplash.com/photo-1622484211148-5221376ba292?auto=format&fit=crop&q=80&w=500" />
+            <div class="prod-info">
+              <h3 class="prod-name" data-editable="prod4Name">Gula Pasir Putih 1kg</h3>
+              <p class="prod-desc" data-editable="prod4Desc">Manis alami, cocok untuk minuman teh, kopi, dan aneka kebutuhan dapur.</p>
+              <div class="prod-price" data-editable="prod4Price">Rp 17.500</div>
             </div>
           </article>
         </div>
@@ -550,107 +538,122 @@
 
     <section class="section" id="cara-pesan">
       <div class="container">
-        <div class="grid">
-          <div class="card steps col-6">
-            <h2 data-editable="steps-title">Cara Pesan Cepat</h2>
-            <p class="sub" data-editable="steps-subtitle">Biar order kamu rapi dan langsung diproses.</p>
+        <div class="info-grid">
+          
+          <div class="info-card">
+            <h2 class="section-title" data-editable="stepTitle">Cara Pesan Mudah</h2>
+            <p class="section-subtitle" data-editable="stepSubtitle">Tanpa ribet, order terdata rapi, barang langsung kami proses ke rumah Anda.</p>
 
-            <div style="margin-top:12px">
-              <div class="step">
-                <div class="num">1</div>
+            <div class="step-list">
+              <div class="step-item">
+                <div class="step-num">1</div>
                 <div>
-                  <b data-editable="step-1-title">Kirim daftar belanja</b>
-                  <span data-editable="step-1-desc">Tulis item + jumlah + alamat singkat.</span>
+                  <div class="step-title" data-editable="s1Title">Kirim Daftar Belanja</div>
+                  <div class="step-desc" data-editable="s1Desc">Tuliskan nama barang, jumlah, dan alamat pengiriman singkat via WhatsApp.</div>
                 </div>
               </div>
-              <div class="step">
-                <div class="num">2</div>
+              <div class="step-item">
+                <div class="step-num">2</div>
                 <div>
-                  <b data-editable="step-2-title">Konfirmasi harga & stok</b>
-                  <span data-editable="step-2-desc">Kami balas total harga + ongkir (jika ada).</span>
+                  <div class="step-title" data-editable="s2Title">Konfirmasi Total & Stok</div>
+                  <div class="step-desc" data-editable="s2Desc">Admin kami akan merinci total harga belanjaan beserta ongkir (jika ada).</div>
                 </div>
               </div>
-              <div class="step">
-                <div class="num">3</div>
+              <div class="step-item">
+                <div class="step-num">3</div>
                 <div>
-                  <b data-editable="step-3-title">Bayar atau COD</b>
-                  <span data-editable="step-3-desc">Transfer / QR / cash saat barang sampai.</span>
+                  <div class="step-title" data-editable="s3Title">Bayar Nyaman di Tempat</div>
+                  <div class="step-desc" data-editable="s3Desc">Bisa bayar Cash On Delivery (COD), Transfer Bank, atau scan QRIS saat tiba.</div>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
-              <a class="btn primary" data-editable="order-url" href="https://wa.me/6280000000000">
-                <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                <span data-editable="order-label">Mulai Pesan Sekarang</span>
+            <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <a class="btn btn-primary" data-editable="orderUrl" href="https://wa.me/6280000000000">
+                <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="orderLabel">Order Sekarang</span>
               </a>
-              <a class="btn" data-editable="catalog-url" href="#produk">
-                <span data-editable="catalog-label">Cek Produk</span>
+              <a class="btn btn-outline" data-editable="katalogUrl" href="#produk">
+                <span data-editable="katalogLabel">Lihat Katalog</span>
               </a>
             </div>
           </div>
 
-          <div class="card hours col-6" id="jam">
-            <h2 data-editable="hours-title">Jam Buka</h2>
-            <p class="sub" data-editable="hours-subtitle">Bisa berubah saat hari besar — chat dulu ya.</p>
+          <div class="info-card" id="jam">
+            <h2 class="section-title" data-editable="jamTitle">Jam Buka Toko</h2>
+            <p class="section-subtitle" data-editable="jamSubtitle">Toko fisik & layanan antar beroperasi pada jam berikut. (Bisa berubah di hari besar).</p>
 
-            <div class="row"><div data-editable="hours-row-1-day">Senin–Jumat</div><span data-editable="hours-row-1-time">07.00–21.00</span></div>
-            <div class="row"><div data-editable="hours-row-2-day">Sabtu</div><span data-editable="hours-row-2-time">07.00–22.00</span></div>
-            <div class="row"><div data-editable="hours-row-3-day">Minggu</div><span data-editable="hours-row-3-time">08.00–20.00</span></div>
+            <div class="schedule-list">
+              <div class="schedule-row">
+                <span class="schedule-day" data-editable="j1Day">Senin – Jumat</span>
+                <span class="schedule-time" data-editable="j1Time">06.30 – 21.30 WIB</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day" data-editable="j2Day">Sabtu</span>
+                <span class="schedule-time" data-editable="j2Time">07.00 – 22.00 WIB</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day" data-editable="j3Day">Minggu / Tanggal Merah</span>
+                <span class="schedule-time" data-editable="j3Time">07.00 – 14.00 WIB</span>
+              </div>
+            </div>
 
-            <div class="card padded" style="margin-top:12px; background: rgba(255,255,255,.75)">
-              <div style="font-weight:800" data-editable="service-area-title">Area Antar</div>
-              <div style="color:var(--muted); font-weight:600" data-editable="service-area-desc">Maks 3–5 km dari toko (tergantung kondisi).</div>
+            <div class="area-box">
+              <div class="area-title" data-editable="areaTitle">📍 Info Area Pengantaran</div>
+              <div class="area-desc" data-editable="areaDesc">Kami melayani pengantaran maksimal radius 3–5 KM dari lokasi toko. Silakan chat admin untuk memastikan jangkauan alamat Anda.</div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
+  </main>
 
-    <footer class="footer" id="kontak">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <div style="font-weight:900; font-size:1.1rem" data-editable="footer-title">Kontak Warung</div>
-            <div style="color:var(--muted); font-weight:600; margin-top:6px" data-editable="footer-address">Jl. Contoh No. 123, Kecamatan, Kota</div>
-            <div style="color:var(--muted); font-weight:600; margin-top:6px" data-editable="footer-note">*Syarat promo & gratis antar bisa diubah.</div>
-
-            <div class="social" aria-label="Sosial media">
-              <a data-editable="social-whatsapp" href="https://wa.me/6280000000000">
-                <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                <span data-editable="social-whatsapp-label">WhatsApp</span>
-              </a>
-              <a data-editable="social-instagram" href="#">
-                <img alt="Instagram" src="../icon/instagram.png" />
-                <span data-editable="social-instagram-label">Instagram</span>
-              </a>
-              <a data-editable="social-shopee" href="#">
-                <img alt="Shopee" src="../icon/shoppe.png" />
-                <span data-editable="social-shopee-label">Shopee</span>
-              </a>
-              <a data-editable="social-tokopedia" href="#">
-                <img alt="Tokopedia" src="../icon/tokopedia.png" />
-                <span data-editable="social-tokopedia-label">Tokopedia</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="card padded">
-            <div style="font-weight:900" data-editable="footer-cta-title">Mau tanya stok hari ini?</div>
-            <div style="color:var(--muted); font-weight:600; margin-top:6px" data-editable="footer-cta-desc">Klik tombol WhatsApp, kirim daftar belanja, kami bantu hitung totalnya.</div>
-            <div style="margin-top:12px">
-              <a class="btn primary" data-editable="footer-cta-url" href="https://wa.me/6280000000000">
-                <img alt="WhatsApp" src="../icon/whatsapp.png" />
-                <span data-editable="footer-cta-label">Chat Admin</span>
-              </a>
-            </div>
+  <footer class="footer" id="kontak">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-title" data-editable="footTitle">Kontak Warung</div>
+          <div class="footer-text" data-editable="footAddress">🏢 Jl. Merdeka Selatan No. 88, Kel. Sukamaju, Kota Permai</div>
+          <div class="footer-text" data-editable="footNote">📌 Patokan: Sebelah apotek sehat. Tersedia parkir motor luas di depan toko.</div>
+          
+          <div class="social-list">
+            <a class="social-link" data-editable="socWaUrl" href="https://wa.me/6280000000000">
+              <img alt="WhatsApp" src="../icons/whatsapp.png" />
+              <span data-editable="socWaLabel">WhatsApp</span>
+            </a>
+            <a class="social-link" data-editable="socIgUrl" href="#">
+              <img alt="Instagram" src="../icons/instagram.png" />
+              <span data-editable="socIgLabel">Instagram</span>
+            </a>
+            <a class="social-link" data-editable="socSpUrl" href="#">
+              <img alt="Shopee" src="../icons/shoppe.png" />
+              <span data-editable="socSpLabel">Shopee</span>
+            </a>
+            <a class="social-link" data-editable="socTpUrl" href="#">
+              <img alt="Tokopedia" src="../icons/tokopedia.png" />
+              <span data-editable="socTpLabel">Tokopedia</span>
+            </a>
           </div>
         </div>
 
-        <div style="margin-top:14px; color:var(--muted); font-weight:600; font-size:.9rem" data-editable="footer-copyright">© 2026 Warung Maju Jaya. Semua hak dilindungi.</div>
+        <div class="footer-cta">
+          <div class="footer-title" data-editable="footCtaTitle">Mau tanya stok hari ini?</div>
+          <div class="footer-text" data-editable="footCtaDesc">Jangan ragu hubungi kami. Klik tombol WhatsApp, kirim daftar belanja, kami bantu hitung totalnya segera.</div>
+          <a class="btn btn-primary" data-editable="footCtaUrl" href="https://wa.me/6280000000000" style="margin-top: 8px;">
+            <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+            <span data-editable="footCtaLabel">Chat Admin Sekarang</span>
+          </a>
+        </div>
+
       </div>
-    </footer>
-  </main>
+
+      <div class="footer-bottom">
+        <span data-editable="footCopy">© 2026 Warung Maju Jaya. Belanja Hemat, Dekat, dan Cepat. Semua hak dilindungi.</span>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

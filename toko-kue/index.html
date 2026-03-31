@@ -4,641 +4,721 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-editable="site-title">Manis Rumah — Kue, Dessert Box, &amp; Hampers</title>
+  <title data-editable="siteTitle">Manis Rumah — Kue, Dessert Box, & Hampers</title>
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* ─────────────────────────────
+       RESET & VARIABLES
+    ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+    html { scroll-behavior: smooth; }
 
     :root {
-      --bg: #fff8fb;
-      --bg2: #fff1f7;
-      --card: #ffffff;
-      --border: rgba(173, 38, 89, .16);
-      --text: #2b0c16;
-      --muted: rgba(43, 12, 22, .68);
-      --primary: #ad2659;
-      --secondary: #f2b3c7;
-      --accent: #ffd166;
-      --radius: 18px;
-      --max: 1100px;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      /* Sweet & Elegant Palette */
+      --brand: #db2777;       /* Pink 600 */
+      --brand-hover: #be185d; /* Pink 700 */
+      --brand-soft: #fce7f3;  /* Pink 100 */
+      
+      --accent: #d97706;      /* Warm Amber/Gold */
+      --accent-soft: #fef3c7; 
+      
+      --bg: #fffbf7;          /* Creamy warm white */
+      --surface: #ffffff;
+      --border: #fbcfe8;      /* Pink 200 */
+      
+      --text-main: #4c0519;   /* Very dark pink/brown */
+      --text-muted: #831843;  /* Medium dark pink */
+      
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      
+      --shadow-sm: 0 4px 12px rgba(219, 39, 119, 0.05);
+      --shadow-md: 0 12px 24px rgba(219, 39, 119, 0.08);
+      --shadow-hover: 0 20px 32px rgba(219, 39, 119, 0.12);
+      
+      --max-w: 1140px;
     }
 
     body {
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      background:
-        radial-gradient(900px 450px at 15% 0%, rgba(242, 179, 199, .65), transparent 60%),
-        radial-gradient(750px 450px at 95% 0%, rgba(255, 209, 102, .45), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 0%, rgba(252, 231, 243, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at 90% 100%, rgba(254, 243, 199, 0.6) 0%, transparent 40%);
+      color: var(--text-main);
       line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .container {
-      width: 100%;
-      max-width: var(--max);
+      max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 18px;
+      padding: 0 20px;
     }
 
-    /* NAV */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 248, 251, .84);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      letter-spacing: -.02em;
-      color: var(--primary);
-    }
-
-    .brand-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(173, 38, 89, .20), rgba(255, 209, 102, .35));
-      border: 1px solid rgba(173, 38, 89, .22);
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: var(--muted);
-      transition: background .2s ease, color .2s ease;
-    }
-
-    .nav-links a:hover {
-      background: rgba(173, 38, 89, .08);
-      color: var(--text);
-    }
-
-    .nav-links .cta a {
-      background: linear-gradient(135deg, rgba(173, 38, 89, .14), rgba(173, 38, 89, .08));
-      border: 1px solid rgba(173, 38, 89, .18);
-      color: var(--text);
+    /* ─────────────────────────────
+       TYPOGRAPHY
+    ───────────────────────────── */
+    h1, h2, h3, .brand-text {
       font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
-    .nav-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(173, 38, 89, .18);
-      background: rgba(255, 255, 255, .65);
-      cursor: pointer;
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 12px;
     }
 
-    .drawer {
-      display: none;
-      border-top: 1px solid var(--border);
-      background: rgba(255, 248, 251, .94);
-    }
-
-    .drawer.open {
-      display: block;
-    }
-
-    .drawer a {
-      display: block;
-      padding: 12px 18px;
-      border-bottom: 1px solid rgba(173, 38, 89, .10);
-      color: var(--muted);
-    }
-
-    .drawer a:hover {
-      color: var(--text);
-      background: rgba(173, 38, 89, .06);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 44px 0 18px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .hero-copy {
-      border: 1px solid rgba(173, 38, 89, .14);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, .75);
-      padding: 22px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid rgba(173, 38, 89, .18);
-      background: rgba(173, 38, 89, .06);
-      color: rgba(43, 12, 22, .82);
-    }
-
-    .hero h1 {
-      margin-top: 14px;
-      font-size: 40px;
-      line-height: 1.05;
-      letter-spacing: -.03em;
-    }
-
-    .hero p {
-      margin-top: 12px;
-      color: var(--muted);
-      max-width: 58ch;
-    }
-
-    .hero-actions {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    /* ─────────────────────────────
+       BUTTONS
+    ───────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(173, 38, 89, .18);
-      background: rgba(255, 255, 255, .8);
-      font-weight: 800;
-      font-size: 14px;
-      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, rgba(173, 38, 89, .16), rgba(255, 209, 102, .35));
-      border-color: rgba(173, 38, 89, .22);
+      background: linear-gradient(135deg, var(--brand), #f43f5e);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(219, 39, 119, 0.35);
     }
 
-    .hero-media {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(173, 38, 89, .14);
-      background: rgba(255, 255, 255, .55);
-      min-height: 300px;
+    .btn-outline {
+      background: var(--surface);
+      color: var(--brand);
+      border-color: var(--border);
+    }
+    .btn-outline:hover {
+      background: var(--brand-soft);
+      border-color: var(--brand);
     }
 
-    .hero-media img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
+    .btn-icon { width: 20px; height: 20px; object-fit: contain; }
+
+    /* ─────────────────────────────
+       TOPBAR & NAV
+    ───────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 251, 247, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--brand-soft);
     }
 
-    /* SECTIONS */
-    section {
-      padding: 18px 0;
-    }
-
-    .section-head {
+    .nav {
+      height: 76px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
       gap: 12px;
-      margin: 10px 0 14px;
     }
 
-    .section-head h2 {
-      font-size: 22px;
-      letter-spacing: -.02em;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      font-size: 13px;
-      max-width: 62ch;
-    }
-
-    .grid-3 {
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--brand-soft);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      place-items: center;
+      font-size: 20px;
+      border: 1px solid var(--border);
     }
 
-    .card {
-      background: rgba(255, 255, 255, .80);
-      border: 1px solid rgba(173, 38, 89, .12);
-      border-radius: 16px;
-      overflow: hidden;
+    .brand-text { font-size: 1.3rem; color: var(--brand); }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a.link-item {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 99px;
+      transition: all 0.2s;
+    }
+    .nav-links a.link-item:hover { background: var(--brand-soft); color: var(--brand); }
+
+    .nav-toggle {
+      display: none;
+      background: var(--brand-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      width: 44px; height: 44px;
+      font-size: 1.2rem;
+      color: var(--brand);
+      cursor: pointer;
     }
 
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
+    .drawer {
+      display: none;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    .drawer.open { display: block; }
+    .drawer a {
       display: block;
+      padding: 16px 24px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--brand-soft);
+    }
+    .drawer a:hover { color: var(--brand); background: var(--bg); }
+
+    /* ─────────────────────────────
+       HERO
+    ───────────────────────────── */
+    .hero { padding: 60px 0; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
     }
 
-    .card-body {
-      padding: 12px;
+    .hero-content {
+      padding-right: 20px;
     }
 
-    .card h3 {
-      font-size: 15px;
-      letter-spacing: -.01em;
-    }
-
-    .card p {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .price {
-      margin-top: 10px;
+    .badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-weight: 900;
-      color: var(--primary);
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(173, 38, 89, .16);
-      background: rgba(173, 38, 89, .06);
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .two-col {
+    .hero-title {
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      margin-bottom: 20px;
+      color: var(--text-main);
+    }
+    .hero-title span { color: var(--brand); }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+
+    .hero-note { font-size: 0.85rem; font-weight: 600; color: var(--accent); }
+
+    .hero-visual { position: relative; }
+    .hero-img-wrap {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 8px solid var(--surface);
+      box-shadow: var(--shadow-md);
+      transform: rotate(2deg);
+      transition: transform 0.4s;
+    }
+    .hero-img-wrap:hover { transform: rotate(0deg); }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      left: -30px;
+      background: var(--surface);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .fc-icon { font-size: 24px; }
+    .fc-title { font-weight: 800; font-size: 1rem; color: var(--text-main); }
+    .fc-desc { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+    /* ─────────────────────────────
+       PRODUCTS
+    ───────────────────────────── */
+    .section { padding: 80px 0; }
+    .section-header { margin-bottom: 40px; text-align: center; }
+    .section-title { font-size: 2.2rem; margin-bottom: 12px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 500; }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .prod-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .prod-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: #f9a8d4;
+    }
+
+    .prod-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+    }
+
+    .prod-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; }
+    .prod-desc { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; margin-bottom: 16px; line-height: 1.5; }
+    .prod-price {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--brand-soft);
+      color: var(--brand-hover);
+      font-weight: 800;
+      border-radius: 99px;
+      font-size: 1.05rem;
+    }
+
+    /* ─────────────────────────────
+       INFO PANELS (PREORDER & HAMPERS)
+    ───────────────────────────── */
+    .split-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 32px;
     }
 
-    .panel {
-      border-radius: 16px;
-      border: 1px solid rgba(173, 38, 89, .12);
-      background: rgba(255, 255, 255, .80);
-      padding: 14px;
+    .info-panel {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .list {
-      margin-top: 10px;
-      display: grid;
-      gap: 8px;
-    }
+    .panel-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 24px; color: var(--text-main); }
 
-    .list div {
+    .list-box {
+      background: var(--bg);
+      border: 1px solid var(--brand-soft);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 12px;
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
-      gap: 10px;
-      padding: 10px 12px;
-      border: 1px dashed rgba(173, 38, 89, .20);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, .65);
-    }
-
-    .mini {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 12px;
-      border-top: 1px solid var(--border);
-      padding: 26px 0 40px;
-    }
-
-    .foot {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .social {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
       align-items: center;
-      justify-content: flex-end;
+      transition: border-color 0.2s;
+    }
+    .list-box:hover { border-color: var(--brand); }
+
+    .list-title { font-weight: 700; font-size: 1rem; color: var(--text-main); }
+    .list-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-top: 4px; }
+    .list-highlight { font-weight: 800; color: var(--brand); font-size: 1rem; text-align: right;}
+
+    .note-text { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; margin-top: 20px; padding: 16px; background: var(--accent-soft); border-radius: var(--radius-sm); color: #b45309; }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+      margin-top: 40px;
     }
 
-    .social a {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      border: 1px solid rgba(173, 38, 89, .14);
-      background: rgba(255, 255, 255, .7);
+    .footer-grid {
       display: grid;
-      place-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
 
-    .social img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
+    .footer-brand { font-size: 1.5rem; font-weight: 800; color: var(--brand); margin-bottom: 12px; }
+    .footer-desc { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 8px; }
+
+    .social-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.85rem; font-weight: 700; color: var(--text-main);
+      transition: all 0.2s;
+    }
+    .social-link:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+    .social-link img { width: 18px; height: 18px; object-fit: contain; }
+
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: center;
     }
 
+    /* ─────────────────────────────
+       ANIMATIONS
+    ───────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
     @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-      }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-content { padding-right: 0; }
+      .hero-visual { width: 90%; margin: 0 auto; }
+      .floating-card { left: -10px; bottom: -20px; }
+      .prod-grid { grid-template-columns: repeat(2, 1fr); }
+      .split-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: grid; place-items: center; }
+    }
 
-      .nav-toggle {
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-
-      .foot {
-        grid-template-columns: 1fr;
-      }
-
-      .social {
-        justify-content: flex-start;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
+    @media (max-width: 500px) {
+      .prod-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+      .info-panel { padding: 24px; }
     }
   </style>
 </head>
 
 <body>
-  <header class="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="#top">
-          <span class="brand-badge" aria-hidden="true">🍰</span>
-          <span data-editable="brand-name">Manis Rumah</span>
-        </a>
+  <div class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <div class="brand-icon" aria-hidden="true">🍰</div>
+        <span class="brand-text" data-editable="brandName">Manis Rumah</span>
+      </a>
 
-        <ul class="nav-links" aria-label="Navigasi">
-          <li><a href="#produk">Produk</a></li>
-          <li><a href="#preorder">Pre-order</a></li>
-          <li><a href="#hampers">Hampers</a></li>
-          <li class="cta"><a data-editable="nav-cta-url" href="https://wa.me/6280000000000"><span data-editable="nav-cta-label">Pesan</span></a></li>
-        </ul>
-
-        <button class="nav-toggle" type="button" aria-label="Buka menu" onclick="toggleDrawer()">☰</button>
+      <div class="nav-links">
+        <a class="link-item" href="#produk" data-editable="navProd">Produk</a>
+        <a class="link-item" href="#preorder" data-editable="navPreorder">Pre-order</a>
+        <a class="link-item" href="#hampers" data-editable="navHampers">Hampers</a>
       </div>
 
-      <nav id="drawer" class="drawer" aria-label="Navigasi mobile">
-        <a href="#produk" onclick="toggleDrawer()">Produk</a>
-        <a href="#preorder" onclick="toggleDrawer()">Pre-order</a>
-        <a href="#hampers" onclick="toggleDrawer()">Hampers</a>
-        <a data-editable="drawer-cta-url" href="https://wa.me/6280000000000" onclick="toggleDrawer()"><span data-editable="drawer-cta-label">Pesan via WhatsApp</span></a>
-      </nav>
+      <div style="display: flex; gap: 12px;">
+        <a class="btn btn-primary" data-editable="navCtaUrl" href="https://wa.me/6280000000000" style="padding: 10px 20px;">
+          <span data-editable="navCtaLabel">Pesan via WA</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+      </div>
     </div>
-  </header>
+
+    <div class="drawer" id="navDrawer">
+      <a href="#produk" data-editable="drawerProd">Produk</a>
+      <a href="#preorder" data-editable="drawerPreorder">Pre-order</a>
+      <a href="#hampers" data-editable="drawerHampers">Hampers</a>
+      <a href="https://wa.me/6280000000000" data-editable="drawerCtaUrl">
+        <span data-editable="drawerCtaLabel">Chat WhatsApp Admin</span>
+      </a>
+    </div>
+  </div>
 
   <main id="top">
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
-          <div class="hero-copy">
-            <span class="badge" data-editable="hero-badge">Homemade • Fresh baked • Bisa request ucapan</span>
-            <h1 data-editable="hero-title">Kue yang rapi, rasa yang "nagih", untuk momen apa pun.</h1>
-            <p data-editable="hero-subtitle">Dari dessert box hingga kue ulang tahun—kami fokus di tekstur lembut, manis yang pas, dan kemasan aman untuk kirim.</p>
+          
+          <div class="hero-content fade-in">
+            <div class="badge-pill">
+              <span aria-hidden="true">✨</span>
+              <span data-editable="heroBadge">Homemade • Fresh baked • Premium Taste</span>
+            </div>
+            
+            <h1 class="hero-title">
+              <span data-editable="heroTitlePrefix">Kue yang rapi, rasa yang</span>
+              <span data-editable="heroTitleHighlight">"nagih"</span><span data-editable="heroTitleSuffix">, untuk momen apa pun.</span>
+            </h1>
+            
+            <p class="hero-desc" data-editable="heroSubtitle">Dari dessert box creamy hingga kue ulang tahun cantik. Kami fokus pada tekstur lembut, manis yang pas, dan packaging aman untuk pengiriman.</p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" data-editable="primary-cta-url" href="https://wa.me/6280000000000"><span data-editable="primary-cta-label">Pesan via WhatsApp</span></a>
-              <a class="btn" data-editable="secondary-cta-url" href="#produk"><span data-editable="secondary-cta-label">Lihat Produk</span></a>
+              <a class="btn btn-primary" data-editable="heroPrimaryUrl" href="https://wa.me/6280000000000">
+                <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="heroPrimaryLabel">Pesan Sekarang</span>
+              </a>
+              <a class="btn btn-outline" data-editable="heroSecUrl" href="#produk">
+                <span data-editable="heroSecLabel">Lihat Menu</span>
+              </a>
             </div>
 
-            <p class="mini" style="margin-top:12px" data-editable="hero-note">Minimal order &amp; jadwal pengiriman bisa disesuaikan.</p>
+            <div class="hero-note" data-editable="heroNote">* Minimal order & jadwal pengiriman dapat disesuaikan.</div>
           </div>
 
-          <aside class="hero-media" aria-label="Foto produk">
-            <img data-editable="hero-image"
-              alt="Foto kue"
-              src="https://loremflickr.com/1200/900/cake,bakery?lock=41" />
-          </aside>
+          <div class="hero-visual fade-in" style="transition-delay: 0.15s;">
+            <div class="hero-img-wrap">
+              <img data-editable="heroImg" alt="Kue Manis Rumah" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" />
+            </div>
+            
+            <div class="floating-card">
+              <div class="fc-icon" aria-hidden="true">💝</div>
+              <div>
+                <div class="fc-title" data-editable="floatTitle">Custom Message</div>
+                <div class="fc-desc" data-editable="floatDesc">Free kartu ucapan cantik</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section id="produk">
+    <section class="section" id="produk">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 data-editable="products-title">Produk Best Seller</h2>
-            <p data-editable="products-subtitle">Tiga rekomendasi untuk mulai—bisa mix &amp; match sesuai budget.</p>
-          </div>
-          <p class="mini" data-editable="products-note">Harga contoh, bisa diedit.</p>
+        <div class="section-header fade-in">
+          <span class="eyebrow" data-editable="prodEyebrow">Menu Pilihan</span>
+          <h2 class="section-title" data-editable="prodTitle">Produk Best Seller</h2>
+          <p class="section-subtitle" data-editable="prodSubtitle">Tiga rekomendasi favorit pelanggan kami. Bisa mix & match sesuai budget Anda.</p>
         </div>
 
-        <div class="grid-3">
-          <article class="card">
-            <img data-editable="product-1-image" alt="Produk 1" src="https://loremflickr.com/900/500/tiramisu,dessert?lock=42" />
-            <div class="card-body">
-              <h3 data-editable="product-1-name">Dessert Box Tiramisu</h3>
-              <p data-editable="product-1-desc">Cream lembut, cocoa wangi, kopi yang tidak pahit.</p>
-              <div class="price" data-editable="product-1-price">Rp 35.000</div>
-            </div>
+        <div class="prod-grid">
+          <article class="prod-card fade-in">
+            <img class="prod-img" data-editable="prod1Img" alt="Dessert Box" src="https://images.unsplash.com/photo-1571115177098-24db0d1115d4?auto=format&fit=crop&q=80&w=600" />
+            <h3 class="prod-name" data-editable="prod1Name">Dessert Box Tiramisu</h3>
+            <p class="prod-desc" data-editable="prod1Desc">Krim mascarpone super lembut, cocoa premium wangi, dan rasa kopi yang balance tidak terlalu pahit.</p>
+            <div class="prod-price" data-editable="prod1Price">Rp 35.000</div>
           </article>
 
-          <article class="card">
-            <img data-editable="product-2-image" alt="Produk 2" src="https://loremflickr.com/900/500/cookies,chocolate?lock=43" />
-            <div class="card-body">
-              <h3 data-editable="product-2-name">Cookies Cokelat</h3>
-              <p data-editable="product-2-desc">Crispy di luar, chewy di dalam. Cocok buat hampers.</p>
-              <div class="price" data-editable="product-2-price">Rp 28.000</div>
-            </div>
+          <article class="prod-card fade-in" style="transition-delay: 0.1s;">
+            <img class="prod-img" data-editable="prod2Img" alt="Cookies" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&q=80&w=600" />
+            <h3 class="prod-name" data-editable="prod2Name">Soft Baked Cookies</h3>
+            <p class="prod-desc" data-editable="prod2Desc">Tekstur crispy di luar, super chewy dan gooey di dalam. Sangat cocok dipesan sebagai isian hampers.</p>
+            <div class="prod-price" data-editable="prod2Price">Rp 28.000</div>
           </article>
 
-          <article class="card">
-            <img data-editable="product-3-image" alt="Produk 3" src="https://loremflickr.com/900/500/birthday-cake,cake?lock=44" />
-            <div class="card-body">
-              <h3 data-editable="product-3-name">Cake Ulang Tahun</h3>
-              <p data-editable="product-3-desc">Bisa request warna, tulisan, dan topping sesuai tema.</p>
-              <div class="price" data-editable="product-3-price">Mulai Rp 180.000</div>
-            </div>
+          <article class="prod-card fade-in" style="transition-delay: 0.2s;">
+            <img class="prod-img" data-editable="prod3Img" alt="Birthday Cake" src="https://images.unsplash.com/photo-1562777717-b6aff34d19f0?auto=format&fit=crop&q=80&w=600" />
+            <h3 class="prod-name" data-editable="prod3Name">Custom Birthday Cake</h3>
+            <p class="prod-desc" data-editable="prod3Desc">Bebas request warna cream, tulisan, dan topping macaron/buah sesuai dengan tema pesta Anda.</p>
+            <div class="prod-price" data-editable="prod3Price">Mulai Rp 180.000</div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="preorder">
+    <section class="section" id="preorder">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 data-editable="preorder-title">Cara Pre-order</h2>
-            <p data-editable="preorder-subtitle">Alur singkat supaya pesanan rapi dan sesuai waktu.</p>
-          </div>
-        </div>
+        <div class="split-grid">
+          
+          <div class="info-panel fade-in">
+            <span class="eyebrow" data-editable="preEyebrow">Cara Pemesanan</span>
+            <h2 class="panel-title" data-editable="preTitle">Sistem Pre-order</h2>
+            
+            <div class="list-box">
+              <div>
+                <div class="list-title" data-editable="pre1Title">Data Pesanan</div>
+                <div class="list-sub" data-editable="pre1Sub">Sertakan Tanggal, Jam, dan Alamat.</div>
+              </div>
+            </div>
+            
+            <div class="list-box">
+              <div>
+                <div class="list-title" data-editable="pre2Title">Catatan Alergi</div>
+                <div class="list-sub" data-editable="pre2Sub">Tolong infokan alergi (kacang/susu/dll).</div>
+              </div>
+            </div>
 
-        <div class="two-col">
-          <div class="panel">
-            <h3 data-editable="preorder-left-title">Info yang Dibutuhkan</h3>
-            <div class="list" aria-label="Kebutuhan preorder">
-              <div>
-                <span data-editable="preorder-need-1">Tanggal &amp; jam pengiriman</span>
-                <span class="mini" data-editable="preorder-need-1-note">Biar bisa kami jadwalkan oven</span>
+            <div style="margin-top: 32px;">
+              <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--text-main);" data-editable="estTitle">Estimasi Pembuatan:</h3>
+              <div class="list-box">
+                <div class="list-title" data-editable="est1Name">Dessert Box</div>
+                <div class="list-highlight" data-editable="est1Time">H - 1</div>
               </div>
-              <div>
-                <span data-editable="preorder-need-2">Alamat &amp; patokan</span>
-                <span class="mini" data-editable="preorder-need-2-note">Aman untuk kurir</span>
+              <div class="list-box">
+                <div class="list-title" data-editable="est2Name">Kue Ulang Tahun</div>
+                <div class="list-highlight" data-editable="est2Time">H - 3</div>
               </div>
+            </div>
+
+            <div class="note-text" data-editable="preNote">💡 Butuh kue dadakan hari ini? Chat admin untuk cek ketersediaan stok etalase!</div>
+          </div>
+
+          <div class="info-panel fade-in" id="hampers" style="background: var(--brand-soft); border-color: var(--border);">
+            <span class="eyebrow" data-editable="hampersEyebrow">Corporate & Personal</span>
+            <h2 class="panel-title" data-editable="hampersTitle">Paket Hampers</h2>
+            
+            <div class="list-box" style="background: var(--surface);">
               <div>
-                <span data-editable="preorder-need-3">Catatan alergi</span>
-                <span class="mini" data-editable="preorder-need-3-note">Misal: kacang, susu</span>
+                <div class="list-title" data-editable="hamp1Name">Cookies + Brownies + Card</div>
+                <div class="list-sub" data-editable="hamp1Sub">Paket lengkap elegan.</div>
               </div>
+              <div class="list-highlight" data-editable="hamp1Price">Rp 125K</div>
+            </div>
+            
+            <div class="list-box" style="background: var(--surface);">
+              <div>
+                <div class="list-title" data-editable="hamp2Name">2 pcs Dessert Box + Pita</div>
+                <div class="list-sub" data-editable="hamp2Sub">Simpel dan manis.</div>
+              </div>
+              <div class="list-highlight" data-editable="hamp2Price">Rp 95K</div>
+            </div>
+            
+            <div class="list-box" style="background: var(--surface);">
+              <div>
+                <div class="list-title" data-editable="hamp3Name">Custom Mix Snack</div>
+                <div class="list-sub" data-editable="hamp3Sub">Sesuai budget Anda.</div>
+              </div>
+              <div class="list-highlight" data-editable="hamp3Price">Tanya Admin</div>
+            </div>
+
+            <div class="note-text" style="background: var(--surface); color: var(--text-main);" data-editable="hampersNote">
+              ✨ <strong>Fitur Tambahan:</strong> Bisa cetak nama/logo khusus. Mendukung pengiriman multi-alamat. Order jumlah banyak dapat harga grosir!
+            </div>
+
+            <div style="margin-top: 24px;">
+              <a class="btn btn-primary" style="width: 100%;" data-editable="hampersCtaUrl" href="https://wa.me/6280000000000">
+                <img class="btn-icon" alt="WhatsApp" src="../icons/whatsapp.png" />
+                <span data-editable="hampersCtaLabel">Konsultasi Hampers</span>
+              </a>
             </div>
           </div>
 
-          <div class="panel">
-            <h3 data-editable="preorder-right-title">Estimasi Waktu</h3>
-            <div class="list" aria-label="Estimasi">
-              <div>
-                <span data-editable="preorder-time-1">Dessert box</span>
-                <strong data-editable="preorder-time-1-val">H-1</strong>
-              </div>
-              <div>
-                <span data-editable="preorder-time-2">Kue ulang tahun</span>
-                <strong data-editable="preorder-time-2-val">H-3 s/d H-5</strong>
-              </div>
-              <div>
-                <span data-editable="preorder-time-3">Hampers</span>
-                <strong data-editable="preorder-time-3-val">H-3</strong>
-              </div>
-            </div>
-            <p class="mini" style="margin-top:10px" data-editable="preorder-note">Untuk order dadakan, tanya ketersediaan dulu ya.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="hampers">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 data-editable="hampers-title">Hampers &amp; Corporate Gift</h2>
-            <p data-editable="hampers-subtitle">Cocok untuk lebaran, wisuda, ulang tahun kantor, atau hadiah customer.</p>
-          </div>
-        </div>
-
-        <div class="two-col">
-          <div class="panel">
-            <h3 data-editable="hampers-pack-title">Paket Contoh</h3>
-            <div class="list" aria-label="Paket hampers">
-              <div>
-                <span data-editable="hampers-pack-1">Cookies + Brownies + Kartu Ucapan</span>
-                <strong data-editable="hampers-pack-1-price">Rp 125.000</strong>
-              </div>
-              <div>
-                <span data-editable="hampers-pack-2">Dessert Box 2 pcs + Pita</span>
-                <strong data-editable="hampers-pack-2-price">Rp 95.000</strong>
-              </div>
-              <div>
-                <span data-editable="hampers-pack-3">Mix snack (custom)</span>
-                <strong data-editable="hampers-pack-3-price">Mulai Rp 75.000</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <h3 data-editable="hampers-note-title">Catatan Penting</h3>
-            <p class="mini" data-editable="hampers-note">Jumlah banyak bisa diskon. Kami sarankan booking tanggal lebih awal untuk menghindari penuh.</p>
-            <div class="list">
-              <div>
-                <span data-editable="hampers-note-1">Bisa cetak nama / logo (opsional)</span>
-                <span class="mini" data-editable="hampers-note-1b">Tanya biaya tambahan</span>
-              </div>
-              <div>
-                <span data-editable="hampers-note-2">Kirim multi alamat</span>
-                <span class="mini" data-editable="hampers-note-2b">Sertakan daftar alamat</span>
-              </div>
-            </div>
-            <div style="margin-top:12px">
-              <a class="btn btn-primary" data-editable="hampers-cta-url" href="https://wa.me/6280000000000"><span data-editable="hampers-cta-label">Konsultasi Hampers</span></a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="container">
-      <div class="foot">
+      <div class="footer-grid">
+        
         <div>
-          <div style="font-weight:900; color: var(--primary)" data-editable="footer-brand">Manis Rumah</div>
-          <div class="mini" data-editable="footer-tagline">Kue rumahan dengan finishing rapi &amp; rasa seimbang.</div>
-          <div class="mini" style="margin-top:10px" data-editable="footer-address">Kota Contoh, Indonesia</div>
-          <div class="mini" data-editable="footer-hours">Open order: setiap hari 09.00–18.00</div>
-          <div class="mini" style="margin-top:10px" data-editable="footer-copyright">© 2026 Manis Rumah. Semua hak dilindungi.</div>
+          <div class="footer-brand" data-editable="footBrand">Manis Rumah</div>
+          <div class="footer-text" data-editable="footTagline">Kue rumahan dengan finishing rapi, kemasan aman, & rasa yang seimbang. Cocok untuk semua perayaan Anda.</div>
+          
+          <div style="margin-top: 20px;">
+            <div class="footer-text" data-editable="footAddress">📍 Kota Metropolitan, Indonesia</div>
+            <div class="footer-text" data-editable="footHours">🕒 Open order & Delivery: Setiap hari 09.00–18.00</div>
+          </div>
+          
+          <div class="social-list">
+            <a class="social-link" data-editable="socWaUrl" href="https://wa.me/6280000000000">
+              <img alt="WhatsApp" src="../icons/whatsapp.png" />
+              <span data-editable="socWaLabel">WhatsApp</span>
+            </a>
+            <a class="social-link" data-editable="socIgUrl" href="#">
+              <img alt="Instagram" src="../icons/instagram.png" />
+              <span data-editable="socIgLabel">Instagram</span>
+            </a>
+            <a class="social-link" data-editable="socTkUrl" href="#">
+              <img alt="TikTok" src="../icons/tiktok.png" />
+              <span data-editable="socTkLabel">TikTok</span>
+            </a>
+            <a class="social-link" data-editable="socSpUrl" href="#">
+              <img alt="Shopee" src="../icons/shoppe.png" />
+              <span data-editable="socSpLabel">Shopee</span>
+            </a>
+            <a class="social-link" data-editable="socTpUrl" href="#">
+              <img alt="Tokopedia" src="../icons/tokopedia.png" />
+              <span data-editable="socTpLabel">Tokopedia</span>
+            </a>
+          </div>
         </div>
 
-        <div class="social" aria-label="Media sosial">
-          <a data-editable="social-whatsapp" href="https://wa.me/6280000000000" aria-label="WhatsApp"><img alt="WhatsApp" src="../icon/whatsapp.png" /></a>
-          <a data-editable="social-instagram" href="#" aria-label="Instagram"><img alt="Instagram" src="../icon/instagram.png" /></a>
-          <a data-editable="social-tiktok" href="#" aria-label="TikTok"><img alt="TikTok" src="../icon/tiktok.png" /></a>
-          <a data-editable="social-shopee" href="#" aria-label="Shopee"><img alt="Shopee" src="../icon/shoppe.png" /></a>
-          <a data-editable="social-tokopedia" href="#" aria-label="Tokopedia"><img alt="Tokopedia" src="../icon/tokopedia.png" /></a>
-        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-editable="footCopy">© 2026 Manis Rumah. Semua hak dilindungi.</span>
       </div>
     </div>
   </footer>
 
   <script>
-    function toggleDrawer() {
-      var drawer = document.getElementById('drawer');
-      if (!drawer) return;
-      drawer.classList.toggle('open');
+    // Navbar Scroll & Drawer
+    const navToggle = document.getElementById('navToggle');
+    const navDrawer = document.getElementById('navDrawer');
+    if (navToggle && navDrawer) {
+      navToggle.addEventListener('click', () => {
+        navDrawer.classList.toggle('open');
+      });
+    }
+
+    // Smooth Scroll (Aman untuk editor)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId !== '#') {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            const headerOffset = 76;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            if (navDrawer.classList.contains('open')) {
+              navDrawer.classList.remove('open');
+            }
+          }
+        }
+      });
+    });
+
+    // Fade-in Animation Observer
+    const fadeElements = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.10 });
+      fadeElements.forEach(el => observer.observe(el));
+    } else {
+      fadeElements.forEach(el => el.classList.add('visible'));
     }
   </script>
 </body>
