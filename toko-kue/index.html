@@ -5,6 +5,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-editable="siteTitle">Manis Rumah — Kue, Dessert Box, & Hampers</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <style>
     /* ─────────────────────────────
        RESET & VARIABLES
@@ -153,6 +182,13 @@
       place-items: center;
       font-size: 20px;
       border: 1px solid var(--border);
+    }
+
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
     }
 
     .brand-text { font-size: 1.3rem; color: var(--brand); }
@@ -432,13 +468,16 @@
       .info-panel { padding: 24px; }
     }
   </style>
+  <script type="application/json" data-editor-schema>{"version":1,"strict":true,"fields":[{"key":"siteTitle","kind":"text","label":"Judul Website","order":10},{"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20},{"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},{"key":"navWaUrl","kind":"url","label":"WhatsApp (URL)","order":40,"targets":["drawerCtaUrl","hampersCtaUrl","heroPrimaryUrl","navCtaUrl","socWaUrl"]},{"key":"navWaLabel","kind":"text","label":"WhatsApp (Label Tombol)","order":50,"targets":["drawerCtaLabel","hampersCtaLabel","heroPrimaryLabel","navCtaLabel","socWaLabel"]},{"key":"est1Name","kind":"text"},{"key":"est1Time","kind":"text"},{"key":"est2Name","kind":"text"},{"key":"est2Time","kind":"text"},{"key":"estTitle","kind":"text"},{"key":"floatDesc","kind":"text"},{"key":"floatTitle","kind":"text"},{"key":"footAddress","kind":"text"},{"key":"footBrand","kind":"text"},{"key":"footCopy","kind":"text"},{"key":"footHours","kind":"text"},{"key":"footTagline","kind":"text"},{"key":"hamp1Name","kind":"text"},{"key":"hamp1Price","kind":"text"},{"key":"hamp1Sub","kind":"text"},{"key":"hamp2Name","kind":"text"},{"key":"hamp2Price","kind":"text"},{"key":"hamp2Sub","kind":"text"},{"key":"hamp3Name","kind":"text"},{"key":"hamp3Price","kind":"text"},{"key":"hamp3Sub","kind":"text"},{"key":"hampersEyebrow","kind":"text"},{"key":"hampersNote","kind":"text"},{"key":"hampersTitle","kind":"text"},{"key":"heroBadge","kind":"text"},{"key":"heroImg","kind":"image"},{"key":"heroNote","kind":"text"},{"key":"heroSecLabel","kind":"text"},{"key":"heroSecUrl","kind":"url"},{"key":"heroSubtitle","kind":"text"},{"key":"heroTitleHighlight","kind":"text"},{"key":"heroTitlePrefix","kind":"text"},{"key":"heroTitleSuffix","kind":"text"},{"key":"pre1Sub","kind":"text"},{"key":"pre1Title","kind":"text"},{"key":"pre2Sub","kind":"text"},{"key":"pre2Title","kind":"text"},{"key":"preEyebrow","kind":"text"},{"key":"preNote","kind":"text"},{"key":"preTitle","kind":"text"},{"key":"prod1Desc","kind":"text"},{"key":"prod1Img","kind":"image"},{"key":"prod1Name","kind":"text"},{"key":"prod1Price","kind":"text"},{"key":"prod2Desc","kind":"text"},{"key":"prod2Img","kind":"image"},{"key":"prod2Name","kind":"text"},{"key":"prod2Price","kind":"text"},{"key":"prod3Desc","kind":"text"},{"key":"prod3Img","kind":"image"},{"key":"prod3Name","kind":"text"},{"key":"prod3Price","kind":"text"},{"key":"prodEyebrow","kind":"text"},{"key":"prodSubtitle","kind":"text"},{"key":"prodTitle","kind":"text"},{"key":"socIgLabel","kind":"text"},{"key":"socIgUrl","kind":"url"},{"key":"socSpLabel","kind":"text"},{"key":"socSpUrl","kind":"url"},{"key":"socTkLabel","kind":"text"},{"key":"socTkUrl","kind":"url"},{"key":"socTpLabel","kind":"text"},{"key":"socTpUrl","kind":"url"}]}</script>
 </head>
 
 <body>
   <div class="topbar">
     <div class="container nav">
       <a class="brand" href="#top">
-        <div class="brand-icon" aria-hidden="true">🍰</div>
+        <div class="brand-icon" aria-hidden="true">
+          <img data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='18' fill='%23fce7f3'/%3E%3Cpath d='M30 55h60v12H30z' fill='%23db2777' opacity='.9'/%3E%3Cpath d='M36 67h48v18H36z' fill='%23be185d' opacity='.85'/%3E%3Ccircle cx='42' cy='52' r='6' fill='%23d97706'/%3E%3Ccircle cx='60' cy='50' r='5' fill='%23d97706'/%3E%3Ccircle cx='78' cy='52' r='6' fill='%23d97706'/%3E%3C/svg%3E" />
+        </div>
         <span class="brand-text" data-editable="brandName">Manis Rumah</span>
       </a>
 

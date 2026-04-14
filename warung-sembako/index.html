@@ -5,6 +5,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-editable="siteTitle">Warung Maju Jaya — Sembako Lengkap & Cepat</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <style>
     /* ─────────────────────────────
        RESET & VARIABLES
@@ -413,6 +442,7 @@
       .prod-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <script type="application/json" data-editor-schema>{"version":1,"strict":true,"fields":[{"key":"siteTitle","kind":"text","label":"Judul Website","order":10,"targets":["siteTitle"]},{"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20,"targets":["brandName"]},{"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},{"key":"navWaUrl","kind":"url","label":"WhatsApp (URL)","order":40,"targets":["navCtaUrl","heroPrimaryUrl","orderUrl","socWaUrl","footCtaUrl"]},{"key":"navWaLabel","kind":"text","label":"WhatsApp (Label Tombol)","order":50,"targets":["navCtaLabel","heroPrimaryLabel","orderLabel","socWaLabel","footCtaLabel"]},{"key":"navProdLabel","kind":"url"},{"key":"navCaraLabel","kind":"url"},{"key":"navJamLabel","kind":"url"},{"key":"navKontakLabel","kind":"url"},{"key":"heroBadge1","kind":"text"},{"key":"heroBadge2","kind":"text"},{"key":"heroTitle","kind":"text"},{"key":"heroSubtitle","kind":"text"},{"key":"heroSecUrl","kind":"url"},{"key":"heroSecLabel","kind":"text"},{"key":"stat1Title","kind":"text"},{"key":"stat1Sub","kind":"text"},{"key":"stat2Title","kind":"text"},{"key":"stat2Sub","kind":"text"},{"key":"stat3Title","kind":"text"},{"key":"stat3Sub","kind":"text"},{"key":"promoTitle","kind":"text"},{"key":"promoDesc","kind":"text"},{"key":"promoImg","kind":"image"},{"key":"featTitle","kind":"text"},{"key":"featSubtitle","kind":"text"},{"key":"prod1Img","kind":"image"},{"key":"prod1Name","kind":"text"},{"key":"prod1Desc","kind":"text"},{"key":"prod1Price","kind":"text"},{"key":"prod2Img","kind":"image"},{"key":"prod2Name","kind":"text"},{"key":"prod2Desc","kind":"text"},{"key":"prod2Price","kind":"text"},{"key":"prod3Img","kind":"image"},{"key":"prod3Name","kind":"text"},{"key":"prod3Desc","kind":"text"},{"key":"prod3Price","kind":"text"},{"key":"prod4Img","kind":"image"},{"key":"prod4Name","kind":"text"},{"key":"prod4Desc","kind":"text"},{"key":"prod4Price","kind":"text"},{"key":"stepTitle","kind":"text"},{"key":"stepSubtitle","kind":"text"},{"key":"s1Title","kind":"text"},{"key":"s1Desc","kind":"text"},{"key":"s2Title","kind":"text"},{"key":"s2Desc","kind":"text"},{"key":"s3Title","kind":"text"},{"key":"s3Desc","kind":"text"},{"key":"katalogUrl","kind":"url"},{"key":"katalogLabel","kind":"text"},{"key":"jamTitle","kind":"text"},{"key":"jamSubtitle","kind":"text"},{"key":"j1Day","kind":"text"},{"key":"j1Time","kind":"text"},{"key":"j2Day","kind":"text"},{"key":"j2Time","kind":"text"},{"key":"j3Day","kind":"text"},{"key":"j3Time","kind":"text"},{"key":"areaTitle","kind":"text"},{"key":"areaDesc","kind":"text"},{"key":"footTitle","kind":"text"},{"key":"footAddress","kind":"text"},{"key":"footNote","kind":"text"},{"key":"socIgUrl","kind":"url"},{"key":"socIgLabel","kind":"text"},{"key":"socSpUrl","kind":"url"},{"key":"socSpLabel","kind":"text"},{"key":"socTpUrl","kind":"url"},{"key":"socTpLabel","kind":"text"},{"key":"footCtaTitle","kind":"text"},{"key":"footCtaDesc","kind":"text"},{"key":"footCopy","kind":"text"}]}</script>
 </head>
 
 <body>

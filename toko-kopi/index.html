@@ -5,6 +5,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-editable="siteTitle">Kopi Pagi — Premium Coffee & Roastery</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -79,6 +108,13 @@
     .brand-icon {
       color: var(--accent-gold);
       font-size: 1.5rem;
+    }
+
+    .brand-icon img {
+      width: 34px;
+      height: 34px;
+      display: block;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -336,13 +372,309 @@
       .info-box { padding: 24px; }
     }
   </style>
+
+  <script type="application/json" data-editor-schema>
+    {
+      "version": 1,
+      "strict": true,
+      "fields": [
+        {
+          "key": "siteTitle",
+          "kind": "text",
+          "label": "Judul Website",
+          "order": 10
+        },
+        {
+          "key": "brandName",
+          "kind": "text",
+          "label": "Navbar: Nama Brand",
+          "order": 20
+        },
+        {
+          "key": "logoImg",
+          "kind": "image",
+          "label": "Navbar: Logo (Gambar)",
+          "order": 30
+        },
+        {
+          "key": "navWaUrl",
+          "kind": "url",
+          "label": "WhatsApp (URL)",
+          "order": 40,
+          "targets": [
+            "heroCtaUrl",
+            "linkWa"
+          ]
+        },
+        {
+          "key": "navWaLabel",
+          "kind": "text",
+          "label": "WhatsApp (Label Tombol)",
+          "order": 50,
+          "targets": [
+            "heroCtaLabel"
+          ]
+        },
+        {
+          "key": "addressNote1",
+          "kind": "text"
+        },
+        {
+          "key": "addressNote2",
+          "kind": "text"
+        },
+        {
+          "key": "addressText",
+          "kind": "text"
+        },
+        {
+          "key": "addressTitle",
+          "kind": "text"
+        },
+        {
+          "key": "bean1Name",
+          "kind": "text"
+        },
+        {
+          "key": "bean1Price",
+          "kind": "text"
+        },
+        {
+          "key": "bean1Size",
+          "kind": "text"
+        },
+        {
+          "key": "bean2Name",
+          "kind": "text"
+        },
+        {
+          "key": "bean2Price",
+          "kind": "text"
+        },
+        {
+          "key": "bean2Size",
+          "kind": "text"
+        },
+        {
+          "key": "bean3Name",
+          "kind": "text"
+        },
+        {
+          "key": "bean3Price",
+          "kind": "text"
+        },
+        {
+          "key": "bean3Size",
+          "kind": "text"
+        },
+        {
+          "key": "beansDesc",
+          "kind": "text"
+        },
+        {
+          "key": "beansTitle",
+          "kind": "text"
+        },
+        {
+          "key": "drawerCtaLabel",
+          "kind": "text"
+        },
+        {
+          "key": "drawerCtaUrl",
+          "kind": "url"
+        },
+        {
+          "key": "footerBrand",
+          "kind": "text"
+        },
+        {
+          "key": "footerCopyright",
+          "kind": "text"
+        },
+        {
+          "key": "footerTagline",
+          "kind": "text"
+        },
+        {
+          "key": "footerTerms",
+          "kind": "text"
+        },
+        {
+          "key": "h1Day",
+          "kind": "text"
+        },
+        {
+          "key": "h1Time",
+          "kind": "text"
+        },
+        {
+          "key": "h2Day",
+          "kind": "text"
+        },
+        {
+          "key": "h2Time",
+          "kind": "text"
+        },
+        {
+          "key": "heroEyebrow",
+          "kind": "text"
+        },
+        {
+          "key": "heroImg",
+          "kind": "image"
+        },
+        {
+          "key": "heroSecLabel",
+          "kind": "text"
+        },
+        {
+          "key": "heroSecUrl",
+          "kind": "url"
+        },
+        {
+          "key": "heroSubtitle",
+          "kind": "text"
+        },
+        {
+          "key": "heroTitle",
+          "kind": "text"
+        },
+        {
+          "key": "hoursNote",
+          "kind": "text"
+        },
+        {
+          "key": "hoursTitle",
+          "kind": "text"
+        },
+        {
+          "key": "item1Desc",
+          "kind": "text"
+        },
+        {
+          "key": "item1Name",
+          "kind": "text"
+        },
+        {
+          "key": "item1Price",
+          "kind": "text"
+        },
+        {
+          "key": "item2Desc",
+          "kind": "text"
+        },
+        {
+          "key": "item2Name",
+          "kind": "text"
+        },
+        {
+          "key": "item2Price",
+          "kind": "text"
+        },
+        {
+          "key": "item3Desc",
+          "kind": "text"
+        },
+        {
+          "key": "item3Name",
+          "kind": "text"
+        },
+        {
+          "key": "item3Price",
+          "kind": "text"
+        },
+        {
+          "key": "linkIg",
+          "kind": "url"
+        },
+        {
+          "key": "linkSp",
+          "kind": "url"
+        },
+        {
+          "key": "linkTk",
+          "kind": "url"
+        },
+        {
+          "key": "linkTp",
+          "kind": "url"
+        },
+        {
+          "key": "locSubtitle",
+          "kind": "text"
+        },
+        {
+          "key": "locTitle",
+          "kind": "text"
+        },
+        {
+          "key": "menuSubtitle",
+          "kind": "text"
+        },
+        {
+          "key": "menuTitle",
+          "kind": "text"
+        },
+        {
+          "key": "navCtaLabel",
+          "kind": "text"
+        },
+        {
+          "key": "navCtaUrl",
+          "kind": "url"
+        },
+        {
+          "key": "q1Desc",
+          "kind": "text"
+        },
+        {
+          "key": "q1Title",
+          "kind": "text"
+        },
+        {
+          "key": "q2Desc",
+          "kind": "text"
+        },
+        {
+          "key": "q2Title",
+          "kind": "text"
+        },
+        {
+          "key": "q3Desc",
+          "kind": "text"
+        },
+        {
+          "key": "q3Title",
+          "kind": "text"
+        },
+        {
+          "key": "qualityDesc",
+          "kind": "text"
+        },
+        {
+          "key": "qualityTitle",
+          "kind": "text"
+        },
+        {
+          "key": "roastSubtitle",
+          "kind": "text"
+        },
+        {
+          "key": "roastTitle",
+          "kind": "text"
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand serif" href="#top">
-        <span class="brand-icon" aria-hidden="true">☕</span>
+        <span class="brand-icon" aria-hidden="true">
+          <img data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='16' fill='%2312100E'/%3E%3Ccircle cx='60' cy='60' r='52' fill='none' stroke='%23D4AF37' stroke-width='6' opacity='.9'/%3E%3Ctext x='60' y='74' font-size='56' text-anchor='middle'%3E%E2%98%95%3C/text%3E%3C/svg%3E" />
+        </span>
         <span data-editable="brandName">Kopi Pagi</span>
       </a>
 

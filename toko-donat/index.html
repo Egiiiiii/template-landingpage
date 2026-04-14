@@ -5,6 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-editable="site-title">Glaze &amp; Glow — Donat Premium Buatan Tangan</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <style>
@@ -167,6 +196,13 @@
       width: 22px;
       height: 22px;
       fill: #fff;
+    }
+
+    .nav-logo-icon img {
+      width: 22px;
+      height: 22px;
+      display: block;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -1165,6 +1201,8 @@
       }
     }
   </style>
+
+  <script type="application/json" data-editor-schema>{"version":1,"strict":true,"fields":[{"key":"siteTitle","kind":"text","label":"Judul Website","order":10,"targets":["site-title"]},{"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20,"targets":["brand-name"]},{"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},{"key":"navWaUrl","kind":"url","label":"WhatsApp (URL)","order":40,"targets":["buy-wa-url","contact-cta-url","drawerCtaUrl","footerWaUrl","navCtaUrl","prodWaUrl","wa-float-url"]},{"key":"navWaLabel","kind":"text","label":"WhatsApp (Label Tombol)","order":50,"targets":["drawerCtaLabel","footerWaLabel","navCtaLabel","prodWaLabel"]},{"key":"buy-label","kind":"text"},{"key":"buy-shopee-desc","kind":"text"},{"key":"buy-shopee-name","kind":"text"},{"key":"buy-shopee-url","kind":"url"},{"key":"buy-title","kind":"text"},{"key":"buy-tokped-desc","kind":"text"},{"key":"buy-tokped-name","kind":"text"},{"key":"buy-tokped-url","kind":"url"},{"key":"buy-wa-desc","kind":"text"},{"key":"buy-wa-name","kind":"text"},{"key":"cat-1-name","kind":"text"},{"key":"cat-1-sub","kind":"text"},{"key":"cat-2-name","kind":"text"},{"key":"cat-2-sub","kind":"text"},{"key":"cat-3-name","kind":"text"},{"key":"cat-3-sub","kind":"text"},{"key":"cat-4-name","kind":"text"},{"key":"cat-4-sub","kind":"text"},{"key":"cat-label","kind":"text"},{"key":"cat-title","kind":"text"},{"key":"contact-address","kind":"text"},{"key":"contact-hours","kind":"text"},{"key":"contact-img","kind":"image"},{"key":"contact-label","kind":"text"},{"key":"contact-social","kind":"text"},{"key":"contact-title","kind":"text"},{"key":"footer-brand","kind":"text"},{"key":"footer-copy","kind":"text"},{"key":"footer-desc","kind":"text"},{"key":"hero-badge","kind":"text"},{"key":"hero-desc","kind":"text"},{"key":"hero-img","kind":"image"},{"key":"hero-pill-rating","kind":"text"},{"key":"hero-pill-sub","kind":"text"},{"key":"hero-title","kind":"text"},{"key":"prod-1-badge","kind":"text"},{"key":"prod-1-img","kind":"image"},{"key":"prod-1-name","kind":"text"},{"key":"prod-1-price","kind":"text"},{"key":"prod-2-badge","kind":"text"},{"key":"prod-2-img","kind":"image"},{"key":"prod-2-name","kind":"text"},{"key":"prod-2-price","kind":"text"},{"key":"prod-3-badge","kind":"text"},{"key":"prod-3-img","kind":"image"},{"key":"prod-3-name","kind":"text"},{"key":"prod-3-price","kind":"text"},{"key":"prod-label","kind":"text"},{"key":"prod-title","kind":"text"},{"key":"soc-ig","kind":"url"},{"key":"soc-tiktok","kind":"url"},{"key":"soc-youtube","kind":"url"}]}</script>
 </head>
 
 <body>
@@ -1174,11 +1212,7 @@
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
         <div class="nav-logo-icon">
-          <!-- donut SVG -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z" />
-          </svg>
+          <img data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z'/%3E%3C/svg%3E" />
         </div>
         <span data-editable="brand-name">Glaze &amp; Glow</span>
       </a>
@@ -1188,7 +1222,7 @@
         <li><a href="#produk">Menu</a></li>
         <li><a href="#beli">Order</a></li>
         <li><a href="#kontak">Lokasi</a></li>
-        <li class="cta"><a href="https://wa.me/6281234567890">Pesan Sekarang</a></li>
+        <li class="cta"><a data-editable="navCtaUrl" href="https://wa.me/6281234567890"><span data-editable="navCtaLabel">Pesan Sekarang</span></a></li>
       </ul>
 
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -1201,7 +1235,7 @@
       <a href="#produk">Menu</a>
       <a href="#beli">Order</a>
       <a href="#kontak">Lokasi</a>
-      <a href="https://wa.me/6281234567890" class="d-cta">Pesan Sekarang</a>
+      <a data-editable="drawerCtaUrl" href="https://wa.me/6281234567890" class="d-cta"><span data-editable="drawerCtaLabel">Pesan Sekarang</span></a>
     </div>
   </nav>
 
@@ -1319,13 +1353,13 @@
             <h3 class="prod-name" data-editable="prod-1-name">Strawberry Bliss</h3>
             <div class="prod-footer">
               <span class="prod-price" data-editable="prod-1-price">Rp 12.000</span>
-              <a href="https://wa.me/6281234567890" class="prod-btn">
+              <a data-editable="prodWaUrl" href="https://wa.me/6281234567890" class="prod-btn">
                 <!-- bag icon -->
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M6 2l-2 5H2v14h20V7h-2L18 2H6zm2 2h8l1.5 3h-11L8 4zM4 9h16v10H4V9zm8 2a3 3 0 100 6 3 3 0 000-6z" />
                 </svg>
-                Order
+                <span data-editable="prodWaLabel">Order</span>
               </a>
             </div>
           </div>
@@ -1341,12 +1375,12 @@
             <h3 class="prod-name" data-editable="prod-2-name">Double Chocolate</h3>
             <div class="prod-footer">
               <span class="prod-price" data-editable="prod-2-price">Rp 14.000</span>
-              <a href="https://wa.me/6281234567890" class="prod-btn">
+              <a data-editable="prodWaUrl" href="https://wa.me/6281234567890" class="prod-btn">
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M6 2l-2 5H2v14h20V7h-2L18 2H6zm2 2h8l1.5 3h-11L8 4zM4 9h16v10H4V9zm8 2a3 3 0 100 6 3 3 0 000-6z" />
                 </svg>
-                Order
+                <span data-editable="prodWaLabel">Order</span>
               </a>
             </div>
           </div>
@@ -1362,12 +1396,12 @@
             <h3 class="prod-name" data-editable="prod-3-name">Matcha Dream</h3>
             <div class="prod-footer">
               <span class="prod-price" data-editable="prod-3-price">Rp 15.000</span>
-              <a href="https://wa.me/6281234567890" class="prod-btn">
+              <a data-editable="prodWaUrl" href="https://wa.me/6281234567890" class="prod-btn">
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M6 2l-2 5H2v14h20V7h-2L18 2H6zm2 2h8l1.5 3h-11L8 4zM4 9h16v10H4V9zm8 2a3 3 0 100 6 3 3 0 000-6z" />
                 </svg>
-                Order
+                <span data-editable="prodWaLabel">Order</span>
               </a>
             </div>
           </div>
@@ -1525,7 +1559,7 @@
         <div class="footer-links">
           <h5>Customer Care</h5>
           <ul>
-            <li><a href="https://wa.me/6281234567890">Hubungi Kami</a></li>
+            <li><a data-editable="footerWaUrl" href="https://wa.me/6281234567890"><span data-editable="footerWaLabel">Hubungi Kami</span></a></li>
             <li><a href="#">Bulk Order</a></li>
             <li><a href="#">Franchise</a></li>
           </ul>

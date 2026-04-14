@@ -5,6 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-editable="site-title">FreshMart — Sayuran Segar Dari Kebun Lokal</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,
@@ -141,6 +170,11 @@
       font-size: 1.2rem;
       color: #fff;
       box-shadow: 0 4px 12px rgba(27, 122, 74, .25);
+    }
+
+    .nav-logo-icon {
+      object-fit: contain;
+      display: block;
     }
 
     .nav-links {
@@ -1028,6 +1062,8 @@
       }
     }
   </style>
+
+  <script type="application/json" data-editor-schema>{"version":1,"strict":true,"fields":[{"key":"siteTitle","kind":"text","label":"Judul Website","order":10,"targets":["site-title"]},{"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20,"targets":["brand-name"]},{"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},{"key":"navWaUrl","kind":"url","label":"WhatsApp (URL)","order":40,"targets":["buy-wa-url","wa-float-url"]},{"key":"buy-label","kind":"text"},{"key":"buy-shopee-desc","kind":"text"},{"key":"buy-shopee-name","kind":"text"},{"key":"buy-shopee-url","kind":"url"},{"key":"buy-title","kind":"text"},{"key":"buy-tokped-desc","kind":"text"},{"key":"buy-tokped-name","kind":"text"},{"key":"buy-tokped-url","kind":"url"},{"key":"buy-wa-desc","kind":"text"},{"key":"buy-wa-name","kind":"text"},{"key":"cat-1-icon","kind":"text"},{"key":"cat-1-name","kind":"text"},{"key":"cat-1-sub","kind":"text"},{"key":"cat-2-icon","kind":"text"},{"key":"cat-2-name","kind":"text"},{"key":"cat-2-sub","kind":"text"},{"key":"cat-3-icon","kind":"text"},{"key":"cat-3-name","kind":"text"},{"key":"cat-3-sub","kind":"text"},{"key":"cat-4-icon","kind":"text"},{"key":"cat-4-name","kind":"text"},{"key":"cat-4-sub","kind":"text"},{"key":"cat-label","kind":"text"},{"key":"cat-title","kind":"text"},{"key":"contact-address","kind":"text"},{"key":"contact-desc","kind":"text"},{"key":"contact-email","kind":"text"},{"key":"contact-title","kind":"text"},{"key":"contact-wa","kind":"text"},{"key":"footer-brand","kind":"text"},{"key":"footer-copy","kind":"text"},{"key":"footer-desc","kind":"text"},{"key":"footer-logo","kind":"text"},{"key":"hero-badge","kind":"text"},{"key":"hero-cta-1","kind":"url"},{"key":"hero-cta-2","kind":"url"},{"key":"hero-desc","kind":"text"},{"key":"hero-img","kind":"image"},{"key":"hero-title","kind":"text"},{"key":"nav-cta-url","kind":"url"},{"key":"prod-1-img","kind":"image"},{"key":"prod-1-name","kind":"text"},{"key":"prod-1-price","kind":"text"},{"key":"prod-1-tag","kind":"text"},{"key":"prod-2-img","kind":"image"},{"key":"prod-2-name","kind":"text"},{"key":"prod-2-price","kind":"text"},{"key":"prod-2-tag","kind":"text"},{"key":"prod-3-img","kind":"image"},{"key":"prod-3-name","kind":"text"},{"key":"prod-3-price","kind":"text"},{"key":"prod-3-tag","kind":"text"},{"key":"prod-4-img","kind":"image"},{"key":"prod-4-name","kind":"text"},{"key":"prod-4-price","kind":"text"},{"key":"prod-4-tag","kind":"text"},{"key":"prod-label","kind":"text"},{"key":"prod-title","kind":"text"},{"key":"soc-fb","kind":"url"},{"key":"soc-ig","kind":"url"},{"key":"soc-tiktok","kind":"url"},{"key":"stat-1-lbl","kind":"text"},{"key":"stat-1-num","kind":"text"},{"key":"stat-2-lbl","kind":"text"},{"key":"stat-2-num","kind":"text"},{"key":"stat-3-lbl","kind":"text"},{"key":"stat-3-num","kind":"text"}]}</script>
 </head>
 
 <body>
@@ -1035,7 +1071,7 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
-        <div class="nav-logo-icon" data-editable="logo-icon">🥬</div>
+        <img class="nav-logo-icon" data-editable="logoImg" alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='16' fill='%231B7A4A'/%3E%3Ctext x='60' y='78' font-size='64' text-anchor='middle'%3E%F0%9F%A5%AC%3C/text%3E%3C/svg%3E" />
         <span data-editable="brand-name">FreshMart</span>
       </a>
       <ul class="nav-links" id="navLinks">

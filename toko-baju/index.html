@@ -5,6 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-editable="siteTitle">NUSA Fashion — Pakaian Lokal Premium</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <style>
     /* ─────────────────────────────
        RESET & BASE
@@ -445,6 +474,7 @@
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
+  <script type="application/json" data-editor-schema>{"version":1,"strict":true,"fields":[{"key":"siteTitle","kind":"text","label":"Judul Website","order":10,"targets":["siteTitle"]},{"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20},{"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},{"key":"navWaUrl","kind":"url","label":"WhatsApp (URL)","order":40,"targets":["navCtaUrl","drawerCtaUrl","plat3Url","socWaUrl"]},{"key":"navWaLabel","kind":"text","label":"WhatsApp (Label Tombol)","order":50,"targets":["navCtaLabel","drawerCtaLabel"]},{"key":"navLink1","kind":"url"},{"key":"navLink2","kind":"url"},{"key":"navLink3","kind":"url"},{"key":"drawerLink1","kind":"url"},{"key":"drawerLink2","kind":"url"},{"key":"drawerLink3","kind":"url"},{"key":"heroEyebrow","kind":"text"},{"key":"heroTitle1","kind":"text"},{"key":"heroTitle2","kind":"text"},{"key":"heroDesc","kind":"text"},{"key":"heroBtn1Url","kind":"url"},{"key":"heroBtn1Label","kind":"text"},{"key":"stat1Num","kind":"text"},{"key":"stat1Lbl","kind":"text"},{"key":"stat2Num","kind":"text"},{"key":"stat2Lbl","kind":"text"},{"key":"stat3Num","kind":"text"},{"key":"stat3Lbl","kind":"text"},{"key":"heroImg","kind":"image"},{"key":"catEyebrow","kind":"text"},{"key":"catTitle","kind":"text"},{"key":"cat1Img","kind":"image"},{"key":"cat1Name","kind":"text"},{"key":"cat1Count","kind":"text"},{"key":"cat2Img","kind":"image"},{"key":"cat2Name","kind":"text"},{"key":"cat2Count","kind":"text"},{"key":"cat3Img","kind":"image"},{"key":"cat3Name","kind":"text"},{"key":"cat3Count","kind":"text"},{"key":"cat4Img","kind":"image"},{"key":"cat4Name","kind":"text"},{"key":"cat4Count","kind":"text"},{"key":"prodEyebrow","kind":"text"},{"key":"prodTitle","kind":"text"},{"key":"prodBtnUrl","kind":"url"},{"key":"prodBtnLabel","kind":"text"},{"key":"prod1Badge","kind":"text"},{"key":"prod1Img","kind":"image"},{"key":"prod1Cat","kind":"text"},{"key":"prod1Name","kind":"text"},{"key":"prod1Price","kind":"text"},{"key":"prod2Img","kind":"image"},{"key":"prod2Cat","kind":"text"},{"key":"prod2Name","kind":"text"},{"key":"prod2Price","kind":"text"},{"key":"prod3Badge","kind":"text"},{"key":"prod3Img","kind":"image"},{"key":"prod3Cat","kind":"text"},{"key":"prod3Name","kind":"text"},{"key":"prod3Price","kind":"text"},{"key":"prod4Img","kind":"image"},{"key":"prod4Cat","kind":"text"},{"key":"prod4Name","kind":"text"},{"key":"prod4Price","kind":"text"},{"key":"aboutEyebrow","kind":"text"},{"key":"aboutTitle","kind":"text"},{"key":"aboutDesc1","kind":"text"},{"key":"aboutDesc2","kind":"text"},{"key":"aboutBtnUrl","kind":"url"},{"key":"aboutBtnLabel","kind":"text"},{"key":"aboutImg","kind":"image"},{"key":"buyEyebrow","kind":"text"},{"key":"buyTitle","kind":"text"},{"key":"buySubtitle","kind":"text"},{"key":"plat1Url","kind":"url"},{"key":"plat1Name","kind":"text"},{"key":"plat1Desc","kind":"text"},{"key":"plat1LinkLabel","kind":"text"},{"key":"plat2Name","kind":"text"},{"key":"plat2Desc","kind":"text"},{"key":"plat2LinkLabel","kind":"text"},{"key":"plat3Name","kind":"text"},{"key":"plat3Desc","kind":"text"},{"key":"plat3LinkLabel","kind":"text"},{"key":"plat4Name","kind":"text"},{"key":"plat4Desc","kind":"text"},{"key":"plat4LinkLabel","kind":"text"},{"key":"plat5Name","kind":"text"},{"key":"plat5Desc","kind":"text"},{"key":"plat5LinkLabel","kind":"text"},{"key":"footerLogo","kind":"image"},{"key":"footerDesc","kind":"text"},{"key":"footerCol1Title","kind":"text"},{"key":"fc1Link1","kind":"url"},{"key":"fc1Link2","kind":"url"},{"key":"fc1Link3","kind":"url"},{"key":"fc1Link4","kind":"url"},{"key":"footerCol2Title","kind":"text"},{"key":"fc2Link1","kind":"url"},{"key":"fc2Link2","kind":"url"},{"key":"fc2Link3","kind":"url"},{"key":"fc2Link4","kind":"url"},{"key":"footerCol3Title","kind":"text"},{"key":"footerAddress","kind":"text"},{"key":"socIgUrl","kind":"url"},{"key":"socTkUrl","kind":"url"},{"key":"footerCopy","kind":"text"},{"key":"footerCurrency","kind":"text"}]}</script>
 </head>
 
 <body>
@@ -669,7 +699,7 @@
             <div class="platform-desc" data-editable="plat2Desc">Official store dengan asuransi.</div>
             <span class="platform-link" data-editable="plat2LinkLabel">Kunjungi Toko</span>
           </a>
-          <a href="https://wa.me/6280000000000" class="platform-card fade-up">
+          <a href="https://wa.me/6280000000000" class="platform-card fade-up" data-editable="plat3Url">
             <div class="platform-icon"><img src="../icons/whatsapp.png" alt="WhatsApp"></div>
             <div class="platform-name" data-editable="plat3Name">WhatsApp</div>
             <div class="platform-desc" data-editable="plat3Desc">Pesan manual via admin.</div>

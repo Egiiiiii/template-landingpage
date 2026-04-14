@@ -5,6 +5,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-editable="siteTitle">Bengkel Siap — Servis Motor Cepat & Terjadwal</title>
+  <script>
+    (function () {
+      try {
+        var base = 'https://landingpro.id';
+        var baseMeta = document.querySelector('meta[name="lp-analytics-base"]');
+        if (baseMeta && baseMeta.content) base = String(baseMeta.content);
+        base = base.replace(/\/+$/g, '');
+
+        var wid = '';
+        var widMeta = document.querySelector('meta[name="lp-wid"]');
+        if (widMeta && widMeta.content) wid = String(widMeta.content);
+        if (!wid) {
+          var host = String(location.hostname || '').split(':')[0];
+          wid = host.endsWith('.landingpro.id') ? host.split('.')[0] : host;
+        }
+        if (!wid) return;
+
+        var k = 'lp_vid';
+        var vid = localStorage.getItem(k);
+        if (!vid) {
+          vid = (crypto && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(16).slice(2) + String(Date.now());
+          localStorage.setItem(k, vid);
+        }
+
+        var u = base + '/api/analytics/pixel?wid=' + encodeURIComponent(wid) + '&vid=' + encodeURIComponent(vid) + '&p=' + encodeURIComponent(location.pathname + location.search);
+        (new Image()).src = u;
+      } catch (e) { }
+    })();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
     html { scroll-behavior: smooth; }
@@ -87,6 +116,13 @@
       place-items: center;
       font-size: 16px;
       flex-shrink: 0;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .nav-links {
@@ -564,6 +600,94 @@
       .stat:last-child { border-bottom: none; }
     }
   </style>
+
+  <script type="application/json" data-editor-schema>
+    {
+      "version": 1,
+      "strict": true,
+      "fields": [
+        {"key":"siteTitle","kind":"text","label":"Judul Website","order":10},
+
+        {"key":"brandName","kind":"text","label":"Navbar: Nama Brand","order":20},
+        {"key":"logoImg","kind":"image","label":"Navbar: Logo (Gambar)","order":30},
+
+        {
+          "key":"navWaUrl",
+          "kind":"url",
+          "label":"WhatsApp (URL)",
+          "order":40,
+          "targets":["navCtaUrl","drawerCtaUrl","heroCtaUrl","bookCtaUrl","linkWaUrl"]
+        },
+        {
+          "key":"navWaLabel",
+          "kind":"text",
+          "label":"WhatsApp (Label Tombol)",
+          "order":50,
+          "targets":["navCtaLabel","drawerCtaLabel","heroCtaLabel","bookCtaLabel"]
+        },
+
+        {"key":"heroBadge","kind":"text","label":"Hero: Badge","order":100},
+        {"key":"heroTitlePrefix","kind":"text","label":"Hero: Judul (Awal)","order":110},
+        {"key":"heroTitleHighlight","kind":"text","label":"Hero: Judul (Highlight)","order":120},
+        {"key":"heroTitleSuffix","kind":"text","label":"Hero: Judul (Akhir)","order":130},
+        {"key":"heroSubtitle","kind":"text","label":"Hero: Deskripsi","order":140},
+        {"key":"heroSecUrl","kind":"url","label":"Hero: Tombol Sekunder (URL)","order":150},
+        {"key":"heroSecLabel","kind":"text","label":"Hero: Tombol Sekunder (Label)","order":160},
+        {"key":"heroNote","kind":"text","label":"Hero: Catatan","order":170},
+
+        {"key":"quick1Label","kind":"text","label":"Info Ringkas 1: Label","order":180},
+        {"key":"quick1Value","kind":"text","label":"Info Ringkas 1: Isi","order":190},
+        {"key":"quick2Label","kind":"text","label":"Info Ringkas 2: Label","order":200},
+        {"key":"quick2Value","kind":"text","label":"Info Ringkas 2: Isi","order":210},
+        {"key":"quick3Label","kind":"text","label":"Info Ringkas 3: Label","order":220},
+        {"key":"quick3Value","kind":"text","label":"Info Ringkas 3: Isi","order":230},
+        {"key":"heroImg","kind":"image","label":"Hero: Gambar","order":240},
+
+        {"key":"svcTitle","kind":"text","label":"Layanan: Judul","order":300},
+        {"key":"svcSubtitle","kind":"text","label":"Layanan: Subjudul","order":310},
+
+        {"key":"svc1Price","kind":"text","label":"Layanan 1: Harga","order":320},
+        {"key":"svc1Name","kind":"text","label":"Layanan 1: Nama","order":330},
+        {"key":"svc1Desc","kind":"text","label":"Layanan 1: Deskripsi","order":340},
+        {"key":"svc2Price","kind":"text","label":"Layanan 2: Harga","order":350},
+        {"key":"svc2Name","kind":"text","label":"Layanan 2: Nama","order":360},
+        {"key":"svc2Desc","kind":"text","label":"Layanan 2: Deskripsi","order":370},
+        {"key":"svc3Price","kind":"text","label":"Layanan 3: Harga","order":380},
+        {"key":"svc3Name","kind":"text","label":"Layanan 3: Nama","order":390},
+        {"key":"svc3Desc","kind":"text","label":"Layanan 3: Deskripsi","order":400},
+
+        {"key":"pkgTitle","kind":"text","label":"Paket: Judul","order":500},
+        {"key":"pkgSubtitle","kind":"text","label":"Paket: Subjudul","order":510},
+        {"key":"pkgLeftTitle","kind":"text","label":"Paket: Kolom Kiri (Judul)","order":520},
+        {"key":"pkg1Name","kind":"text","label":"Paket 1: Nama","order":530},
+        {"key":"pkg1Price","kind":"text","label":"Paket 1: Harga","order":540},
+        {"key":"pkg2Name","kind":"text","label":"Paket 2: Nama","order":550},
+        {"key":"pkg2Price","kind":"text","label":"Paket 2: Harga","order":560},
+        {"key":"pkg3Name","kind":"text","label":"Paket 3: Nama","order":570},
+        {"key":"pkg3Price","kind":"text","label":"Paket 3: Harga","order":580},
+
+        {"key":"pkgRightTitle","kind":"text","label":"Estimasi: Judul","order":600},
+        {"key":"bookDesc","kind":"text","label":"Estimasi: Catatan","order":610},
+        {"key":"est1Name","kind":"text","label":"Estimasi 1: Nama","order":620},
+        {"key":"est1Time","kind":"text","label":"Estimasi 1: Durasi","order":630},
+        {"key":"est2Name","kind":"text","label":"Estimasi 2: Nama","order":640},
+        {"key":"est2Time","kind":"text","label":"Estimasi 2: Durasi","order":650},
+        {"key":"est3Name","kind":"text","label":"Estimasi 3: Nama","order":660},
+        {"key":"est3Time","kind":"text","label":"Estimasi 3: Durasi","order":670},
+
+        {"key":"footerBrand","kind":"text","label":"Footer: Brand","order":900},
+        {"key":"footerTagline","kind":"text","label":"Footer: Tagline","order":910},
+        {"key":"footerAddress","kind":"text","label":"Footer: Alamat","order":920},
+        {"key":"footerHours","kind":"text","label":"Footer: Jam","order":930},
+        {"key":"footerCopy","kind":"text","label":"Footer: Copyright","order":940},
+
+        {"key":"linkIgUrl","kind":"url","label":"Social: Instagram (URL)","order":960},
+        {"key":"linkTkUrl","kind":"url","label":"Social: TikTok (URL)","order":970},
+        {"key":"linkSpUrl","kind":"url","label":"Social: Shopee (URL)","order":980},
+        {"key":"linkTpUrl","kind":"url","label":"Social: Tokopedia (URL)","order":990}
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -571,14 +695,21 @@
     <div class="container">
       <div class="nav-inner">
         <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true">🔧</span>
+          <span class="brand-mark" aria-hidden="true">
+            <img
+              data-editable="logoImg"
+              alt="Logo"
+              src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2036%2036'%3E%3Ctext%20x='18'%20y='24'%20text-anchor='middle'%20font-size='18'%3E%F0%9F%94%A7%3C/text%3E%3C/svg%3E"
+              decoding="async"
+              loading="eager" />
+          </span>
           <span data-editable="brandName">Bengkel Siap</span>
         </a>
 
         <ul class="nav-links" aria-label="Navigasi">
-          <li><a href="#layanan" data-editable="navLayanan">Layanan</a></li>
-          <li><a href="#paket" data-editable="navPaket">Paket</a></li>
-          <li><a href="#booking" data-editable="navBooking">Booking</a></li>
+          <li><a href="#layanan">Layanan</a></li>
+          <li><a href="#paket">Paket</a></li>
+          <li><a href="#booking">Booking</a></li>
           <li class="cta">
             <a data-editable="navCtaUrl" href="https://wa.me/6280000000000">
               <span data-editable="navCtaLabel">Chat</span>
@@ -590,9 +721,9 @@
       </div>
 
       <nav id="drawer" class="drawer" aria-label="Navigasi mobile">
-        <a href="#layanan" onclick="toggleDrawer()" data-editable="drawerLayanan">Layanan</a>
-        <a href="#paket" onclick="toggleDrawer()" data-editable="drawerPaket">Paket</a>
-        <a href="#booking" onclick="toggleDrawer()" data-editable="drawerBooking">Booking</a>
+        <a href="#layanan" onclick="toggleDrawer()">Layanan</a>
+        <a href="#paket" onclick="toggleDrawer()">Paket</a>
+        <a href="#booking" onclick="toggleDrawer()">Booking</a>
         <a data-editable="drawerCtaUrl" href="https://wa.me/6280000000000" onclick="toggleDrawer()">
           <span data-editable="drawerCtaLabel">Chat WhatsApp</span>
         </a>
