@@ -25,8 +25,9 @@ Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
 2) ATURAN data-editable (KUNCI UTAMA EDITOR)
 -------------------------------------------
 [WAJIB]
-- Semua elemen yang ingin diedit harus memiliki atribut:
+- Semua elemen yang ingin diedit harus memiliki atribut (WAJIB pakai tanda kutip ganda):
 	data-editable="kunciUnik"
+	CATATAN: Kalau pakai single quote (data-editable='...'), editor bisa gagal mendeteksi field.
 
 - Kunci (value data-editable) harus:
 	- Stabil (jangan berubah-ubah antar versi template)
@@ -36,10 +37,12 @@ Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
 
 [CATATAN PENTING]
 - Editor mengidentifikasi jenis field dari TAG:
-	- <img data-editable="…">  -> IMAGE
-	- <a data-editable="…">    -> URL (mengubah href)
+	- <img data-editable="…">    -> IMAGE
 	- <iframe data-editable="…"> -> URL (mengubah src)
-	- selain itu                -> TEXT (mengubah text)
+	- <a data-editable="…">      -> URL *hanya jika nama key terlihat seperti URL*
+		  (mis. mengandung: url/href/link/embed/src/wa/ig/tiktok/shopee/tokped/maps atau akhiran: Url/Href/Link)
+		  Kalau tidak, <a> dianggap TEXT (mengubah label/link text, bukan href).
+	- selain itu                  -> TEXT (mengubah text)
 
 - Jangan pakai kunci yang sama untuk campuran tipe tag, contoh buruk:
 	<img data-editable="hero"> dan <h1 data-editable="hero">
@@ -62,7 +65,10 @@ Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
 4) LINK (CTA): HREF DAN LABEL HARUS DIPISAH
 ------------------------------------------
 [WAJIB]
-- Kalau mau mengubah URL link: taruh data-editable pada <a>.
+- Kalau mau mengubah URL link (href):
+	- Taruh data-editable pada <a>
+	- Gunakan key yang "URL-like" (mis. ctaUrl, buttonHref, heroLink, buyWaUrl)
+	- Nilai yang diinput harus URL yang valid (contoh: https://..., /promo, #fitur, mailto:, tel:)
 	Contoh:
 		<a data-editable="ctaUrl" href="https://contoh.com">Klik</a>
 
@@ -71,6 +77,12 @@ Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
 		<a data-editable="ctaUrl" href="#">
 			<span data-editable="ctaLabel">Beli Sekarang</span>
 		</a>
+
+[CATATAN]
+- Untuk <a>, sistem hanya akan menulis ke href jika value-nya benar-benar URL-like.
+  Kalau value-nya bukan URL (mis. "Beli Sekarang"), yang diubah adalah teksnya, bukan href.
+- Link sosial/WA/Maps bisa digabungkan oleh editor (field virtual lp_*). Jadi jangan kaget kalau
+  key link sosial asli tidak selalu muncul di sidebar; yang penting placeholder href/key-nya terdeteksi.
 
 
 5) IMAGE (TANPA BOCOR URL INTERNAL)
@@ -154,7 +166,7 @@ Dokumen ini adalah checklist untuk semua file HTML template baru supaya:
 10) CHECKLIST CEK CEPAT SEBELUM TEMPLATE DIPAKAI
 -----------------------------------------------
 [WAJIB]
-- Semua konten editable sudah dipasang data-editable.
+- Semua konten editable sudah dipasang data-editable (pakai tanda kutip ganda: data-editable="...").
 - Tidak ada key yang sama untuk campuran <img>/<a>/<iframe>/<text>.
 - Semua asset pakai path relative dan berada dalam prefix folder template.
 - Icon sosial pakai ../icons/whatsapp.png dst (sesuai daftar).
